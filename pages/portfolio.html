@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Biel Gómez</title>
-<link rel="stylesheet" href="../assets/css/global.css">
+<title>Portfolio — BilyWeb Project</title>
+<link rel="stylesheet" href="/assets/css/global.css">
 <style>
 #portfolio-hero {
   padding: 7rem var(--section-px) 3rem;
@@ -181,7 +181,7 @@
 </style>
 </head>
 <body>
-<script src="../assets/js/nav.js"></script>
+<script src="/assets/js/nav.js"></script>
 
 <!-- HERO -->
 <section id="portfolio-hero">
@@ -206,7 +206,7 @@
     <!-- Project 1 -->
     <div class="project-card" data-category="web dark" data-reveal data-project="cibershield">
       <div class="project-img-wrap">
-        <img src="../assets/img/project-cibershield.png" alt="CiberShield">
+        <img src="/assets/img/project-cibershield.png" alt="CiberShield">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="cibershield">Ver detalles →</button>
         </div>
@@ -226,7 +226,7 @@
     <!-- Project 2 -->
     <div class="project-card" data-category="app" data-reveal data-delay="0.1" data-project="fiscalia">
       <div class="project-img-wrap">
-        <img src="../assets/img/project-fiscalia.png" alt="FiscalIA">
+        <img src="/assets/img/project-fiscalia.png" alt="FiscalIA">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="fiscalia">Ver detalles →</button>
         </div>
@@ -267,7 +267,7 @@
     <div class="section-label" style="display:inline-flex;margin-bottom:1.5rem">¿Quieres algo así?</div>
     <h2 style="margin-bottom:1rem">Tu proyecto<br>podría ser el <em class="display-italic">siguiente</em></h2>
     <p style="color:var(--muted);margin-bottom:2rem">Cuéntame tu idea y te preparo una propuesta personalizada sin coste ni compromiso.</p>
-    <a href="contacto.html" class="btn btn-primary">Empezar mi proyecto →</a>
+    <a href="/pages/contacto.html" class="btn btn-primary">Empezar mi proyecto →</a>
   </div>
 </section>
 
@@ -318,7 +318,7 @@ document.addEventListener('click', (e) => {
           <div style="background:var(--yellow-light);padding:1rem;border-radius:8px;border:1px solid rgba(245,200,66,0.4)"><strong style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)">Resultado</strong><br><span style="font-size:0.9rem;color:var(--muted)">${p.resultado}</span></div>
         </div>
         <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
-          <a href="contacto.html?ref=${key}" class="btn btn-primary">Quiero algo así →</a>
+          <a href="/pages/contacto.html?ref=${key}" class="btn btn-primary">Quiero algo así →</a>
           <button id="close-modal-2" class="btn btn-outline">Cerrar</button>
         </div>
       </div>
@@ -331,6 +331,6 @@ document.addEventListener('click', (e) => {
   }
 });
 </script>
-<script src="../assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

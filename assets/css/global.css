@@ -124,15 +124,15 @@ a:visited { color: inherit; }
 }
 
 .nav-logo {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
-.nav-logo em {
-  font-style: italic;
-  color: var(--red);
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .nav-links {

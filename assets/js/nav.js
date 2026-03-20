@@ -4,7 +4,7 @@
   // Always use absolute paths - works on any page depth
   const NAV_HTML = `
   <nav id="nav">
-    <a href="/index.html" class="nav-logo">Biel<em>.</em></a>
+    <a href="/index.html" class="nav-logo"><img src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" style="height:38px;width:auto;display:block;"></a>
     <ul class="nav-links">
       <li><a href="/index.html">Inicio</a></li>
       <li><a href="/pages/servicios.html">Servicios</a></li>
@@ -29,9 +29,9 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div style="font-size:1.6rem;font-family:var(--font-display,Georgia),serif;font-weight:900;letter-spacing:-0.04em;color:var(--paper,#f5f0e8)">Biel<em style="font-style:italic;color:#e63325">.</em></div>
-          <p style="margin-top:0.75rem;color:rgba(245,240,232,0.55);font-size:0.85rem;max-width:260px;line-height:1.6">Diseñador web freelance. Creo páginas que hacen crecer tu negocio.</p>
+          <p style="margin-top:0.75rem;color:rgba(245,240,232,0.55);font-size:0.85rem;max-width:260px;line-height:1.6">Diseño web profesional para autónomos y PYMEs. Hacemos crecer tu negocio online.</p>
           <div style="margin-top:1.2rem;display:flex;gap:0.75rem;flex-wrap:wrap">
-            <a href="https://wa.me/34611044321?text=Hola%20Biel!" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;background:#25D366;color:white;font-size:0.75rem;font-weight:600;padding:0.45rem 1rem;border-radius:4px;text-decoration:none;">💬 WhatsApp</a>
+            <a href="https://wa.me/34611044321?text=Hola%20BilyWeb!" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;background:#25D366;color:white;font-size:0.75rem;font-weight:600;padding:0.45rem 1rem;border-radius:4px;text-decoration:none;">💬 WhatsApp</a>
             <a href="mailto:bielgrue@gmail.com" style="display:inline-flex;align-items:center;gap:0.4rem;border:1.5px solid rgba(245,240,232,0.3);color:rgba(245,240,232,0.8);font-size:0.75rem;font-weight:600;padding:0.45rem 1rem;border-radius:4px;text-decoration:none;">✉ Email</a>
           </div>
         </div>
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© ${new Date().getFullYear()} Biel Gómez — Todos los derechos reservados</span>
+        <span>© ${new Date().getFullYear()} BilyWeb Project — Todos los derechos reservados</span>
         <span style="color:var(--muted);font-size:0.8rem">Diseñado y desarrollado por mí mismo 🤓</span>
       </div>
     </div>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre mí — Biel Gómez</title>
-<link rel="stylesheet" href="../assets/css/global.css">
+<title>Sobre mí — BilyWeb Project</title>
+<link rel="stylesheet" href="/assets/css/global.css">
 <style>
 #about-hero {
   padding: 7rem var(--section-px) 5rem;
@@ -218,7 +218,7 @@
 </style>
 </head>
 <body>
-<script src="../assets/js/nav.js"></script>
+<script src="/assets/js/nav.js"></script>
 
 <section id="about-hero">
   <div class="about-hero-grid">
@@ -228,13 +228,13 @@
       <p style="margin-bottom:1.5rem">Diseñador web freelance de Les Franqueses del Vallès, Cataluña. Me apasiona crear páginas web que no solo se vean bien, sino que generen resultados reales para los negocios.</p>
       <p>Empecé en el mundo del diseño web por curiosidad y hoy convierto esa pasión en proyectos profesionales para autónomos y pequeñas empresas.</p>
       <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="contacto.html" class="btn btn-primary">Trabajar juntos →</a>
+        <a href="/pages/contacto.html" class="btn btn-primary">Trabajar juntos →</a>
         <a data-whatsapp="Hola Biel! Me gustaría conocerte y hablar de mi proyecto." class="btn btn-outline">💬 WhatsApp</a>
       </div>
     </div>
     <div class="about-photo-container" data-reveal data-delay="0.1">
       <div class="about-photo-deco"></div>
-      <img src="../assets/img/biel-photo.jpg" alt="Biel Gómez, diseñador web" class="about-photo-main">
+      <img src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" class="about-photo-main" style="object-fit:contain;padding:2rem;background:white;" style="object-fit:contain;padding:2rem;background:white;">
       <div class="about-sticker-main">Freelance<br>desde 2024</div>
     </div>
   </div>
@@ -385,7 +385,7 @@
   <div style="max-width:600px;margin:0 auto" data-reveal>
     <h2 style="margin-bottom:1rem">¿Nos conocemos?</h2>
     <p style="color:var(--muted);margin-bottom:2rem">Primera consulta gratuita, sin compromiso. Cuéntame tu proyecto y vemos si encajamos.</p>
-    <a href="contacto.html" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">Contactar →</a>
+    <a href="/pages/contacto.html" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">Contactar →</a>
   </div>
 </section>
 
@@ -409,6 +409,6 @@ const obs = new IntersectionObserver((entries) => {
 const barSection = document.getElementById('skill-bars');
 if (barSection) obs.observe(barSection);
 </script>
-<script src="../assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>
