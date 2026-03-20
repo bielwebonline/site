@@ -74,93 +74,134 @@ function initCursor() {
 
 // ── Navigation ───────────────────────────
 function initNav() {
-  let menuOpen = false;
+  let drawerOpen = false;
+  let drawer = null, overlay = null;
 
-  function getNavLinks() {
-    return document.querySelector('#nav .nav-links');
+  function buildDrawer() {
+    const isRoot = !window.location.pathname.includes('/pages/');
+    const up = isRoot ? '' : '../';
+    const base = isRoot ? 'pages/' : '';
+
+    const pages = [
+      { href: up + 'index.html',            label: 'Inicio',    icon: '🏠' },
+      { href: up + base + 'servicios.html', label: 'Servicios', icon: '🛠' },
+      { href: up + base + 'portfolio.html', label: 'Portfolio', icon: '✦'  },
+      { href: up + base + 'sobre-mi.html',  label: 'Sobre mí',  icon: '👤' },
+      { href: up + base + 'precios.html',   label: 'Precios',   icon: '💰' },
+      { href: up + base + 'blog.html',      label: 'Blog',      icon: '📝' },
+      { href: up + base + 'contacto.html',  label: 'Contactar', icon: '✉'  },
+    ];
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    // Overlay
+    const ov = document.createElement('div');
+    ov.id = 'drawer-overlay';
+    ov.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(10,10,10,0.55);z-index:9998;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(2px)';
+
+    // Drawer
+    const dr = document.createElement('nav');
+    dr.id = 'mobile-drawer';
+    dr.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:280px;max-width:85vw;background:#f5f0e8;border-left:2px solid #0a0a0a;z-index:9999;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;';
+
+    // Header
+    const header = document.createElement('div');
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:2px solid #0a0a0a;background:#0a0a0a;flex-shrink:0;';
+    header.innerHTML = '<span style="font-family:Fraunces,Georgia,serif;font-weight:900;font-size:1.4rem;letter-spacing:-0.04em;color:#f5f0e8">Biel<em style=\'font-style:italic;color:#e63325\'>.</em></span>';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'drawer-close';
+    closeBtn.setAttribute('aria-label', 'Cerrar menú');
+    closeBtn.style.cssText = 'background:none;border:none;cursor:pointer;color:#f5f0e8;font-size:1.4rem;line-height:1;padding:0.25rem;';
+    closeBtn.textContent = '✕';
+    header.appendChild(closeBtn);
+    dr.appendChild(header);
+
+    // Links
+    const linksWrap = document.createElement('div');
+    linksWrap.style.cssText = 'flex:1;padding:0.5rem 0;';
+
+    pages.forEach(p => {
+      const isActive = p.href.split('/').pop() === currentPage;
+      const a = document.createElement('a');
+      a.href = p.href;
+      a.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;font-family:Instrument Sans,sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:' + (isActive ? '#e63325' : '#0a0a0a') + ';text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.07);background:' + (isActive ? 'rgba(230,51,37,0.06)' : 'transparent') + ';transition:background 0.15s;';
+      a.innerHTML = '<span style="font-size:1.1rem;width:1.5rem;text-align:center">' + p.icon + '</span>' + p.label + (isActive ? '<span style="margin-left:auto;width:7px;height:7px;background:#e63325;border-radius:50%;flex-shrink:0"></span>' : '');
+      a.addEventListener('mouseenter', function() { this.style.background = 'rgba(10,10,10,0.06)'; });
+      a.addEventListener('mouseleave', function() { this.style.background = isActive ? 'rgba(230,51,37,0.06)' : 'transparent'; });
+      linksWrap.appendChild(a);
+    });
+    dr.appendChild(linksWrap);
+
+    // Footer WA button
+    const foot = document.createElement('div');
+    foot.style.cssText = 'padding:1.5rem;border-top:1px solid rgba(10,10,10,0.1);flex-shrink:0;';
+    foot.innerHTML = '<a href="https://wa.me/34611044321?text=Hola%20Biel!" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:0.6rem;background:#25D366;color:white;text-decoration:none;padding:0.8rem;border-radius:6px;font-family:Instrument Sans,sans-serif;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">💬 WhatsApp directo</a>';
+    dr.appendChild(foot);
+
+    document.body.appendChild(ov);
+    document.body.appendChild(dr);
+
+    // Events
+    closeBtn.addEventListener('click', closeDrawer);
+    ov.addEventListener('click', closeDrawer);
+    linksWrap.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+    return { drawer: dr, overlay: ov };
   }
 
-  function openMenu(burger) {
-    const links = getNavLinks();
-    if (!links) return;
-    menuOpen = true;
-    // Show menu with inline styles — guaranteed to work regardless of CSS cascade
-    links.style.cssText = `
-      display: flex !important;
-      flex-direction: column;
-      position: fixed;
-      bottom: var(--nav-h, 72px);
-      top: auto;
-      left: 0;
-      right: 0;
-      background: #f5f0e8;
-      border-top: 2px solid #0a0a0a;
-      box-shadow: 0 -8px 32px rgba(0,0,0,0.15);
-      padding: 1.5rem 2rem 2rem;
-      gap: 0;
-      z-index: 8999;
-      max-height: 80vh;
-      overflow-y: auto;
-      list-style: none;
-    `;
-    // Style each link
-    links.querySelectorAll('li').forEach((li, i) => {
-      li.style.cssText = 'border-bottom: 1px solid rgba(10,10,10,0.08); margin:0;';
+  function openDrawer() {
+    if (!drawer) {
+      const built = buildDrawer();
+      drawer = built.drawer;
+      overlay = built.overlay;
+    }
+    drawerOpen = true;
+    overlay.style.display = 'block';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        overlay.style.opacity = '1';
+        drawer.style.transform = 'translateX(0)';
+      });
     });
-    links.querySelectorAll('a').forEach(a => {
-      a.style.cssText = 'display:block; padding:0.85rem 0; font-size:1rem; color:#0a0a0a; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;';
-    });
-    // Burger → X
+    document.body.style.overflow = 'hidden';
+    const burger = document.querySelector('.nav-burger');
     if (burger) {
-      const spans = burger.querySelectorAll('span');
-      spans[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)';
-      spans[1].style.cssText = 'opacity:0';
-      spans[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)';
+      const s = burger.querySelectorAll('span');
+      if (s[0]) s[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)';
+      if (s[1]) s[1].style.cssText = 'opacity:0';
+      if (s[2]) s[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)';
     }
   }
 
-  function closeMenu() {
-    const links = getNavLinks();
-    if (!links) return;
-    menuOpen = false;
-    links.style.cssText = 'display: none;';
-    // Reset burger
+  function closeDrawer() {
+    if (!drawer) return;
+    drawerOpen = false;
+    drawer.style.transform = 'translateX(100%)';
+    overlay.style.opacity = '0';
+    setTimeout(() => { if (overlay) overlay.style.display = 'none'; }, 320);
+    document.body.style.overflow = '';
     const burger = document.querySelector('.nav-burger');
     if (burger) burger.querySelectorAll('span').forEach(s => s.style.cssText = '');
   }
 
-  // Burger click — delegated
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', function(e) {
     const burger = e.target.closest('.nav-burger');
     if (!burger) return;
-    if (menuOpen) closeMenu();
-    else openMenu(burger);
+    drawerOpen ? closeDrawer() : openDrawer();
   });
 
-  // Close on link click
-  document.addEventListener('click', (e) => {
-    if (menuOpen && e.target.closest('.nav-links a')) {
-      closeMenu();
-    }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawerOpen) closeDrawer();
   });
 
-  // Close on outside click
-  document.addEventListener('click', (e) => {
-    if (menuOpen && !e.target.closest('#nav')) {
-      closeMenu();
-    }
-  });
-
-  // Active link — retry until nav exists
+  // Active link in desktop nav
   function setActiveLink() {
     const nav = document.getElementById('nav');
-    if (!nav) return setTimeout(setActiveLink, 50);
+    if (!nav) return setTimeout(setActiveLink, 80);
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    nav.querySelectorAll('.nav-links a').forEach(a => {
-      const href = a.getAttribute('href').split('/').pop();
-      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-        a.classList.add('active');
-      }
+    nav.querySelectorAll('.nav-links a').forEach(function(a) {
+      if (a.getAttribute('href').split('/').pop() === currentPage) a.classList.add('active');
     });
   }
   setActiveLink();
