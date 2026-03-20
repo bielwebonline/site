@@ -97,11 +97,18 @@
   // Nav injects immediately (needs to be first)
   document.body.insertAdjacentHTML('afterbegin', isRoot ? NAV_HTML_ROOT : NAV_HTML);
 
-  // Footer and chat inject AFTER full DOM is loaded
+  // Footer and scripts inject AFTER full DOM is loaded
   function injectFooterAndChat() {
     document.body.insertAdjacentHTML('beforeend', FOOTER_HTML(isRoot));
+
+    // 1. Consent + watermark (must load first to intercept WA clicks)
+    const consentScript = document.createElement('script');
+    consentScript.src = '/assets/js/consent.js';
+    document.body.appendChild(consentScript);
+
+    // 2. Chat IA widget
     const chatScript = document.createElement('script');
-    chatScript.src = isRoot ? 'assets/js/chat.js' : '../assets/js/chat.js';
+    chatScript.src = '/assets/js/chat.js';
     document.body.appendChild(chatScript);
   }
 

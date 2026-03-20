@@ -245,11 +245,14 @@ function buildWhatsApp(msg = '') {
 }
 
 function initWhatsAppButtons() {
+  // Don't set href directly - consent.js intercepts [data-whatsapp] clicks
+  // Just store the URL as data attribute for consent.js to pick up
   $$('[data-whatsapp]').forEach(el => {
-    const msg = el.dataset.whatsapp;
-    el.href = buildWhatsApp(msg);
-    el.target = '_blank';
-    el.rel = 'noopener noreferrer';
+    const msg = el.dataset.whatsapp || '';
+    el.dataset.waurl = buildWhatsApp(msg);
+    // Remove direct href so browser doesn't follow it before consent
+    el.removeAttribute('href');
+    el.style.cursor = 'pointer';
   });
 }
 
@@ -271,7 +274,7 @@ function initContactForm() {
 
     // Open WhatsApp with pre-filled message
     const msg = `Hola Biel! Soy ${data.name} (${data.email}).\n\nServicio: ${data.service || 'Por definir'}\nPresupuesto: ${data.budget || 'Sin especificar'}\n\n${data.message}`;
-    window.open(buildWhatsApp(msg), '_blank');
+    if (window.__openWhatsApp) { window.__openWhatsApp(buildWhatsApp(msg)); } else { window.open(buildWhatsApp(msg), '_blank'); }
 
     showToast('¡Mensaje enviado! Abro WhatsApp para conectarte con Biel.', 'success');
     form.reset();
@@ -333,7 +336,7 @@ function initCalculator() {
       const type = $('#calc-type')?.value;
       const total = $('#calc-result')?.textContent;
       const msg = `Hola Biel! He usado tu calculadora y me sale un presupuesto de ${total} para una web tipo "${type}". Me gustaría hablar contigo.`;
-      window.open(buildWhatsApp(msg), '_blank');
+      if (window.__openWhatsApp) { window.__openWhatsApp(buildWhatsApp(msg)); } else { window.open(buildWhatsApp(msg), '_blank'); }
     });
   }
 }
@@ -400,9 +403,13 @@ function animateCounters() {
 // ── Floating WhatsApp Button ─────────────
 function initFloatingWA() {
   const btn = document.createElement('a');
-  btn.href = buildWhatsApp();
-  btn.target = '_blank';
-  btn.rel = 'noopener noreferrer';
+  btn.href = '#';
+  btn.dataset.waurl = buildWhatsApp();
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (window.__openWhatsApp) { window.__openWhatsApp(buildWhatsApp()); }
+    else { window.open(buildWhatsApp(), '_blank'); }
+  });
   btn.id = 'wa-float';
   btn.innerHTML = `
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
