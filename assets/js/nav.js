@@ -1,29 +1,28 @@
 /* ── nav.js — inject nav and footer on every page ── */
 
 (function() {
+  // Always use absolute paths - works on any page depth
   const NAV_HTML = `
   <nav id="nav">
-    <a href="../index.html" class="nav-logo">Biel<em>.</em></a>
+    <a href="/index.html" class="nav-logo">Biel<em>.</em></a>
     <ul class="nav-links">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../pages/servicios.html">Servicios</a></li>
-      <li><a href="../pages/portfolio.html">Portfolio</a></li>
-      <li><a href="../pages/sobre-mi.html">Sobre mí</a></li>
-      <li><a href="../pages/precios.html">Precios</a></li>
-      <li><a href="../pages/blog.html">Blog</a></li>
-      <li><a href="../pages/contacto.html" class="nav-cta">Contactar</a></li>
+      <li><a href="/index.html">Inicio</a></li>
+      <li><a href="/pages/servicios.html">Servicios</a></li>
+      <li><a href="/pages/portfolio.html">Portfolio</a></li>
+      <li><a href="/pages/sobre-mi.html">Sobre mí</a></li>
+      <li><a href="/pages/precios.html">Precios</a></li>
+      <li><a href="/pages/blog.html">Blog</a></li>
+      <li><a href="/pages/contacto.html" class="nav-cta">Contactar</a></li>
     </ul>
     <button class="nav-burger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </nav>`;
 
-  const NAV_HTML_ROOT = NAV_HTML
-    .replace(/href="\.\.\/index\.html"/g, 'href="index.html"')
-    .replace(/href="\.\.\/pages\//g, 'href="pages/');
+  const NAV_HTML_ROOT = NAV_HTML;
 
   const FOOTER_HTML = (isRoot) => {
-    const base = isRoot ? '' : '../';
+    const base = '/'; // always absolute
     return `
   <footer>
     <div class="footer-inner container">
@@ -40,23 +39,23 @@
           <div class="footer-col">
             <h4>Páginas</h4>
             <ul>
-              <li><a href="${base}index.html">Inicio</a></li>
-              <li><a href="${base}pages/servicios.html">Servicios</a></li>
-              <li><a href="${base}pages/portfolio.html">Portfolio</a></li>
-              <li><a href="${base}pages/sobre-mi.html">Sobre mí</a></li>
-              <li><a href="${base}pages/precios.html">Precios</a></li>
-              <li><a href="${base}pages/blog.html">Blog</a></li>
-              <li><a href="${base}pages/contacto.html">Contacto</a></li>
+              <li><a href="/index.html">Inicio</a></li>
+              <li><a href="/pages/servicios.html">Servicios</a></li>
+              <li><a href="/pages/portfolio.html">Portfolio</a></li>
+              <li><a href="/pages/sobre-mi.html">Sobre mí</a></li>
+              <li><a href="/pages/precios.html">Precios</a></li>
+              <li><a href="/pages/blog.html">Blog</a></li>
+              <li><a href="/pages/contacto.html">Contacto</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>Servicios</h4>
             <ul>
-              <li><a href="${base}pages/servicios.html#landing">Landing Page</a></li>
-              <li><a href="${base}pages/servicios.html#corporativa">Web Corporativa</a></li>
-              <li><a href="${base}pages/servicios.html#tienda">Tienda Online</a></li>
-              <li><a href="${base}pages/servicios.html#seo">SEO</a></li>
-              <li><a href="${base}pages/servicios.html#mantenimiento">Mantenimiento</a></li>
+              <li><a href="/pages/servicios.html#landing">Landing Page</a></li>
+              <li><a href="/pages/servicios.html#corporativa">Web Corporativa</a></li>
+              <li><a href="/pages/servicios.html#tienda">Tienda Online</a></li>
+              <li><a href="/pages/servicios.html#seo">SEO</a></li>
+              <li><a href="/pages/servicios.html#mantenimiento">Mantenimiento</a></li>
             </ul>
           </div>
           <div class="footer-col">

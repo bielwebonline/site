@@ -78,18 +78,15 @@ function initNav() {
   let drawer = null, overlay = null;
 
   function buildDrawer() {
-    const isRoot = !window.location.pathname.includes('/pages/');
-    const up = isRoot ? '' : '../';
-    const base = isRoot ? 'pages/' : '';
-
+    // Always use absolute paths
     const pages = [
-      { href: up + 'index.html',            label: 'Inicio',    icon: '🏠' },
-      { href: up + base + 'servicios.html', label: 'Servicios', icon: '🛠' },
-      { href: up + base + 'portfolio.html', label: 'Portfolio', icon: '✦'  },
-      { href: up + base + 'sobre-mi.html',  label: 'Sobre mí',  icon: '👤' },
-      { href: up + base + 'precios.html',   label: 'Precios',   icon: '💰' },
-      { href: up + base + 'blog.html',      label: 'Blog',      icon: '📝' },
-      { href: up + base + 'contacto.html',  label: 'Contactar', icon: '✉'  },
+      { href: '/index.html',            label: 'Inicio',    icon: '🏠' },
+      { href: '/pages/servicios.html',  label: 'Servicios', icon: '🛠' },
+      { href: '/pages/portfolio.html',  label: 'Portfolio', icon: '✦'  },
+      { href: '/pages/sobre-mi.html',   label: 'Sobre mí',  icon: '👤' },
+      { href: '/pages/precios.html',    label: 'Precios',   icon: '💰' },
+      { href: '/pages/blog.html',       label: 'Blog',      icon: '📝' },
+      { href: '/pages/contacto.html',   label: 'Contactar', icon: '✉'  },
     ];
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -199,9 +196,12 @@ function initNav() {
   function setActiveLink() {
     const nav = document.getElementById('nav');
     if (!nav) return setTimeout(setActiveLink, 80);
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname || '/index.html';
     nav.querySelectorAll('.nav-links a').forEach(function(a) {
-      if (a.getAttribute('href').split('/').pop() === currentPage) a.classList.add('active');
+      const href = a.getAttribute('href');
+      if (href === currentPath || (currentPath === '/' && href === '/index.html')) {
+        a.classList.add('active');
+      }
     });
   }
   setActiveLink();
