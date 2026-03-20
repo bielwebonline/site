@@ -322,7 +322,7 @@ function initCalculator() {
 
     const breakdown = $('#calc-breakdown');
     if (breakdown) {
-      breakdown.innerHTML = `<span>Base: ${base.toLocaleString('es-ES')}€</span>${extras ? `<span> + Extras: ${extras.toLocaleString('es-ES')}€</span>` : ''}`;
+      breakdown.innerHTML = '* Precio orientativo. No incluye IVA (21%).';
     }
   }
 
