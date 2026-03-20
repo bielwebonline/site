@@ -74,28 +74,45 @@ function initCursor() {
 
 // ── Navigation ───────────────────────────
 function initNav() {
-  const nav = $('#nav');
-  if (!nav) return;
-
-  // Mobile burger
-  const burger = $('.nav-burger', nav);
-  if (burger) {
-    burger.addEventListener('click', () => nav.classList.toggle('nav-mobile-open'));
-  }
-
-  // Active link
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  $$('.nav-links a', nav).forEach(a => {
-    const href = a.getAttribute('href').split('/').pop();
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      a.classList.add('active');
+  // Delegated burger click — works even if nav is injected after this runs
+  document.addEventListener('click', (e) => {
+    const burger = e.target.closest('.nav-burger');
+    if (!burger) return;
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    const isOpen = nav.classList.toggle('nav-mobile-open');
+    // Animate burger lines
+    const spans = burger.querySelectorAll('span');
+    if (isOpen) {
+      spans[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)';
+      spans[1].style.cssText = 'opacity:0';
+      spans[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)';
+    } else {
+      spans.forEach(s => s.style.cssText = '');
     }
   });
 
-  // Scroll style
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 20 ? '0 4px 20px rgba(0,0,0,0.1)' : '';
+  // Close menu when a nav link is clicked
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.nav-links a')) {
+      const nav = document.getElementById('nav');
+      if (nav) nav.classList.remove('nav-mobile-open');
+    }
   });
+
+  // Active link — retry until nav exists
+  function setActiveLink() {
+    const nav = document.getElementById('nav');
+    if (!nav) return setTimeout(setActiveLink, 50);
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    nav.querySelectorAll('.nav-links a').forEach(a => {
+      const href = a.getAttribute('href').split('/').pop();
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        a.classList.add('active');
+      }
+    });
+  }
+  setActiveLink();
 }
 
 // ── Scroll Reveal ────────────────────────

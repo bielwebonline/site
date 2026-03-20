@@ -405,8 +405,10 @@ REGLAS IMPORTANTES:
       });
 
       if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(`${res.status}: ${errData?.error?.message || res.statusText}`);
+        let errText = '';
+        try { const errData = await res.json(); errText = errData?.error || errData?.message || JSON.stringify(errData); }
+        catch { errText = await res.text().catch(() => res.statusText); }
+        throw new Error(`Servidor ${res.status}: ${errText}`);
       }
 
       const data = await res.json();
@@ -420,11 +422,8 @@ REGLAS IMPORTANTES:
 
     } catch (err) {
       hideTyping();
-      console.error("Groq error:", err.message);
-      const fallback = '😅 No he podido conectarme ahora mismo. Contacta directamente con Biel:';
-      appendMsg('bot', fallback);
-
-      // Always show contact buttons on error
+      console.error('Chat error:', err);
+      appendMsg('bot', `⚠️ Error: ${err.message}. Contacta con Biel directamente:`);
       const btns = document.createElement('div');
       btns.className = 'bc-contact-btns';
       btns.innerHTML = `<a class="bc-contact-btn wa" href="${WA_LINK}" target="_blank" rel="noopener">💬 WhatsApp</a><a class="bc-contact-btn em" href="${EMAIL}">✉ Email</a>`;
