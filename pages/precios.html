@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precios — Biel Gómez</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#pricing-hero {
+  padding: 7rem var(--section-px) 5rem;
+  background: var(--paper);
+  border-bottom: 2px solid var(--border);
+}
+.pricing-hero-inner { max-width: 1280px; margin: 0 auto; }
+.pricing-hero-inner h1 { font-size: clamp(4rem, 8vw, 8rem); line-height:0.92; }
+
+/* Plans grid */
+#plans {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper2);
+  border-bottom: 2px solid var(--border);
+}
+.plans-inner { max-width: 1280px; margin: 0 auto; }
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.plan-card {
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.plan-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(10,10,10,0.15); }
+.plan-card.popular { border-color: var(--red); border-width: 3px; }
+.plan-badge {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  background: var(--red);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.7rem;
+  border-radius: 3px;
+}
+.plan-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.plan-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.plan-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.plan-price {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 3.5rem;
+  letter-spacing: -0.04em;
+  color: var(--red);
+  line-height: 1;
+}
+.plan-price sup { font-size: 1.2rem; vertical-align: super; }
+.plan-price-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+.plan-body { padding: 1.5rem 2rem 2rem; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+.plan-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.87rem;
+  color: var(--muted);
+}
+.plan-feat-check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+.plan-feat strong { color: var(--ink); display: block; font-size: 0.88rem; }
+.plan-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.9rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.plan-btn:hover { background: var(--red); border-color: var(--red); }
+.plan-card.popular .plan-btn { background: var(--red); border-color: var(--red); }
+.plan-card.popular .plan-btn:hover { background: var(--ink); border-color: var(--ink); }
+
+/* Maintenance plans */
+#maintenance {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper);
+}
+.maint-inner { max-width: 1280px; margin: 0 auto; }
+.maint-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.maint-card {
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.maint-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--ink); }
+.maint-name { font-weight: 600; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.maint-title { font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; margin-bottom: 1rem; }
+.maint-price { font-family: var(--font-display); font-weight: 900; font-size: 2.5rem; color: var(--red); line-height:1; margin-bottom: 0.3rem; }
+.maint-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.5rem; }
+.maint-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.83rem; color: var(--muted); }
+.maint-list li::before { content: '→ '; color: var(--red); font-weight: 700; }
+
+/* Full calculator */
+#full-calc {
+  padding: var(--section-py) var(--section-px);
+  background: var(--ink);
+  color: var(--paper);
+}
+.calc-full-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 6rem;
+  align-items: start;
+}
+.calc-full-inner h2 { color: var(--paper); }
+.calc-full-box {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 3px solid rgba(255,255,255,0.1);
+  color: var(--ink);
+}
+.calc-full-result {
+  background: var(--paper2);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  margin-top: 1.5rem;
+  border: 2px solid var(--border);
+}
+.calc-total-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
+.calc-total-num { font-family: var(--font-display); font-weight: 900; font-size: 4rem; letter-spacing: -0.04em; color: var(--red); line-height: 1; }
+.calc-desglose { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+
+@media(max-width:900px) {
+  .plans-grid, .maint-grid { grid-template-columns: 1fr; }
+  .calc-full-inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+</style>
+</head>
+<body>
+<script src="../assets/js/nav.js"></script>
+
+<section id="pricing-hero">
+  <div class="pricing-hero-inner" data-reveal>
+    <div class="section-label">Inversión</div>
+    <h1>Precios claros,<br><em class="display-italic">sin letras</em><br>pequeñas.</h1>
+    <p style="color:var(--muted);max-width:520px;margin-top:1.5rem;font-size:1.05rem;line-height:1.75">Transparencia total desde el primer momento. Estos son precios orientativos — cada proyecto es único y recibirás un presupuesto personalizado.</p>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="plans-inner">
+    <div data-reveal>
+      <div class="section-label">Proyectos</div>
+      <h2>Elige tu punto<br>de partida</h2>
+    </div>
+    <div class="plans-grid">
+      <!-- Landing -->
+      <div class="plan-card" data-reveal data-delay="0.05">
+        <div class="plan-header">
+          <div class="plan-name">Básico</div>
+          <div class="plan-title">Landing Page</div>
+          <div class="plan-price"><sup>€</sup>400</div>
+          <div class="plan-price-note">precio orientativo · desde</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>1 página completa</strong>Hero, servicios, CTA y contacto.</span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Diseño 100% a medida</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Formulario + WhatsApp</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>SEO básico incluido</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Responsive</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Entrega en 5–7 días</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>1 mes soporte gratis</strong></span></li>
+          </ul>
+          <a href="contacto.html?service=landing" class="plan-btn">Empezar →</a>
+        </div>
+      </div>
+      <!-- Corporativa -->
+      <div class="plan-card popular" data-reveal data-delay="0.1">
+        <div class="plan-badge">Más popular</div>
+        <div class="plan-header">
+          <div class="plan-name">Profesional</div>
+          <div class="plan-title">Web Corporativa</div>
+          <div class="plan-price"><sup>€</sup>900</div>
+          <div class="plan-price-note">precio orientativo · desde</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Hasta 5 páginas</strong>Inicio, Servicios, Sobre mí, Blog, Contacto.</span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Panel de gestión incluido</strong>Gestiona tu propia web sin conocimientos técnicos.</span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>SEO completo</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Formulario + WhatsApp</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Responsive perfecta</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Entrega en 10–14 días</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>1 mes soporte + formación</strong></span></li>
+          </ul>
+          <a href="contacto.html?service=corporativa" class="plan-btn">Empezar →</a>
+        </div>
+      </div>
+      <!-- Tienda -->
+      <div class="plan-card" data-reveal data-delay="0.15">
+        <div class="plan-header">
+          <div class="plan-name">E-commerce</div>
+          <div class="plan-title">Tienda Online</div>
+          <div class="plan-price"><sup>€</sup>1.500</div>
+          <div class="plan-price-note">precio orientativo · desde</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Tienda desarrollada a medida</strong>Catálogo, carrito y pedidos propios.</span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Pasarela de pago</strong>Stripe + PayPal + transferencia.</span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Hasta 50 productos</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Emails automáticos</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>SEO para productos</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Entrega en 3–4 semanas</strong></span></li>
+            <li class="plan-feat"><span class="plan-feat-check">✓</span><span><strong>Formación completa</strong></span></li>
+          </ul>
+          <a href="contacto.html?service=tienda" class="plan-btn">Empezar →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE -->
+<section id="maintenance">
+  <div class="maint-inner">
+    <div data-reveal>
+      <div class="section-label">Mensual</div>
+      <h2>Mantenimiento<br>y soporte</h2>
+      <p style="color:var(--muted);max-width:500px;margin-top:1rem">Para que tu web siempre esté al día, segura y funcionando perfectamente.</p>
+    </div>
+    <div class="maint-grid">
+      <div class="maint-card" data-reveal data-delay="0.05">
+        <div class="maint-name">Plan Básico</div>
+        <div class="maint-title">Tranquilidad</div>
+        <div class="maint-price">50€</div>
+        <div class="maint-period">al mes</div>
+        <ul class="maint-list">
+          <li>Actualizaciones y parches de seguridad</li>
+          <li>Copia de seguridad mensual</li>
+          <li>Monitorización de caídas</li>
+          <li>Soporte por email</li>
+        </ul>
+        <a href="contacto.html?service=mantenimiento" class="btn btn-outline" style="margin-top:1.5rem;width:100%;text-align:center">Contratar</a>
+      </div>
+      <div class="maint-card" data-reveal data-delay="0.1">
+        <div class="maint-name">Plan Pro</div>
+        <div class="maint-title">Activo</div>
+        <div class="maint-price">100€</div>
+        <div class="maint-period">al mes</div>
+        <ul class="maint-list">
+          <li>Todo el plan básico</li>
+          <li>1 hora de cambios incluida</li>
+          <li>Informe mensual SEO</li>
+          <li>Soporte WhatsApp prioritario</li>
+          <li>Optimización de velocidad</li>
+        </ul>
+        <a href="contacto.html?service=mantenimiento-pro" class="btn btn-primary" style="margin-top:1.5rem;width:100%;text-align:center">Contratar</a>
+      </div>
+      <div class="maint-card" data-reveal data-delay="0.15">
+        <div class="maint-name">Plan Completo</div>
+        <div class="maint-title">Sin preocupaciones</div>
+        <div class="maint-price">200€</div>
+        <div class="maint-period">al mes</div>
+        <ul class="maint-list">
+          <li>Todo el plan Pro</li>
+          <li>3 horas de cambios incluidas</li>
+          <li>Blog: 2 artículos/mes</li>
+          <li>Google Ads básico</li>
+          <li>Respuesta en 4h</li>
+        </ul>
+        <a href="contacto.html?service=mantenimiento-completo" class="btn btn-outline" style="margin-top:1.5rem;width:100%;text-align:center">Contratar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL CALCULATOR -->
+<section id="full-calc">
+  <div class="calc-full-inner">
+    <div data-reveal>
+      <div class="section-label" style="color:rgba(245,240,232,0.5);border-color:rgba(245,240,232,0.2)">Herramienta</div>
+      <h2>Calculadora<br>de presupuesto</h2>
+      <p style="color:rgba(245,240,232,0.65);margin-top:1rem;line-height:1.75;max-width:380px">Personaliza tu proyecto y obtén un precio orientativo al instante. Sin compromiso.</p>
+      <div style="margin-top:2rem;padding:1.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg)">
+        <p style="font-size:0.85rem;color:rgba(245,240,232,0.55);line-height:1.65">💡 Estos precios son orientativos. El presupuesto final puede variar según la complejidad real del proyecto. Siempre recibirás una propuesta detallada antes de comenzar.</p>
+      </div>
+    </div>
+    <div data-reveal data-delay="0.1">
+      <div class="calc-full-box" id="budget-calc">
+        <h3 style="font-size:1.3rem;margin-bottom:1.5rem">Configura tu proyecto</h3>
+        <div class="form-group">
+          <label class="form-label">Tipo de web</label>
+          <select class="form-select" id="calc-type">
+            <option value="landing">Landing Page (base: 400€)</option>
+            <option value="corporativa" selected>Web Corporativa (base: 900€)</option>
+            <option value="tienda">Tienda Online (base: 1.500€)</option>
+            <option value="rediseno">Rediseño Web (base: 600€)</option>
+            <option value="seo">Solo SEO (base: 200€/mes)</option>
+          </select>
+        </div>
+        <div class="form-group" id="pages-group">
+          <label class="form-label">Número de páginas</label>
+          <select class="form-select" id="calc-pages">
+            <option value="1">1–3 páginas</option>
+            <option value="5" selected>4–5 páginas (incluido)</option>
+            <option value="8">6–8 páginas (+320€)</option>
+            <option value="12">Más de 8 (+640€)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Extras opcionales</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem">
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="blog"> Blog (+150€)</label>
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="multiidioma"> Multiidioma (+300€)</label>
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="animaciones"> Animaciones extra (+200€)</label>
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="chat"> Chat/WhatsApp widget (+100€)</label>
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="urgente"> Entrega urgente (+25%)</label>
+            <label class="calc-check-label"><input type="checkbox" class="calc-extra" value="mantenimiento"> +Mantenimiento mensual</label>
+          </div>
+        </div>
+        <div class="calc-full-result">
+          <div class="calc-total-label">Presupuesto estimado</div>
+          <div class="calc-total-num" id="calc-result">900 €</div>
+          <div class="calc-desglose" id="calc-breakdown">Base: 900€</div>
+        </div>
+        <button class="btn btn-red" id="calc-send" style="width:100%;margin-top:1rem;justify-content:center;font-size:0.95rem">
+          Pedir presupuesto exacto por WhatsApp →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--section-py) var(--section-px);background:var(--paper);text-align:center;border-top:2px solid var(--border)">
+  <div style="max-width:600px;margin:0 auto" data-reveal>
+    <h2 style="margin-bottom:1rem">¿Tienes dudas<br>sobre el <em class="display-italic">precio</em>?</h2>
+    <p style="color:var(--muted);margin-bottom:2rem">Hablamos sin compromiso. Te explico exactamente qué incluye cada opción y qué se adapta mejor a tu situación.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="contacto.html" class="btn btn-primary">Consultarme gratis →</a>
+      <a data-whatsapp="Hola Biel! Tengo dudas sobre los precios de tu servicio de diseño web." class="btn btn-outline">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

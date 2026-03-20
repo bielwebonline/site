@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Biel Gómez</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#blog-hero {
+  padding: 7rem var(--section-px) 5rem;
+  background: var(--paper2);
+  border-bottom: 2px solid var(--border);
+}
+.blog-hero-inner { max-width: 1280px; margin: 0 auto; }
+.blog-hero-inner h1 { font-size: clamp(4rem, 9vw, 9rem); line-height: 0.92; }
+
+#blog-main {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper);
+}
+.blog-inner { max-width: 1280px; margin: 0 auto; }
+
+/* Featured article */
+.blog-featured {
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  margin-bottom: 4rem;
+  background: white;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: none;
+}
+.blog-featured:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--ink); }
+.blog-feat-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: auto;
+  min-height: 360px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blog-feat-icon { font-size: 6rem; opacity: 0.3; }
+.blog-feat-body { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; }
+.blog-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.blog-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  border: 1.5px solid var(--border-strong);
+  color: var(--muted);
+}
+.blog-tag.red { background: var(--red); color: white; border-color: var(--red); }
+.blog-feat-title { font-family: var(--font-display); font-size: 2rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
+.blog-feat-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+.blog-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.78rem; color: var(--muted); }
+.blog-read-btn { align-self: flex-start; margin-top: 1.5rem; }
+
+/* Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.blog-card {
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.blog-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--ink); }
+.blog-card-img {
+  height: 180px;
+  background: var(--paper3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-bottom: 2px solid var(--border);
+}
+.blog-card-body { padding: 1.5rem; }
+.blog-card-title { font-family: var(--font-display); font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.6rem; }
+.blog-card-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+.blog-card-meta { font-size: 0.75rem; color: var(--muted); display: flex; gap: 1rem; }
+
+/* Article modal */
+#article-modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(10,10,10,0.85);
+  z-index: 5000;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+#article-modal.open { display: block; }
+.article-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  animation: pageIn 0.3s ease;
+  position: relative;
+}
+.article-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: none;
+}
+.article-close:hover { background: var(--red); }
+.article-content h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1rem; }
+.article-content p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.8; }
+.article-content h2 { font-size: 1.5rem; margin: 2rem 0 0.8rem; }
+.article-content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--red); }
+.article-content ul { margin: 0.8rem 0 1.2rem 1.5rem; color: var(--muted); line-height: 1.75; }
+.article-content ul li { margin-bottom: 0.4rem; }
+.article-content .highlight { background: var(--yellow-light); border-left: 3px solid var(--yellow); padding: 1rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.5rem 0; }
+
+@media(max-width:900px) {
+  .blog-featured { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px) { .blog-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<script src="../assets/js/nav.js"></script>
+
+<section id="blog-hero">
+  <div class="blog-hero-inner" data-reveal>
+    <div class="section-label">Recursos gratis</div>
+    <h1>Blog &<br><em class="display-italic">Consejos</em></h1>
+    <p style="margin-top:1.5rem;color:var(--muted);max-width:500px;font-size:1.05rem;line-height:1.75">Artículos para que tomes mejores decisiones sobre tu presencia online. Sin tecnicismos, en cristiano.</p>
+  </div>
+</section>
+
+<section id="blog-main">
+  <div class="blog-inner">
+    <!-- Featured -->
+    <div class="blog-featured" data-reveal data-article="cuanto-cuesta">
+      <div class="blog-feat-img">
+        <div class="blog-feat-icon">💰</div>
+      </div>
+      <div class="blog-feat-body">
+        <div>
+          <div class="blog-tags">
+            <span class="blog-tag red">Destacado</span>
+            <span class="blog-tag">Precios</span>
+            <span class="blog-tag">Guía</span>
+          </div>
+          <div class="blog-feat-title">¿Cuánto cuesta una página web en 2025?</div>
+          <div class="blog-feat-desc">La pregunta del millón. Te explico exactamente qué factores afectan al precio, qué puedes esperar en cada rango y cómo no te engañen.</div>
+          <div class="blog-meta">
+            <span>📅 Enero 2025</span>
+            <span>⏱ 6 min de lectura</span>
+            <span>👀 Guía completa</span>
+          </div>
+        </div>
+        <button class="btn btn-primary blog-read-btn" data-article="cuanto-cuesta">Leer artículo →</button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="blog-grid">
+      <div class="blog-card" data-reveal data-delay="0.05" data-article="por-que-web">
+        <div class="blog-card-img">🚀</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">Estrategia</span></div>
+          <div class="blog-card-title">Por qué tu negocio necesita una web (aunque tengas Instagram)</div>
+          <div class="blog-card-desc">Las redes sociales son prestadas. Tu web es tuya para siempre. Te explico la diferencia que marca.</div>
+          <div class="blog-card-meta"><span>📅 Feb 2025</span><span>⏱ 4 min</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="0.1" data-article="errores-web">
+        <div class="blog-card-img">❌</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">Diseño</span></div>
+          <div class="blog-card-title">7 errores que arruinan una web (y cómo evitarlos)</div>
+          <div class="blog-card-desc">Los errores más comunes que veo en webs de pequeños negocios y que les cuestan clientes cada día.</div>
+          <div class="blog-card-meta"><span>📅 Mar 2025</span><span>⏱ 5 min</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="0.15" data-article="seo-autonomos">
+        <div class="blog-card-img">🔍</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">SEO</span></div>
+          <div class="blog-card-title">SEO para autónomos: cómo aparecer en Google sin gastar dinero</div>
+          <div class="blog-card-desc">Las 5 cosas básicas de SEO que puedes hacer tú mismo para que Google te encuentre en tu zona.</div>
+          <div class="blog-card-meta"><span>📅 Mar 2025</span><span>⏱ 7 min</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="0.2" data-article="landing-vs-web">
+        <div class="blog-card-img">⚡</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">Decisiones</span></div>
+          <div class="blog-card-title">Landing page vs. web completa: ¿cuál necesitas?</div>
+          <div class="blog-card-desc">Cómo saber qué tipo de web es la correcta para tu situación y objetivo actual.</div>
+          <div class="blog-card-meta"><span>📅 Abr 2025</span><span>⏱ 3 min</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="0.25" data-article="web-a-medida">
+        <div class="blog-card-img">🛠️</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">Tecnología</span></div>
+          <div class="blog-card-title">Web a medida vs. plantilla: la diferencia que sí se nota</div>
+          <div class="blog-card-desc">Por qué el código propio gana siempre a largo plazo para tu negocio y tu marca.</div>
+          <div class="blog-card-meta"><span>📅 Abr 2025</span><span>⏱ 5 min</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="0.3" data-article="web-convierte">
+        <div class="blog-card-img">📈</div>
+        <div class="blog-card-body">
+          <div class="blog-tags" style="margin-bottom:0.75rem"><span class="blog-tag">Conversión</span></div>
+          <div class="blog-card-title">Cómo hacer que tu web convierta visitantes en clientes</div>
+          <div class="blog-card-desc">Los elementos clave que hacen que una visita se convierta en un contacto o venta.</div>
+          <div class="blog-card-meta"><span>📅 May 2025</span><span>⏱ 6 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article modal -->
+<div id="article-modal">
+  <div class="article-wrap" id="article-content">
+    <button class="article-close" id="close-article">✕ Cerrar</button>
+  </div>
+</div>
+
+<script>
+const ARTICLES = {
+  'cuanto-cuesta': {
+    title: '¿Cuánto cuesta una página web en 2025?',
+    content: `
+      <p>La respuesta corta: entre 0 y 50.000€. La respuesta útil: depende de qué necesitas exactamente. Vamos a desglosarlo.</p>
+      <h2>Los rangos de precio más comunes</h2>
+      <h3>Gratis / Faites-le-vous même (0–50€)</h3>
+      <p>Plataformas como Wix o Squarespace te permiten hacer una web tú mismo. El problema: el resultado suele verse genérico, no está optimizado para tu negocio concreto y pierdes horas aprendiendo a usarlas.</p>
+      <h3>Freelance (300€ – 3.000€)</h3>
+      <p>La opción más equilibrada para pequeños negocios. Diseño a medida, comunicación directa con quien hace el trabajo y precio razonable. Es lo que ofrezco yo.</p>
+      <h3>Agencia (3.000€ – 50.000€+)</h3>
+      <p>Para empresas medianas y grandes con necesidades complejas. El precio incluye muchos gastos de estructura: oficina, equipo de ventas, gestores de proyecto...</p>
+      <h2>¿Qué factores suben el precio?</h2>
+      <ul>
+        <li>Más páginas = más trabajo = más precio</li>
+        <li>Funcionalidades especiales (reservas, calculadoras, membresías)</li>
+        <li>Tienda online con muchos productos</li>
+        <li>Múltiples idiomas</li>
+        <li>Integraciones con CRMs o sistemas externos</li>
+        <li>Animaciones y efectos visuales complejos</li>
+      </ul>
+      <div class="highlight">
+        <strong>💡 Regla de oro:</strong> Una web bien hecha se amortiza con un solo cliente nuevo. Si tu servicio vale 500€ y la web te cuesta 900€, necesitas 2 clientes nuevos para recuperarla. En el primer año suelen llegar muchos más.
+      </div>
+      <h2>¿Cómo no me engañen?</h2>
+      <p>Desconfía de quien te ofrezca una web completa por 100-200€. A esos precios o es una plantilla genérica, o está hecho en India, o el resultado será tan malo que tendrás que rehacerla pronto.</p>
+      <p>Pide siempre: qué incluye exactamente, cuántas revisiones, plazo de entrega y quién la hace.</p>
+    `
+  },
+  'por-que-web': {
+    title: 'Por qué tu negocio necesita una web (aunque tengas Instagram)',
+    content: `
+      <p>Te entiendo: tienes 2.000 seguidores en Instagram, publicas regularmente y te llegan clientes por ahí. ¿Para qué gastar dinero en una web?</p>
+      <h2>Instagram es una casa alquilada</h2>
+      <p>Tu cuenta de Instagram, TikTok o Facebook no es tuya. Mañana pueden cambiar el algoritmo, suspender tu cuenta o directamente cerrar la plataforma. Ya ha pasado.</p>
+      <p>Tu web es tuya para siempre. Tu dominio, tu contenido, tus clientes.</p>
+      <h2>Google no indexa Instagram</h2>
+      <p>Cuando alguien busca "peluquería en Barcelona" o "fontanero urgente en Madrid", Google muestra webs, no perfiles de Instagram. Sin web, no existes para ese 81% que busca online antes de contratar.</p>
+      <h2>La credibilidad multiplica</h2>
+      <div class="highlight">
+        "Tengo Instagram y web profesional" transmite 10x más credibilidad que solo "tengo Instagram".
+      </div>
+      <p>Tener web no significa dejar Instagram. Significa añadir otro canal donde captar clientes, más sólido y que trabaja solo.</p>
+    `
+  },
+  'errores-web': {
+    title: '7 errores que arruinan una web (y cómo evitarlos)',
+    content: `
+      <p>Después de ver cientos de webs de pequeños negocios, aquí están los errores más frecuentes que les cuestan clientes.</p>
+      <h2>1. No tener CTA claro</h2>
+      <p>¿Qué quieres que haga el visitante? Si no se lo dices, no lo hará. Cada página debe tener un botón claro de "Contactar", "Reservar" o "Comprar".</p>
+      <h2>2. Cargar lento</h2>
+      <p>El 53% abandona una web que tarda más de 3 segundos. Si tienes imágenes enormes sin comprimir o un hosting baratísimo, estás perdiendo clientes.</p>
+      <h2>3. No estar optimizada para móvil</h2>
+      <p>Más del 60% del tráfico web es desde móvil. Una web que no se ve bien en móvil es como una tienda con la mitad de la fachada tapada.</p>
+      <h2>4. Demasiado texto</h2>
+      <p>Los visitantes escanean, no leen. Usa frases cortas, bullets y espacios en blanco. Di lo importante en los primeros 3 segundos.</p>
+      <h2>5. Fotos de stock genéricas</h2>
+      <p>Las fotos de bancos de imágenes se notan. Una foto real tuya o de tu negocio transmite mucho más confianza.</p>
+      <h2>6. No tener en cuenta el SEO</h2>
+      <p>Una web sin SEO básico es invisible para Google. No hace falta ser experto: con los títulos correctos, velocidad y estructura ya tienes mucho ganado.</p>
+      <h2>7. Información de contacto difícil de encontrar</h2>
+      <p>Tu teléfono, email o WhatsApp debe estar visible en todo momento, especialmente en el header y footer. Si el visitante tiene que buscar cómo contactarte, se va.</p>
+    `
+  },
+  'seo-autonomos': {
+    title: 'SEO para autónomos: cómo aparecer en Google sin gastar dinero',
+    content: `
+      <p>No necesitas contratar una agencia de SEO para aparecer en Google en tu zona. Con estos 5 pasos básicos, ya irás por delante del 80% de tu competencia local.</p>
+      <h2>1. Google My Business (obligatorio)</h2>
+      <p>Si no tienes ficha en Google My Business, date de alta ahora mismo. Es gratis y es lo que aparece cuando alguien busca tu tipo de negocio en tu ciudad.</p>
+      <h2>2. Título y descripción de cada página</h2>
+      <p>Cada página de tu web debe tener un título único que incluya lo que ofreces y dónde. Por ejemplo: "Fontanero urgente en Barcelona | Juan García"</p>
+      <h2>3. Velocidad de carga</h2>
+      <p>Google penaliza las webs lentas. Comprime tus imágenes (usa TinyPNG), usa un hosting decente y evita código o scripts innecesarios.</p>
+      <h2>4. Contenido relevante</h2>
+      <div class="highlight">
+        Escribe una página para cada servicio que ofreces. Si eres electricista y haces instalaciones, mantenimiento y urgencias: tres páginas, una para cada servicio.
+      </div>
+      <h2>5. Links internos</h2>
+      <p>Enlaza tus páginas entre sí. Desde el inicio, apunta a tus servicios. Desde los servicios, apunta al contacto. Google lee esos enlaces para entender tu web.</p>
+    `
+  },
+  'landing-vs-web': {
+    title: 'Landing page vs. web completa: ¿cuál necesitas?',
+    content: `
+      <p>Una de las preguntas que más me hacen. La respuesta depende de una sola cosa: ¿cuántos servicios/productos diferentes ofreces?</p>
+      <h2>Elige landing page si...</h2>
+      <ul>
+        <li>Ofreces UN servicio concreto (masajes, clases de inglés, fotografía de bodas)</li>
+        <li>Quieres capturar leads para una campaña específica</li>
+        <li>Tienes presupuesto limitado y quieres probar si funciona</li>
+        <li>Vas a hacer publicidad de pago (Google Ads, Meta)</li>
+      </ul>
+      <h2>Elige web completa si...</h2>
+      <ul>
+        <li>Ofreces varios servicios diferentes</li>
+        <li>Quieres posicionarte en Google a largo plazo (SEO)</li>
+        <li>Necesitas transmitir credibilidad y confianza (ej: asesoría, consultoría)</li>
+        <li>Quieres tener un blog para atraer tráfico orgánico</li>
+      </ul>
+      <div class="highlight">
+        💡 Tip: Muchos negocios empiezan con una landing y después amplían a web completa. No hay que hacerlo todo de golpe.
+      </div>
+    `
+  },
+  'web-a-medida': {
+    title: 'Web a medida vs. plantilla: la diferencia que sí se nota',
+    content: `
+      <p>La tentación de usar una plantilla genérica es grande: son rápidas y baratas. Pero a largo plazo, una web a medida siempre gana. Te explico por qué.</p>
+      <h2>El problema de las plantillas</h2>
+      <ul>
+        <li>Miles de webs se ven exactamente igual → tu marca no se diferencia</li>
+        <li>Código hinchado con funciones que no usas → carga lento</li>
+        <li>Dependes del autor para actualizaciones de seguridad</li>
+        <li>Difícil de adaptar cuando tu negocio crece</li>
+      </ul>
+      <h2>Ventajas del código a medida</h2>
+      <ul>
+        <li>Diseño único que refleja exactamente tu marca e identidad</li>
+        <li>Solo el código que necesitas → velocidad máxima</li>
+        <li>Control total sobre cada elemento visual y funcional</li>
+        <li>Escalable: añadir funcionalidades es limpio y predecible</li>
+      </ul>
+      <div class="highlight">
+        Una web a medida no cuesta mucho más que una plantilla bien configurada, pero la diferencia en resultado y rendimiento es enorme. Es la diferencia entre un traje de sastre y uno de serie.
+      </div>
+      <h2>¿Cuándo tiene sentido una plantilla?</h2>
+      <p>Si tienes un presupuesto muy limitado y necesitas algo urgente para salir del paso, una plantilla es mejor que nada. Pero si piensas en tu presencia online como una inversión, lo a medida siempre renta más.</p>
+    `
+  },
+  'web-convierte': {
+    title: 'Cómo hacer que tu web convierta visitantes en clientes',
+    content: `
+      <p>Una web bonita no sirve de nada si no convierte visitas en contactos. Aquí están los elementos que marcan la diferencia.</p>
+      <h2>El héroe lo es todo</h2>
+      <p>Los primeros 3 segundos determinan si el visitante se queda o se va. Tu sección hero debe responder tres preguntas inmediatamente: ¿Qué haces? ¿Para quién? ¿Qué gana yo?</p>
+      <h2>Prueba social</h2>
+      <p>Los testimonios, logos de clientes y casos de éxito eliminan el miedo a contratar. Si eres nuevo y no los tienes, explícalo honestamente y busca otras formas de generar confianza (fotos reales, descripción detallada de tu proceso).</p>
+      <h2>CTA en cada sección</h2>
+      <p>No esperes al final de la página. Pon un botón de contacto después de cada sección importante. El visitante decide cuándo está listo, no tú.</p>
+      <h2>Velocidad de respuesta</h2>
+      <div class="highlight">
+        Añadir WhatsApp directo aumenta la tasa de contacto dramáticamente. La gente prefiere el WhatsApp al formulario. Dáselo.
+      </div>
+      <h2>Claridad en los precios</h2>
+      <p>Aunque pongas "desde X€", mostrar precios orientativos elimina el miedo y filtra a los clientes que no son tu público objetivo. Menos tiempo perdido, más clientes cualificados.</p>
+    `
+  }
+};
+
+// Click on article cards
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('[data-article]');
+  if (!card) return;
+  const key = card.dataset.article;
+  const article = ARTICLES[key];
+  if (!article) return;
+
+  const modal = document.getElementById('article-modal');
+  document.getElementById('article-content').innerHTML = `
+    <button class="article-close" id="close-article">✕ Cerrar</button>
+    <div class="article-content">
+      <div class="blog-tags" style="margin-bottom:1rem">
+        <span class="blog-tag">Blog</span>
+      </div>
+      <h1>${article.title}</h1>
+      ${article.content}
+      <hr style="margin:2rem 0;border:none;border-top:2px solid var(--border)">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+        <span style="font-size:0.85rem;color:var(--muted)">¿Interesante? Compártelo o habla conmigo:</span>
+        <a href="contacto.html" class="btn btn-primary" style="font-size:0.82rem;padding:0.55rem 1.2rem">Contactar →</a>
+      </div>
+    </div>
+  `;
+  modal.classList.add('open');
+  document.getElementById('close-article')?.addEventListener('click', () => modal.classList.remove('open'));
+
+  // Track read in localStorage
+  const reads = JSON.parse(localStorage.getItem('bg_reads') || '[]');
+  if (!reads.includes(key)) { reads.push(key); localStorage.setItem('bg_reads', JSON.stringify(reads)); }
+});
+
+document.getElementById('article-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('article-modal')) {
+    document.getElementById('article-modal').classList.remove('open');
+  }
+});
+</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

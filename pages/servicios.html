@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios — Biel Gómez</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#services-hero {
+  padding: 7rem var(--section-px) 5rem;
+  background: var(--paper2);
+  border-bottom: 2px solid var(--border);
+}
+.svc-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.svc-hero-inner h1 {
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  line-height: 0.92;
+  margin-bottom: 1.5rem;
+}
+.svc-hero-inner p { color: var(--muted); font-size: 1.05rem; max-width: 420px; line-height: 1.75; }
+
+/* Service card full */
+.svc-section {
+  padding: var(--section-py) var(--section-px);
+  border-bottom: 2px solid var(--border);
+}
+.svc-section:nth-child(even) { background: var(--paper2); }
+.svc-section:nth-child(odd) { background: var(--paper); }
+
+.svc-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: start;
+}
+.svc-inner.reverse { grid-template-columns: 1.2fr 1fr; }
+.svc-inner.reverse .svc-info { order: 2; }
+.svc-inner.reverse .svc-detail { order: 1; }
+
+.svc-label { display: inline-block; }
+.svc-icon-big {
+  font-size: 3.5rem;
+  width: 80px; height: 80px;
+  background: var(--ink);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.svc-price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+.svc-price-line .price {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+  color: var(--red);
+  line-height: 1;
+}
+.svc-price-line .from { font-size: 0.85rem; color: var(--muted); }
+
+.svc-detail {
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.svc-detail-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 1.5rem 2rem;
+}
+.svc-detail-header h3 {
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.svc-includes {
+  padding: 1.5rem 2rem;
+}
+.include-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.include-item:last-child { border-bottom: none; }
+.include-check {
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.include-text { color: var(--muted); }
+.include-text strong { color: var(--ink); display: block; font-size: 0.9rem; margin-bottom: 0.1rem; }
+
+.svc-cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Comparison table */
+#comparison {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper);
+}
+.comp-inner { max-width: 1280px; margin: 0 auto; }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3rem;
+  font-size: 0.88rem;
+}
+.comp-table th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+.comp-table th:first-child { color: var(--muted); font-weight: 400; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.comp-table td {
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+.comp-table td:first-child { color: var(--ink); font-weight: 500; }
+.comp-table tr:hover td { background: var(--paper2); }
+.check-yes { color: var(--green); font-size: 1rem; }
+.check-no { color: var(--border-strong); }
+.check-maybe { color: var(--yellow); }
+
+@media(max-width:900px) {
+  .svc-hero-inner,
+  .svc-inner,
+  .svc-inner.reverse { grid-template-columns: 1fr; gap: 3rem; }
+  .svc-inner.reverse .svc-info { order: 1; }
+  .svc-inner.reverse .svc-detail { order: 2; }
+  .comp-table { font-size: 0.78rem; }
+  .comp-table th, .comp-table td { padding: 0.7rem 0.8rem; }
+}
+</style>
+</head>
+<body>
+<script src="../assets/js/nav.js"></script>
+
+<section id="services-hero">
+  <div class="svc-hero-inner">
+    <div data-reveal>
+      <div class="section-label">Lo que hago</div>
+      <h1>Servicios que<br><em class="display-italic">generan</em><br>resultados</h1>
+      <p style="margin-top:1.5rem">Cada servicio está pensado para resolver un problema concreto de tu negocio online. Sin tecnicismos, con resultados claros.</p>
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="contacto.html" class="btn btn-primary">Consultar sin compromiso →</a>
+        <a href="precios.html" class="btn btn-outline">Ver precios →</a>
+      </div>
+    </div>
+    <div data-reveal data-delay="0.1">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">⚡</div>
+          <div style="font-weight:600;font-size:0.88rem">Landing Page</div>
+          <div style="color:var(--red);font-family:var(--font-display);font-weight:900;font-size:1.3rem">400€</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🌐</div>
+          <div style="font-weight:600;font-size:0.88rem">Web Corporativa</div>
+          <div style="color:var(--red);font-family:var(--font-display);font-weight:900;font-size:1.3rem">900€</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🛒</div>
+          <div style="font-weight:600;font-size:0.88rem">Tienda Online</div>
+          <div style="color:var(--red);font-family:var(--font-display);font-weight:900;font-size:1.3rem">1.500€</div>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.5rem">🛡️</div>
+          <div style="font-weight:600;font-size:0.88rem">Mantenimiento</div>
+          <div style="color:var(--red);font-family:var(--font-display);font-weight:900;font-size:1.3rem">50€/mes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANDING -->
+<div class="svc-section" id="landing">
+  <div class="svc-inner">
+    <div class="svc-info" data-reveal>
+      <div class="svc-icon-big">⚡</div>
+      <div class="section-label">Landing Page</div>
+      <h2>Una página.<br>Un objetivo.<br>Muchos clientes.</h2>
+      <p style="color:var(--muted);margin-top:1rem;line-height:1.75">La landing page perfecta para: servicios concretos, campañas de publicidad, captura de leads o presentar un producto. Diseñada de arriba a abajo para que el visitante haga exactamente lo que quieres.</p>
+      <div class="svc-price-line">
+        <span class="from">desde</span>
+        <span class="price">400€</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="contacto.html?service=landing" class="btn btn-primary">Quiero una landing →</a>
+        <a data-whatsapp="Hola Biel! Me interesa una landing page para mi negocio." class="btn btn-outline">💬 Preguntar</a>
+      </div>
+    </div>
+    <div class="svc-detail" data-reveal data-delay="0.1">
+      <div class="svc-detail-header"><h3>¿Qué incluye?</h3></div>
+      <div class="svc-includes">
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Diseño 100% a medida</strong>Nada de plantillas. Tu landing diseñada específicamente para tu negocio.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Hero impactante con CTA</strong>Primera sección diseñada para captar atención y guiar al usuario a la acción.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Secciones optimizadas</strong>Servicios, beneficios, prueba social y llamada a la acción estratégicamente colocadas.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Formulario de contacto</strong>Conectado con tu email o WhatsApp directo.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>100% responsive</strong>Perfecta en móvil, tablet y ordenador.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>SEO básico</strong>Meta etiquetas, estructura correcta y velocidad optimizada.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Entrega en 5–7 días</strong>Del briefing al proyecto terminado.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>1 mes de soporte gratuito</strong>Correcciones y ajustes incluidos.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CORPORATIVA -->
+<div class="svc-section" id="corporativa">
+  <div class="svc-inner reverse">
+    <div class="svc-info" data-reveal>
+      <div class="svc-icon-big">🌐</div>
+      <div class="section-label">Web Corporativa</div>
+      <h2>Tu presencia<br>profesional<br>completa.</h2>
+      <p style="color:var(--muted);margin-top:1rem;line-height:1.75">Para autónomos y pequeñas empresas que necesitan una web completa. Inicio, servicios, sobre mí, blog y contacto. Todo pensado para convertir visitantes en clientes.</p>
+      <div class="svc-price-line">
+        <span class="from">desde</span>
+        <span class="price">900€</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="contacto.html?service=corporativa" class="btn btn-primary">Quiero mi web →</a>
+        <a data-whatsapp="Hola Biel! Me interesa una web corporativa." class="btn btn-outline">💬 Preguntar</a>
+      </div>
+    </div>
+    <div class="svc-detail" data-reveal data-delay="0.1">
+      <div class="svc-detail-header"><h3>¿Qué incluye?</h3></div>
+      <div class="svc-includes">
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Hasta 5 páginas</strong>Inicio, Servicios, Sobre mí, Blog y Contacto.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Diseño único y profesional</strong>Identidad visual coherente con tu marca.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Panel de gestión incluido</strong>Podrás actualizar textos, imágenes y contenido tú mismo sin saber programar.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>SEO básico completo</strong>Optimización para aparecer en Google en tu zona y sector.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Formulario + WhatsApp</strong>Múltiples vías de contacto integradas.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>100% responsive</strong>Diseño impecable en todos los dispositivos.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Entrega en 10–14 días</strong>Proceso ágil y comunicación directa.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>1 mes de soporte + formación</strong>Te enseño a gestionar tu propia web.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIENDA -->
+<div class="svc-section" id="tienda">
+  <div class="svc-inner">
+    <div class="svc-info" data-reveal>
+      <div class="svc-icon-big">🛒</div>
+      <div class="section-label">Tienda Online</div>
+      <h2>Vende tus<br>productos<br>las 24h.</h2>
+      <p style="color:var(--muted);margin-top:1rem;line-height:1.75">E-commerce completo para vender online desde el primer día. Catálogo de productos, carrito de compra, pasarela de pago y todo lo que necesitas para vender.</p>
+      <div class="svc-price-line">
+        <span class="from">desde</span>
+        <span class="price">1.500€</span>
+      </div>
+      <div class="svc-cta-row">
+        <a href="contacto.html?service=tienda" class="btn btn-primary">Quiero mi tienda →</a>
+        <a data-whatsapp="Hola Biel! Me interesa crear una tienda online." class="btn btn-outline">💬 Preguntar</a>
+      </div>
+    </div>
+    <div class="svc-detail" data-reveal data-delay="0.1">
+      <div class="svc-detail-header"><h3>¿Qué incluye?</h3></div>
+      <div class="svc-includes">
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Tienda a medida</strong>Carrito, catálogo y gestión de pedidos desarrollados a medida para tu negocio.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Catálogo de productos</strong>Hasta 50 productos configurados con fotos, descripciones y precios.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Pasarela de pago</strong>Stripe, PayPal y transferencia bancaria integrados.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Gestión de pedidos</strong>Panel para ver y gestionar todos tus pedidos fácilmente.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Emails automáticos</strong>Confirmación de pedido, envío y factura automáticos.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>SEO para productos</strong>Optimización para que tus productos aparezcan en Google.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Entrega en 3–4 semanas</strong>Tienda completa y lista para vender.</div></div>
+        <div class="include-item"><span class="include-check">✓</span><div class="include-text"><strong>Formación completa</strong>Te enseño a gestionar productos, pedidos y stock.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<section id="comparison">
+  <div class="comp-inner" data-reveal>
+    <div class="section-label">Comparativa</div>
+    <h2>¿Cuál te conviene?</h2>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>Landing</th>
+          <th>Corporativa</th>
+          <th>Tienda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Diseño a medida</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Nº de páginas</td><td>1</td><td>Hasta 5</td><td>Ilimitadas</td></tr>
+        <tr><td>Panel de gestión</td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Blog integrado</td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Carrito de compra</td><td><span class="check-no">—</span></td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Pasarela de pago</td><td><span class="check-no">—</span></td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>SEO básico</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Responsive móvil</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        <tr><td>Soporte post-entrega</td><td>1 mes</td><td>1 mes</td><td>1 mes</td></tr>
+        <tr><td>Tiempo de entrega</td><td>5–7 días</td><td>10–14 días</td><td>3–4 semanas</td></tr>
+        <tr><td>Precio desde</td><td style="color:var(--red);font-weight:700;font-family:var(--font-display)">400€</td><td style="color:var(--red);font-weight:700;font-family:var(--font-display)">900€</td><td style="color:var(--red);font-weight:700;font-family:var(--font-display)">1.500€</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section style="padding:var(--section-py) var(--section-px);background:var(--ink);color:var(--paper);text-align:center">
+  <div style="max-width:600px;margin:0 auto" data-reveal>
+    <div class="section-label" style="display:inline-flex;color:rgba(245,240,232,0.5);border-color:rgba(245,240,232,0.2)">¿Dudas?</div>
+    <h2 style="color:var(--paper);margin-bottom:1rem">No sé cuál<br><em class="display-italic" style="color:var(--yellow)">necesito</em></h2>
+    <p style="color:rgba(245,240,232,0.65);margin-bottom:2rem">Sin problema. Me cuentas tu situación y te recomiendo yo qué se ajusta mejor a tus objetivos y presupuesto.</p>
+    <a href="contacto.html" class="btn" style="background:#f5c842;color:#0a0a0a;border-color:#f5c842;font-size:1rem;padding:1rem 2.5rem">Asesorarme gratis →</a>
+  </div>
+</section>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

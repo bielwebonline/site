@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Biel Gómez</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#contact-hero {
+  padding: 7rem var(--section-px) 4rem;
+  background: var(--paper);
+  border-bottom: 2px solid var(--border);
+}
+.contact-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.contact-info h1 {
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+}
+.contact-info p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+}
+.contact-options { display: flex; flex-direction: column; gap: 1rem; }
+.contact-opt-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.contact-opt-card:hover {
+  border-color: var(--red);
+  transform: translate(-2px,-2px);
+  box-shadow: 4px 4px 0 var(--red);
+}
+.coc-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.coc-icon.wa { background: #e8f8ef; }
+.coc-icon.em { background: var(--red-light); }
+.coc-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.coc-sub { font-size: 0.8rem; color: var(--muted); }
+
+/* Form box */
+.contact-form-box {
+  background: white;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.contact-form-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.contact-form-box p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-bottom: 2rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* FAQ section */
+#faq {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper2);
+  border-top: 2px solid var(--border);
+}
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-inner h2 { margin-bottom: 3rem; }
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 2px solid var(--border);
+}
+.faq-item:first-child { border-top: 2px solid var(--border); }
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.4rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  cursor: none;
+}
+.faq-q::after {
+  content: '+';
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--red);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s;
+}
+.faq-a-inner {
+  padding-bottom: 1.4rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 650px;
+}
+.faq-item.open .faq-a { max-height: 300px; }
+
+@media(max-width:768px) {
+  .contact-hero-inner { grid-template-columns: 1fr; gap:3rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="../assets/js/nav.js"></script>
+
+<section id="contact-hero">
+  <div class="contact-hero-inner">
+    <div class="contact-info" data-reveal>
+      <div class="section-label">Empecemos</div>
+      <h1>Hablemos<br>de tu<br><em class="display-italic">proyecto</em></h1>
+      <p>Primera consulta gratuita y sin compromiso. Cuéntame qué necesitas y te preparo una propuesta personalizada.</p>
+      <div class="contact-options">
+        <a href="https://wa.me/34611044321?text=Hola%20Biel!%20Me%20interesa%20tu%20servicio%20de%20diseño%20web." target="_blank" rel="noopener" class="contact-opt-card">
+          <div class="coc-icon wa">💬</div>
+          <div>
+            <div class="coc-title">WhatsApp directo</div>
+            <div class="coc-sub">+34 611 044 321 · Respondo en menos de 24h</div>
+          </div>
+        </a>
+        <a href="mailto:bielgrue@gmail.com" class="contact-opt-card">
+          <div class="coc-icon em">✉️</div>
+          <div>
+            <div class="coc-title">Enviar email</div>
+            <div class="coc-sub">bielgrue@gmail.com</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div data-reveal data-delay="0.1">
+      <div class="contact-form-box">
+        <h2>Solicitar presupuesto</h2>
+        <p>Rellena el formulario y te contacto por WhatsApp en menos de 24h.</p>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nombre *</label>
+              <input type="text" class="form-input" name="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-input" name="email" placeholder="tu@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Teléfono / WhatsApp</label>
+              <input type="tel" class="form-input" name="phone" placeholder="+34 600 000 000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Negocio o empresa</label>
+              <input type="text" class="form-input" name="company" placeholder="Nombre del negocio">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">¿Qué tipo de web necesitas?</label>
+            <select class="form-select" name="service">
+              <option value="">Selecciona una opción</option>
+              <option value="landing">Landing Page (desde 400€)</option>
+              <option value="corporativa">Web Corporativa (desde 900€)</option>
+              <option value="tienda">Tienda Online (desde 1.500€)</option>
+              <option value="rediseno">Rediseño de web existente</option>
+              <option value="seo">SEO / Posicionamiento</option>
+              <option value="otro">Otro / No lo sé aún</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Presupuesto aproximado</label>
+            <select class="form-select" name="budget">
+              <option value="">Selecciona un rango</option>
+              <option value="<500">Menos de 500€</option>
+              <option value="500-1000">500€ – 1.000€</option>
+              <option value="1000-2000">1.000€ – 2.000€</option>
+              <option value=">2000">Más de 2.000€</option>
+              <option value="ns">No lo sé aún</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cuéntame tu proyecto *</label>
+            <textarea class="form-textarea" name="message" placeholder="¿Qué hace tu negocio? ¿Tienes web actualmente? ¿Qué quieres conseguir con la nueva web?" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem">
+            Enviar por WhatsApp →
+          </button>
+          <p style="text-align:center;margin-top:1rem;font-size:0.78rem;color:var(--muted)">Al enviar, abriré WhatsApp con tu mensaje para responder personalmente.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div data-reveal>
+      <div class="section-label">Preguntas frecuentes</div>
+      <h2>Lo que suelen<br>preguntar</h2>
+    </div>
+    <div class="faq-list" data-reveal data-delay="0.1">
+      <div class="faq-item">
+        <button class="faq-q">¿Cuánto tiempo tarda en estar lista mi web?</button>
+        <div class="faq-a"><div class="faq-a-inner">Depende del proyecto. Una landing page puede estar lista en 5–7 días. Una web corporativa suele tardar 10–14 días. Una tienda online completa puede necesitar 3–4 semanas. Siempre te doy un plazo exacto al inicio del proyecto y lo cumplo.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Qué necesito tener preparado para empezar?</button>
+        <div class="faq-a"><div class="faq-a-inner">Básicamente: saber qué hace tu negocio, qué quieres conseguir con la web y (si tienes) fotos de tus servicios/productos. Si no tienes nada, también puedo ayudarte a definirlo todo. No hace falta que tengas todo claro desde el primer día.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo modificar la web yo mismo después?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Incluyo un panel de gestión de contenidos adaptado a cada proyecto para que puedas editar textos, imágenes y contenido tú mismo sin saber programar. Te incluyo una sesión de formación gratuita para que aprendas a manejarte. Si prefieres no tocarlo, tengo planes de mantenimiento mensual.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Qué pasa si no me gusta el diseño?</button>
+        <div class="faq-a"><div class="faq-a-inner">Antes de desarrollar nada, te presento el diseño visual para que lo apruebes. Puedes pedir todos los cambios que necesites. Incluyo revisiones ilimitadas hasta que estés completamente satisfecho. No empiezo a construir hasta que el diseño sea exactamente lo que quieres.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Incluyes el hosting y el dominio?</button>
+        <div class="faq-a"><div class="faq-a-inner">No está incluido por defecto (el precio sería artificial si lo incluyera), pero te asesoro sobre las mejores opciones para tu caso. Un hosting básico cuesta entre 5–15€/mes y un dominio unos 10–15€/año. Te ayudo a contratarlo y lo configuro yo.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Trabajas solo o con equipo?</button>
+        <div class="faq-a"><div class="faq-a-inner">Trabajo como freelance, lo que significa que tendrás comunicación directa conmigo en todo momento. Sin intermediarios, sin cuentas de empresa. Tú hablas con la persona que hace tu web. Eso es una ventaja enorme en comunicación y agilidad.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo se hace el pago?</button>
+        <div class="faq-a"><div class="faq-a-inner">50% al inicio del proyecto y 50% al entregar la web terminada. Acepto transferencia bancaria y Bizum. Para proyectos pequeños (landing pages) se puede pagar el 100% al entregar si lo prefieres.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

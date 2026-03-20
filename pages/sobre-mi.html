@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre mí — Biel Gómez</title>
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#about-hero {
+  padding: 7rem var(--section-px) 5rem;
+  background: var(--paper);
+  border-bottom: 2px solid var(--border);
+}
+.about-hero-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-hero-text h1 {
+  font-size: clamp(4rem, 8vw, 8.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+.about-hero-text p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 460px;
+}
+.about-photo-container {
+  position: relative;
+  padding-top: 7rem;
+}
+.about-photo-main {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--ink);
+  display: block;
+  filter: grayscale(10%);
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: center top;
+}
+.about-photo-deco {
+  position: absolute;
+  top: 0; left: 1.5rem;
+  width: 55%; height: 55%;
+  border: 3px solid var(--yellow);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+.about-sticker-main {
+  position: absolute;
+  bottom: -2rem;
+  right: -1.5rem;
+  background: var(--red);
+  color: white;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  width: 120px; height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-6deg);
+}
+
+/* Values */
+#values {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper2);
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+}
+.values-inner { max-width: 1280px; margin: 0 auto; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.value-card {
+  background: white;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.value-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--ink); }
+.value-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.value-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+.value-text { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+/* Skills radar */
+#skills-section {
+  padding: var(--section-py) var(--section-px);
+  background: var(--paper);
+}
+.skills-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.skill-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.skill-bar-item {}
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.skill-bar-name { font-weight: 600; }
+.skill-bar-pct { color: var(--muted); font-variant-numeric: tabular-nums; }
+.skill-bar-track {
+  height: 8px;
+  background: var(--paper3);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.skill-bar-fill {
+  height: 100%;
+  background: var(--red);
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.skill-bar-fill.animated { transform: scaleX(1); }
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.tool-chip {
+  background: var(--paper2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: border-color 0.2s, background 0.2s;
+}
+.tool-chip:hover { border-color: var(--red); background: var(--red-light); }
+
+/* Why me */
+#why-me {
+  padding: var(--section-py) var(--section-px);
+  background: var(--ink);
+  color: var(--paper);
+}
+.whyme-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.whyme-inner h2 { color: var(--paper); }
+.whyme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.whyme-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+.whyme-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--yellow);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.5rem;
+}
+.whyme-title { font-weight: 600; margin-bottom: 0.3rem; }
+.whyme-text { font-size: 0.87rem; color: rgba(245,240,232,0.65); line-height: 1.6; }
+
+@media(max-width:900px) {
+  .about-hero-grid, .skills-inner, .whyme-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-photo-container { display: none; }
+}
+@media(max-width:600px) {
+  .values-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="../assets/js/nav.js"></script>
+
+<section id="about-hero">
+  <div class="about-hero-grid">
+    <div class="about-hero-text" data-reveal>
+      <div class="section-label">Quién soy</div>
+      <h1>Soy<br>Biel<br><em class="display-italic">Gómez.</em></h1>
+      <p style="margin-bottom:1.5rem">Diseñador web freelance de Les Franqueses del Vallès, Cataluña. Me apasiona crear páginas web que no solo se vean bien, sino que generen resultados reales para los negocios.</p>
+      <p>Empecé en el mundo del diseño web por curiosidad y hoy convierto esa pasión en proyectos profesionales para autónomos y pequeñas empresas.</p>
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="contacto.html" class="btn btn-primary">Trabajar juntos →</a>
+        <a data-whatsapp="Hola Biel! Me gustaría conocerte y hablar de mi proyecto." class="btn btn-outline">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="about-photo-container" data-reveal data-delay="0.1">
+      <div class="about-photo-deco"></div>
+      <img src="../assets/img/biel-photo.jpg" alt="Biel Gómez, diseñador web" class="about-photo-main">
+      <div class="about-sticker-main">Freelance<br>desde 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="values-inner">
+    <div data-reveal>
+      <div class="section-label">Cómo trabajo</div>
+      <h2>Mis valores</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-reveal data-delay="0.05">
+        <span class="value-icon">🎯</span>
+        <div class="value-title">Orientado a resultados</div>
+        <div class="value-text">No diseño para ganar premios de diseño. Diseño para que tu web consiga clientes, ventas y objetivos reales de negocio.</div>
+      </div>
+      <div class="value-card" data-reveal data-delay="0.1">
+        <span class="value-icon">🗣️</span>
+        <div class="value-title">Comunicación directa</div>
+        <div class="value-text">Hablas conmigo, no con un gestor de cuentas. Sin ruido, sin intermediarios. Siempre sabes en qué punto está tu proyecto.</div>
+      </div>
+      <div class="value-card" data-reveal data-delay="0.15">
+        <span class="value-icon">⚡</span>
+        <div class="value-title">Ágil y puntual</div>
+        <div class="value-text">Los plazos son compromisos, no sugerencias. Entrego en el tiempo acordado o te avisará con antelación si hay algún imprevisto.</div>
+      </div>
+      <div class="value-card" data-reveal data-delay="0.2">
+        <span class="value-icon">🔍</span>
+        <div class="value-title">Atención al detalle</div>
+        <div class="value-text">Me importan los píxeles, los milisegundos de carga y la experiencia de cada visitante. Esa diferencia se nota.</div>
+      </div>
+      <div class="value-card" data-reveal data-delay="0.25">
+        <span class="value-icon">📚</span>
+        <div class="value-title">Aprendizaje continuo</div>
+        <div class="value-text">El diseño web evoluciona rápido. Me mantengo actualizado con las últimas tendencias, herramientas y mejores prácticas.</div>
+      </div>
+      <div class="value-card" data-reveal data-delay="0.3">
+        <span class="value-icon">🤝</span>
+        <div class="value-title">Relación a largo plazo</div>
+        <div class="value-text">No busco proyectos únicos. Busco clientes satisfechos que cuenten conmigo para mantener y hacer crecer su presencia online.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills-section">
+  <div class="skills-inner">
+    <div data-reveal>
+      <div class="section-label">Mis habilidades</div>
+      <h2>Lo que<br>sé hacer</h2>
+      <div class="skill-bar-list" id="skill-bars">
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">HTML / CSS</span><span class="skill-bar-pct">95%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.95"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">JavaScript</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.80"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">E-commerce a medida</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">Diseño UI / Figma</span><span class="skill-bar-pct">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.85"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">SEO básico</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span class="skill-bar-name">Responsive Design</span><span class="skill-bar-pct">95%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.95"></div></div>
+        </div>
+      </div>
+    </div>
+    <div data-reveal data-delay="0.1">
+      <div class="section-label">Herramientas</div>
+      <h2>Con qué<br>trabajo</h2>
+      <div class="tools-grid">
+        <div class="tool-chip">HTML5</div>
+        <div class="tool-chip">CSS3</div>
+        <div class="tool-chip">JavaScript</div>
+        
+        
+        <div class="tool-chip">Figma</div>
+        <div class="tool-chip">VS Code</div>
+        <div class="tool-chip">Git</div>
+        <div class="tool-chip">Google Analytics</div>
+        <div class="tool-chip">Node.js</div>
+        <div class="tool-chip">Photoshop</div>
+        <div class="tool-chip">ChatGPT / IA</div>
+      </div>
+      <div style="margin-top:2.5rem;padding:1.5rem;background:var(--paper2);border-radius:var(--radius-lg);border:2px solid var(--border)">
+        <div style="font-weight:700;margin-bottom:0.5rem">📍 Dónde trabajo</div>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.65">Trabajo desde Les Franqueses del Vallès, Cataluña. Acepto proyectos de toda España en remoto. Reuniones por videollamada o presencial si el proyecto lo requiere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section id="why-me">
+  <div class="whyme-inner">
+    <div data-reveal>
+      <div class="section-label" style="color:rgba(245,240,232,0.5);border-color:rgba(245,240,232,0.2)">Por qué yo</div>
+      <h2>¿Por qué elegir<br>a un freelance<br><em class="display-italic" style="color:var(--yellow)">como yo?</em></h2>
+      <p style="color:rgba(245,240,232,0.65);margin-top:1.5rem;max-width:420px;line-height:1.75">Las agencias cobran más por los mismos resultados. Con un freelance, tu dinero va directo al trabajo, no a overhead corporativo.</p>
+    </div>
+    <div class="whyme-list" data-reveal data-delay="0.1">
+      <div class="whyme-item">
+        <div class="whyme-num">01</div>
+        <div>
+          <div class="whyme-title">Hablas con quien hace el trabajo</div>
+          <div class="whyme-text">Sin cuentas de empresa, sin gestores de proyecto. Comunicación directa con el diseñador que toca cada píxel de tu web.</div>
+        </div>
+      </div>
+      <div class="whyme-item">
+        <div class="whyme-num">02</div>
+        <div>
+          <div class="whyme-title">Precio justo sin gastos de estructura</div>
+          <div class="whyme-text">Sin oficina de lujo ni equipo de 20 personas que pagar. Mis precios reflejan el trabajo real, no los costes fijos de una agencia.</div>
+        </div>
+      </div>
+      <div class="whyme-item">
+        <div class="whyme-num">03</div>
+        <div>
+          <div class="whyme-title">Flexibilidad y dedicación total</div>
+          <div class="whyme-text">Tu proyecto recibe atención completa, no se mezcla con 20 proyectos paralelos. Cuando trabajo en lo tuyo, trabajo en lo tuyo.</div>
+        </div>
+      </div>
+      <div class="whyme-item">
+        <div class="whyme-num">04</div>
+        <div>
+          <div class="whyme-title">Soluciones reales, no plantillas</div>
+          <div class="whyme-text">Cada web que creo es única. No reutilizo plantillas ni código de proyectos anteriores. Tu web es tuya al 100%.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:var(--section-py) var(--section-px);background:var(--paper2);border-top:2px solid var(--border);text-align:center">
+  <div style="max-width:600px;margin:0 auto" data-reveal>
+    <h2 style="margin-bottom:1rem">¿Nos conocemos?</h2>
+    <p style="color:var(--muted);margin-bottom:2rem">Primera consulta gratuita, sin compromiso. Cuéntame tu proyecto y vemos si encajamos.</p>
+    <a href="contacto.html" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">Contactar →</a>
+  </div>
+</section>
+
+<script>
+// Animate skill bars on scroll
+const skillBars = document.querySelectorAll('.skill-bar-fill');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      skillBars.forEach((bar, i) => {
+        const w = parseFloat(getComputedStyle(bar).getPropertyValue('--w')) || 0.5;
+        setTimeout(() => {
+          bar.style.transform = `scaleX(${w})`;
+          bar.classList.add('animated');
+        }, i * 100);
+      });
+      obs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const barSection = document.getElementById('skill-bars');
+if (barSection) obs.observe(barSection);
+</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
