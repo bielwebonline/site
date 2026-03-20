@@ -74,29 +74,80 @@ function initCursor() {
 
 // ── Navigation ───────────────────────────
 function initNav() {
-  // Delegated burger click — works even if nav is injected after this runs
-  document.addEventListener('click', (e) => {
-    const burger = e.target.closest('.nav-burger');
-    if (!burger) return;
-    const nav = document.getElementById('nav');
-    if (!nav) return;
-    const isOpen = nav.classList.toggle('nav-mobile-open');
-    // Animate burger lines
-    const spans = burger.querySelectorAll('span');
-    if (isOpen) {
+  let menuOpen = false;
+
+  function getNavLinks() {
+    return document.querySelector('#nav .nav-links');
+  }
+
+  function openMenu(burger) {
+    const links = getNavLinks();
+    if (!links) return;
+    menuOpen = true;
+    // Show menu with inline styles — guaranteed to work regardless of CSS cascade
+    links.style.cssText = `
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      bottom: var(--nav-h, 72px);
+      top: auto;
+      left: 0;
+      right: 0;
+      background: #f5f0e8;
+      border-top: 2px solid #0a0a0a;
+      box-shadow: 0 -8px 32px rgba(0,0,0,0.15);
+      padding: 1.5rem 2rem 2rem;
+      gap: 0;
+      z-index: 8999;
+      max-height: 80vh;
+      overflow-y: auto;
+      list-style: none;
+    `;
+    // Style each link
+    links.querySelectorAll('li').forEach((li, i) => {
+      li.style.cssText = 'border-bottom: 1px solid rgba(10,10,10,0.08); margin:0;';
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.style.cssText = 'display:block; padding:0.85rem 0; font-size:1rem; color:#0a0a0a; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;';
+    });
+    // Burger → X
+    if (burger) {
+      const spans = burger.querySelectorAll('span');
       spans[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)';
       spans[1].style.cssText = 'opacity:0';
       spans[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)';
-    } else {
-      spans.forEach(s => s.style.cssText = '');
+    }
+  }
+
+  function closeMenu() {
+    const links = getNavLinks();
+    if (!links) return;
+    menuOpen = false;
+    links.style.cssText = 'display: none;';
+    // Reset burger
+    const burger = document.querySelector('.nav-burger');
+    if (burger) burger.querySelectorAll('span').forEach(s => s.style.cssText = '');
+  }
+
+  // Burger click — delegated
+  document.addEventListener('click', (e) => {
+    const burger = e.target.closest('.nav-burger');
+    if (!burger) return;
+    if (menuOpen) closeMenu();
+    else openMenu(burger);
+  });
+
+  // Close on link click
+  document.addEventListener('click', (e) => {
+    if (menuOpen && e.target.closest('.nav-links a')) {
+      closeMenu();
     }
   });
 
-  // Close menu when a nav link is clicked
+  // Close on outside click
   document.addEventListener('click', (e) => {
-    if (e.target.closest('.nav-links a')) {
-      const nav = document.getElementById('nav');
-      if (nav) nav.classList.remove('nav-mobile-open');
+    if (menuOpen && !e.target.closest('#nav')) {
+      closeMenu();
     }
   });
 
