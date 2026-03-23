@@ -306,15 +306,21 @@ function initCalculator() {
     const type = $('#calc-type')?.value;
     let base = PRICE_BASE[type] || 0;
     let extras = 0;
+    let hasUrgente = false;
 
+    // First pass: sum all extras except urgente
     $$('.calc-extra:checked', calc).forEach(cb => {
       const key = cb.value;
-      if (key === 'urgente') extras += base * EXTRAS.urgente;
+      if (key === 'urgente') hasUrgente = true;
       else extras += EXTRAS[key] || 0;
     });
 
+    // Add page surcharge to base
     const pages = parseInt($('#calc-pages')?.value || 1);
     if (type === 'corporativa') base += Math.max(0, pages - 5) * 80;
+
+    // Second pass: urgente is 25% of (base + all other extras)
+    if (hasUrgente) extras += (base + extras) * EXTRAS.urgente;
 
     const total = base + extras;
     const el = $('#calc-result');
