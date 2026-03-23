@@ -6,4 +6,11 @@
   <url><loc>https://site-lime-pi-56.vercel.app/pages/contacto.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://site-lime-pi-56.vercel.app/pages/sobre-mi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://site-lime-pi-56.vercel.app/pages/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/curso-interactivo.html</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

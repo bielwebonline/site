@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+
+<!-- ═══ SEO ═══ -->
+<title>¿Necesita tu negocio una web? Ejercicio interactivo gratuito | BilyWeb Project</title>
+<meta name="description" content="Descubre en 3 minutos cuánto dinero pierde tu negocio por no tener web. Ejercicio interactivo con datos reales. Gratuito y sin registro.">
+<meta name="keywords" content="necesito una web, cuánto pierde mi negocio sin web, ejercicio digital negocio, diagnóstico presencia online, web para autónomos">
+<meta name="author" content="BilyWeb Project">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/curso-interactivo.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Pierde dinero tu negocio por no tener web? Descúbrelo ahora">
+<meta property="og:description" content="Ejercicio interactivo gratuito: responde 6 preguntas y ve en tiempo real el impacto económico de tu presencia digital.">
+<meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
+<meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/curso-interactivo.html">
+<meta property="og:site_name" content="BilyWeb Project">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Ejercicio interactivo: ¿necesita tu negocio una web?",
+  "url":"https://site-lime-pi-56.vercel.app/pages/curso-interactivo.html",
+  "description":"Descubre cuánto dinero pierde tu negocio sin presencia digital. Ejercicio gratuito con datos reales.",
+  "isPartOf":{"@type":"WebSite","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/global.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ═══════════════════════════
+   DESIGN SYSTEM — BILYWEB
+═══════════════════════════ */
+:root {
+  --ink:        #0a0a0a;
+  --paper:      #f5f0e8;
+  --paper2:     #ede8dc;
+  --paper3:     #e4dfd2;
+  --red:        #e63325;
+  --red-light:  #fde8e6;
+  --yellow:     #f5c842;
+  --yellow-light:#fffbe6;
+  --green:      #1a6b3c;
+  --green-light:#e6f4ec;
+  --blue:       #1a3a6b;
+  --muted:      #6b6355;
+  --border:     rgba(10,10,10,0.12);
+  --border-strong: rgba(10,10,10,0.35);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Instrument Sans', sans-serif;
+  --radius: 6px;
+  --radius-lg: 14px;
+  --shadow-sm:  0 2px 8px rgba(10,10,10,0.08);
+  --shadow-md:  0 8px 32px rgba(10,10,10,0.12);
+  --shadow-red: 6px 6px 0 var(--red);
+  --shadow-ink: 4px 4px 0 var(--ink);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+body { cursor: none; }
+a, button, label, select { cursor: none; }
+
+/* CURSOR */
+#cursor {
+  position: fixed; width: 12px; height: 12px;
+  background: var(--red); border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: multiply;
+}
+#cursor.hover { width: 38px; height: 38px; background: var(--yellow); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--paper2); }
+::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 2px; }
+
+/* ── PROGRESS HEADER ── */
+#top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  background: rgba(245,240,232,0.97);
+  border-bottom: 1.5px solid rgba(10,10,10,0.12);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem,5vw,5rem); height: 64px;
+}
+.bar-logo {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+.bar-logo span { color: var(--red); font-style: italic; }
+.bar-center {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  flex: 1; max-width: 420px; margin: 0 auto;
+}
+.bar-steps {
+  display: flex; gap: 6px;
+}
+.bar-step {
+  width: 28px; height: 4px; border-radius: 2px;
+  background: var(--paper3); border: 1px solid var(--border);
+  transition: background 0.4s, transform 0.2s;
+}
+.bar-step.done { background: var(--green); }
+.bar-step.active { background: var(--red); transform: scaleY(1.5); }
+.bar-label {
+  font-size: 0.7rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.bar-right {
+  font-size: 0.75rem; font-weight: 600; color: var(--muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.time-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+
+/* ── MAIN WRAPPER ── */
+#app {
+  max-width: 820px; margin: 0 auto;
+  padding: 100px clamp(1.5rem,5vw,3rem) 80px;
+  min-height: 100vh;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeUp 0.4s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION LABEL ── */
+.label-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1.5px solid var(--border-strong); border-radius: 100px;
+  padding: 0.3rem 0.9rem; margin-bottom: 1.4rem;
+}
+.label-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: blink 1.5s infinite; }
+
+/* ── HEADING ── */
+.screen-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem,5vw,4.2rem);
+  font-weight: 900; line-height: 1; letter-spacing: -0.03em;
+  margin-bottom: 0.8rem;
+}
+.screen-title em { font-style: italic; font-weight: 300; color: var(--muted); }
+.screen-title .red { color: var(--red); -webkit-text-stroke: 0px; }
+.screen-sub {
+  font-size: 1rem; color: var(--muted); line-height: 1.7;
+  max-width: 540px; margin-bottom: 2.4rem; font-weight: 400;
+}
+
+/* ── BUSINESS GRID ── */
+.business-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(155px,1fr));
+  gap: 12px; margin-bottom: 2.4rem;
+}
+.biz-card {
+  background: white; border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg); padding: 1.2rem 1rem;
+  text-align: center; cursor: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  user-select: none; position: relative;
+}
+.biz-card:hover { border-color: var(--ink); transform: translate(-2px,-2px); box-shadow: var(--shadow-ink); }
+.biz-card.selected {
+  border-color: var(--red); background: var(--red-light);
+  transform: translate(-3px,-3px); box-shadow: var(--shadow-red);
+}
+.biz-card .biz-emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.biz-card .biz-name { font-weight: 600; font-size: 0.85rem; color: var(--ink); line-height: 1.3; }
+.biz-card .biz-example { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+.biz-card .check {
+  position: absolute; top: 8px; right: 8px; width: 18px; height: 18px;
+  background: var(--red); border-radius: 50%; display: none;
+  align-items: center; justify-content: center; font-size: 10px; color: white;
+}
+.biz-card.selected .check { display: flex; }
+
+/* ── QUESTION CARD ── */
+.q-wrap { margin-bottom: 2rem; }
+.q-header {
+  display: flex; align-items: baseline; gap: 14px; margin-bottom: 1rem;
+}
+.q-num {
+  font-family: var(--font-display); font-size: 2.8rem; font-weight: 900;
+  color: var(--paper3); line-height: 1; flex-shrink: 0;
+}
+.q-text { font-size: 1.05rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.q-source {
+  font-size: 0.7rem; color: var(--muted); font-weight: 400;
+  border-left: 2px solid var(--border-strong); padding-left: 8px; margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── OPTIONS ── */
+.options-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.6rem; }
+.opt-btn {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: white; border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg); padding: 1rem 1.2rem;
+  cursor: none; transition: all 0.2s; text-align: left;
+  width: 100%;
+}
+.opt-btn:hover { border-color: var(--ink); transform: translate(-2px,-2px); box-shadow: var(--shadow-ink); }
+.opt-btn.selected { border-color: var(--red); background: var(--red-light); transform: translate(-3px,-3px); box-shadow: var(--shadow-red); }
+.opt-btn.correct { border-color: var(--green); background: var(--green-light); }
+.opt-btn.wrong { border-color: var(--red); background: var(--red-light); opacity: 0.7; }
+.opt-letter {
+  font-family: var(--font-display); font-weight: 900; font-size: 1.1rem;
+  color: var(--paper3); flex-shrink: 0; margin-top: 2px;
+  transition: color 0.2s;
+}
+.opt-btn.selected .opt-letter, .opt-btn.correct .opt-letter { color: var(--red); }
+.opt-main { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+.opt-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+/* ── INSIGHT BOX ── */
+.insight-box {
+  background: var(--ink); color: var(--paper);
+  border-radius: var(--radius-lg); padding: 1.2rem 1.4rem;
+  display: none; margin-bottom: 1.6rem;
+  border-left: 4px solid var(--red);
+}
+.insight-box.show { display: block; animation: fadeUp 0.3s ease; }
+.insight-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.4rem; }
+.insight-text { font-size: 0.88rem; line-height: 1.6; color: rgba(245,240,232,0.88); }
+.insight-stat { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: var(--yellow); margin-right: 6px; }
+
+/* ── NEXT BTN ── */
+.btn-next {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.88rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.8rem 2rem; border-radius: 4px; border: 2px solid var(--ink);
+  background: var(--ink); color: var(--paper);
+  cursor: none; transition: all 0.2s;
+}
+.btn-next:hover { background: var(--red); border-color: var(--red); color: white; transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn-next:disabled { opacity: 0.35; pointer-events: none; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.88rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.8rem 2rem; border-radius: 4px; border: 2px solid var(--ink);
+  background: transparent; color: var(--ink);
+  cursor: none; transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+/* ── ACTIONS (CHECKBOXES) ── */
+.actions-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.6rem;
+}
+@media(max-width:520px){ .actions-grid { grid-template-columns: 1fr; } }
+.action-check {
+  display: flex; align-items: center; gap: 10px;
+  background: white; border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg); padding: 0.85rem 1rem;
+  cursor: none; transition: all 0.2s; user-select: none;
+}
+.action-check:hover { border-color: var(--ink); }
+.action-check.checked { border-color: var(--red); background: var(--red-light); }
+.action-check input { display: none; }
+.action-box {
+  width: 18px; height: 18px; border: 2px solid var(--border-strong);
+  border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; font-size: 11px;
+}
+.action-check.checked .action-box { background: var(--red); border-color: var(--red); color: white; }
+.action-icon { font-size: 1.1rem; }
+.action-text { font-size: 0.82rem; font-weight: 600; }
+.action-sub { font-size: 0.7rem; color: var(--muted); font-weight: 400; }
+
+/* ── LIVE DASHBOARD ── */
+#dashboard {
+  background: var(--ink); border-radius: var(--radius-lg);
+  padding: 1.6rem; margin-bottom: 2rem; border: 2px solid var(--ink);
+  display: none;
+}
+#dashboard.show { display: block; }
+.dash-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.dash-title {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--yellow); display: flex; align-items: center; gap: 6px;
+}
+.live-dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; animation: blink 1s infinite; }
+.dash-subtitle { font-size: 0.7rem; color: rgba(245,240,232,0.45); }
+.dash-metrics {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.2rem;
+}
+@media(max-width:560px){ .dash-metrics { grid-template-columns: repeat(2,1fr); } }
+.metric {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 0.9rem 0.75rem; text-align: center;
+  transition: all 0.5s;
+}
+.metric.highlight { border-color: var(--yellow); background: rgba(245,200,66,0.08); }
+.metric-val {
+  font-family: var(--font-display); font-weight: 900; font-size: 1.6rem;
+  line-height: 1; letter-spacing: -0.03em; color: var(--paper);
+  transition: color 0.5s;
+}
+.metric.up .metric-val { color: #4ade80; }
+.metric.down .metric-val { color: var(--red); }
+.metric-label { font-size: 0.65rem; color: rgba(245,240,232,0.5); margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+.metric-delta { font-size: 0.68rem; margin-top: 4px; font-weight: 600; }
+.metric.up .metric-delta { color: #4ade80; }
+.metric.down .metric-delta { color: #f87171; }
+.metric.neutral .metric-delta { color: rgba(245,240,232,0.4); }
+.chart-area { height: 140px; position: relative; }
+
+/* ── FINAL SCREEN ── */
+.final-header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 2rem; margin-bottom: 2rem;
+}
+.score-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink); color: var(--paper);
+  border-radius: 100px; padding: 0.5rem 1.4rem;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.score-num {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 900; color: var(--yellow);
+}
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.6rem 0; }
+@media(max-width:520px){ .result-grid { grid-template-columns: 1fr; } }
+.result-card {
+  background: white; border: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg); padding: 1.2rem;
+}
+.result-card.green { border-color: var(--green); background: var(--green-light); }
+.result-card.red { border-color: var(--red); background: var(--red-light); }
+.rc-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+.rc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.rc-val {
+  font-family: var(--font-display); font-weight: 900; font-size: 2rem;
+  letter-spacing: -0.04em; line-height: 1;
+}
+.rc-label { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+.final-chart-wrap { background: var(--ink); border-radius: var(--radius-lg); padding: 1.6rem; margin: 1.6rem 0; }
+.fch-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
+.final-chart-area { height: 200px; }
+
+.cta-block {
+  background: var(--red); color: white;
+  border-radius: var(--radius-lg); padding: 2rem;
+  text-align: center; border: 2px solid var(--ink);
+  box-shadow: var(--shadow-ink);
+  margin-top: 2rem;
+}
+.cta-block h3 {
+  font-family: var(--font-display); font-size: clamp(1.6rem,3.5vw,2.4rem);
+  font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+}
+.cta-block p { font-size: 0.9rem; opacity: 0.88; margin-bottom: 1.6rem; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.88rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.9rem 2.4rem; border-radius: 4px; border: 2px solid white;
+  background: white; color: var(--ink);
+  cursor: none; transition: all 0.2s; text-decoration: none;
+}
+.btn-white:hover { background: var(--ink); color: white; border-color: var(--ink); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 white; }
+
+/* ── DIVIDER ── */
+.divider { height: 1.5px; background: var(--border); margin: 2rem 0; }
+
+/* ── TICKET INPUT ── */
+.input-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.input-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 140px; }
+.input-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.form-input {
+  background: white; border: 2px solid var(--border-strong); border-radius: var(--radius);
+  padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--ink);
+  width: 100%; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus { border-color: var(--red); box-shadow: 3px 3px 0 var(--red); }
+.range-wrap { display: flex; align-items: center; gap: 12px; }
+.form-range {
+  flex: 1; -webkit-appearance: none; height: 5px; border-radius: 3px;
+  background: var(--paper3); outline: none; cursor: none;
+  border: 1px solid var(--border-strong);
+}
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--red); cursor: none; border: 2px solid var(--ink);
+}
+.range-val {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 900;
+  color: var(--red); min-width: 55px; text-align: right; letter-spacing: -0.04em;
+}
+
+/* ── PROGRESS CIRCLE ── */
+.progress-circle-wrap { text-align: center; margin: 1.5rem 0; }
+.progress-ring { width: 120px; height: 120px; }
+.ring-track { fill: none; stroke: var(--paper3); stroke-width: 8; }
+.ring-fill { fill: none; stroke: var(--red); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease; transform: rotate(-90deg); transform-origin: 50% 50%; }
+.ring-text { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; }
+
+/* ── COMPARISON BARS ── */
+.compare-bar-wrap { display: flex; flex-direction: column; gap: 14px; margin: 1.4rem 0; }
+.cb-row { display: flex; align-items: center; gap: 14px; }
+.cb-label { font-size: 0.78rem; font-weight: 600; width: 110px; flex-shrink: 0; }
+.cb-track { flex: 1; height: 10px; background: var(--paper3); border-radius: 5px; overflow: hidden; border: 1px solid var(--border); }
+.cb-fill { height: 100%; border-radius: 5px; transition: width 1.2s ease; width: 0; }
+.cb-fill.red { background: var(--red); }
+.cb-fill.green { background: var(--green); }
+.cb-pct { font-family: var(--font-display); font-size: 0.9rem; font-weight: 900; width: 42px; text-align: right; flex-shrink: 0; }
+
+/* MOBILE */
+@media(max-width:640px){
+  .dash-metrics { grid-template-columns: repeat(2,1fr); }
+  .result-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- TOP BAR -->
+<div id="top-bar">
+  <a href="/index.html" class="bar-logo" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none;" title="Volver al inicio">
+    <img src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" style="height:32px;width:auto;">
+  </a>
+  <div class="bar-center">
+    <div class="bar-steps" id="bar-steps"></div>
+    <div class="bar-label" id="bar-label">Ejercicio interactivo</div>
+  </div>
+  <div class="bar-right">
+    <div class="time-dot"></div>
+    ~3 min
+  </div>
+</div>
+
+<div id="app">
+
+  <!-- ══════════ SCREEN 0: INTRO ══════════ -->
+  <div class="screen active" id="screen-0">
+    <div class="label-tag"><div class="dot"></div>Ejercicio gratuito · BilyWeb</div>
+    <h1 class="screen-title">
+      Descubre si tu negocio<br><span class="red">está perdiendo dinero</span><br><em>sin una web.</em>
+    </h1>
+    <p class="screen-sub">
+      Un ejercicio personalizado basado en datos reales de mercado. Escoge tu tipo de negocio, responde 6 preguntas y ve en tiempo real el impacto económico de tus decisiones digitales.
+    </p>
+    <div class="compare-bar-wrap" style="max-width:460px">
+      <div class="cb-row">
+        <div class="cb-label" style="color:var(--muted)">Sin web</div>
+        <div class="cb-track"><div class="cb-fill red" id="intro-bar-1" data-w="18"></div></div>
+        <div class="cb-pct" style="color:var(--red)">18%</div>
+      </div>
+      <div class="cb-row">
+        <div class="cb-label" style="color:var(--muted)">Con web</div>
+        <div class="cb-track"><div class="cb-fill green" id="intro-bar-2" data-w="74"></div></div>
+        <div class="cb-pct" style="color:var(--green)">74%</div>
+      </div>
+    </div>
+    <p style="font-size:0.72rem;color:var(--muted);margin-bottom:2rem;font-style:italic">Tasa media de captación de nuevos clientes online · Fuente: BrightLocal, Google 2024</p>
+    <button class="btn-next" onclick="goTo(1)">Empezar el ejercicio →</button>
+  </div>
+
+  <!-- ══════════ SCREEN 1: NEGOCIO ══════════ -->
+  <div class="screen" id="screen-1">
+    <div class="label-tag"><div class="dot"></div>Paso 1 de 7</div>
+    <h2 class="screen-title">¿Qué tipo de<br><span class="red">negocio</span> tienes?</h2>
+    <p class="screen-sub">Selecciona el que mejor te define. Los datos y cálculos se personalizarán en base a tu sector.</p>
+    <div class="business-grid" id="biz-grid"></div>
+    <button class="btn-next" id="btn-biz" disabled onclick="goTo(2)">Continuar →</button>
+  </div>
+
+  <!-- ══════════ SCREEN 2: DATOS BASE ══════════ -->
+  <div class="screen" id="screen-2">
+    <div class="label-tag"><div class="dot"></div>Paso 2 de 7</div>
+    <h2 class="screen-title">Cuéntame sobre<br><em>tu negocio</em></h2>
+    <p class="screen-sub">Con estos datos calcularé el impacto real en euros. Todo se actualiza en tiempo real.</p>
+    <div class="input-row">
+      <div class="input-group">
+        <div class="input-label">Clientes al mes (estimado)</div>
+        <div class="range-wrap">
+          <input type="range" class="form-range" id="r-clientes" min="10" max="500" step="5" value="60" oninput="updateRange(this,'rv-clientes','')">
+          <div class="range-val" id="rv-clientes">60</div>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Ticket medio por cliente (€)</div>
+        <div class="range-wrap">
+          <input type="range" class="form-range" id="r-ticket" min="10" max="600" step="5" value="60" oninput="updateRange(this,'rv-ticket','€')">
+          <div class="range-val" id="rv-ticket">60€</div>
+        </div>
+      </div>
+    </div>
+    <div id="live-preview" style="background:var(--paper2);border:2px solid var(--border-strong);border-radius:var(--radius-lg);padding:1.2rem;margin-bottom:1.6rem;display:none">
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem">Ingreso mensual actual estimado</div>
+      <div style="display:flex;align-items:baseline;gap:8px">
+        <span id="preview-ingresos" style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;letter-spacing:-0.04em;color:var(--ink)">3.600€</span>
+        <span style="font-size:0.8rem;color:var(--muted)">/mes</span>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Potencial con web optimizada: <strong id="preview-potencial" style="color:var(--green)">5.940€</strong> (+65%)</div>
+    </div>
+    <button class="btn-next" onclick="goTo(3)">Ver mi diagnóstico →</button>
+  </div>
+
+  <!-- ══════════ SCREENS 3-7: PREGUNTAS ══════════ -->
+  <div class="screen" id="screen-q"></div>
+
+  <!-- ══════════ SCREEN FINAL ══════════ -->
+  <div class="screen" id="screen-final"></div>
+
+</div><!-- /app -->
+
+<script>
+/* ════════════════════════════════
+   CURSOR
+════════════════════════════════ */
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.addEventListener('mouseover', e => { if(e.target.closest('button,a,label,[role=button],.opt-btn,.biz-card,.action-check')) cur.classList.add('hover'); else cur.classList.remove('hover'); });
+
+/* ════════════════════════════════
+   STATE
+════════════════════════════════ */
+const state = {
+  biz: null,
+  clientes: 60,
+  ticket: 60,
+  answers: [], // 0=A,1=B,2=C
+  actions: [],  // booleans
+  score: 0,
+  currentQ: 0,
+  totalSteps: 9 // 0=intro,1=biz,2=datos,3-8=preguntas,9=final
+};
+
+/* ════════════════════════════════
+   BUSINESS DATA
+════════════════════════════════ */
+const NEGOCIOS = [
+  { id:'restaurante', emoji:'🍽️', name:'Restaurante / Bar', example:'Menú del día, carta', convBase:0.28, ticketDef:28, clientesDef:90 },
+  { id:'peluqueria',  emoji:'✂️', name:'Peluquería / Estética', example:'Cortes, tratamientos', convBase:0.30, ticketDef:40, clientesDef:70 },
+  { id:'taller',      emoji:'🔧', name:'Taller / Electricista', example:'Reparaciones, obras', convBase:0.35, ticketDef:180, clientesDef:25 },
+  { id:'tienda',      emoji:'🛍️', name:'Tienda local', example:'Ropa, hogar, regalos', convBase:0.22, ticketDef:55, clientesDef:120 },
+  { id:'clinica',     emoji:'🏥', name:'Clínica / Dentista', example:'Consultas, tratamientos', convBase:0.38, ticketDef:95, clientesDef:40 },
+  { id:'gym',         emoji:'💪', name:'Gym / Deporte', example:'Cuotas, clases', convBase:0.32, ticketDef:45, clientesDef:60 },
+  { id:'inmobiliaria',emoji:'🏠', name:'Inmobiliaria / Alquiler', example:'Pisos, locales', convBase:0.42, ticketDef:1200, clientesDef:15 },
+  { id:'academia',    emoji:'📚', name:'Academia / Clases', example:'Idiomas, oposiciones', convBase:0.30, ticketDef:80, clientesDef:50 },
+  { id:'fotografia',  emoji:'📸', name:'Fotografía / Eventos', example:'Bodas, comuniones', convBase:0.40, ticketDef:600, clientesDef:12 },
+  { id:'jardineria',  emoji:'🌿', name:'Jardinería / Limpieza', example:'Mantenimiento, reformas', convBase:0.38, ticketDef:120, clientesDef:30 },
+];
+
+/* ════════════════════════════════
+   PREGUNTAS — basadas en datos reales
+════════════════════════════════ */
+const PREGUNTAS = [
+  {
+    id: 'busqueda',
+    titulo: '¿Cómo encuentran tus clientes tu negocio actualmente?',
+    fuente: 'BrightLocal Local Consumer Survey 2024',
+    opciones: [
+      { letra:'A', main:'Solo por boca a boca y conocidos', sub:'Dependo 100% de las recomendaciones personales', impact: { clientes:-0.40, confianza:-30, google:0 } },
+      { letra:'B', main:'Redes sociales (Instagram, Facebook)', sub:'Tengo perfil activo pero no aparezco en Google', impact: { clientes:-0.18, confianza:-10, google:0 } },
+      { letra:'C', main:'Tengo web + Google Maps + redes', sub:'Presencia digital completa y coherente', impact: { clientes:+0.28, confianza:+25, google:+40 } },
+    ],
+    correcta: 2,
+    insight: '<span class="insight-stat">81%</span> de los consumidores busca un negocio online antes de visitarlo. Si no apareces en Google, el 81% de tus clientes potenciales ni saben que existes. Los negocios con web + Google Business reciben de media <strong>3.7x más contactos</strong> que los que solo tienen redes.'
+  },
+  {
+    id: 'credibilidad',
+    titulo: '¿Tienes elementos de confianza visibles online?',
+    fuente: 'Stanford Web Credibility Research · Google 2023',
+    opciones: [
+      { letra:'A', main:'No tengo nada online o solo un perfil básico', sub:'El cliente no puede verificar nada antes de llamar', impact: { clientes:-0.22, confianza:-35, google:-10 } },
+      { letra:'B', main:'Tengo perfil en Google Maps con algunas reseñas', sub:'Algo de visibilidad pero sin control total', impact: { clientes:+0.05, confianza:+8, google:+12 } },
+      { letra:'C', main:'Web con reseñas, certificaciones, fotos y precios', sub:'El cliente puede decidir antes de contactarme', impact: { clientes:+0.22, confianza:+38, google:+20 } },
+    ],
+    correcta: 2,
+    insight: '<span class="insight-stat">75%</span> de las personas juzga la credibilidad de un negocio por su presencia online. Un estudio de Stanford muestra que el diseño web es el factor nº1 de confianza, por delante del boca a boca. Negocios con reseñas visibles convierten un <strong>270% más</strong>.'
+  },
+  {
+    id: 'seo',
+    titulo: 'Cuando alguien busca tu servicio en Google, ¿qué pasa?',
+    fuente: 'Moz Local Search Ranking Factors 2024 · BrightLocal',
+    opciones: [
+      { letra:'A', main:'No aparezco en ningún resultado', sub:'Mi competencia ocupa esos clientes gratuitos', impact: { clientes:-0.35, confianza:-15, google:-30 } },
+      { letra:'B', main:'Aparezco en Google Maps pero no en web', sub:'Algo de visibilidad local, pero limitada', impact: { clientes:+0.08, confianza:+5, google:+15 } },
+      { letra:'C', main:'Aparezco en resultados orgánicos + Maps', sub:'Capturo tráfico gratuito de forma consistente', impact: { clientes:+0.30, confianza:+15, google:+45 } },
+    ],
+    correcta: 2,
+    insight: '<span class="insight-stat">46%</span> de todas las búsquedas de Google tienen intención local. El primer resultado orgánico recibe el <strong>27.6% de todos los clics</strong>. Un negocio local bien posicionado puede recibir entre 80-400 visitas orgánicas al mes sin pagar publicidad.'
+  },
+  {
+    id: 'disponibilidad',
+    titulo: '¿Puede un cliente contactarte o reservar fuera de tu horario?',
+    fuente: 'HubSpot State of Marketing 2024 · Calendly Data',
+    opciones: [
+      { letra:'A', main:'No, solo pueden llamar en horario de apertura', sub:'Pierdo todos los contactos de noche y fin de semana', impact: { clientes:-0.28, confianza:-10, google:-5 } },
+      { letra:'B', main:'Tengo WhatsApp Business con respuesta manual', sub:'Algo más accesible pero no automático', impact: { clientes:-0.08, confianza:+5, google:0 } },
+      { letra:'C', main:'Formulario, reserva online o chat automático 24/7', sub:'Capturo clientes mientras duermo', impact: { clientes:+0.25, confianza:+20, google:+10 } },
+    ],
+    correcta: 2,
+    insight: '<span class="insight-stat">67%</span> de los usuarios prefiere reservar o pedir información online antes que llamar. Los negocios con reserva online reciben un <strong>+40% de citas</strong> fuera de horario laboral. Cada noche sin formulario = clientes que van a tu competencia.'
+  },
+  {
+    id: 'competencia',
+    titulo: '¿Tu competencia más directa tiene página web?',
+    fuente: 'INE Encuesta sobre uso de TIC en Empresas 2023',
+    opciones: [
+      { letra:'A', main:'Sí, la mayoría tiene web y bien posicionada', sub:'Estoy en desventaja clara en visibilidad', impact: { clientes:-0.20, confianza:-20, google:-20 } },
+      { letra:'B', main:'Algunos tienen web básica, otros no', sub:'Hay hueco para diferenciarme', impact: { clientes:+0.05, confianza:0, google:+10 } },
+      { letra:'C', main:'Muy pocos tienen web o está muy desactualizada', sub:'Oportunidad enorme de liderazgo digital', impact: { clientes:+0.20, confianza:+15, google:+30 } },
+    ],
+    correcta: 2,
+    insight: 'En España, el <span class="insight-stat">57%</span> de pymes aún no tiene web optimizada o la tiene desactualizada. Los negocios que se digitalizan primero en su zona capturan el <strong>60-70% del tráfico local orgánico</strong> y lo mantienen durante años. La ventana de oportunidad se cierra.'
+  },
+  {
+    id: 'inversion',
+    titulo: '¿Cuánto inviertes actualmente en atraer nuevos clientes?',
+    fuente: 'Google Ads Benchmarks 2024 · Nielsen',
+    opciones: [
+      { letra:'A', main:'Nada, solo el boca a boca', sub:'Sin inversión pero también sin crecimiento predecible', impact: { clientes:-0.10, confianza:0, google:0 } },
+      { letra:'B', main:'Solo publicidad en redes (Meta Ads, etc.)', sub:'Pago por atención que desaparece al parar', impact: { clientes:+0.08, confianza:+5, google:0 } },
+      { letra:'C', main:'Web con SEO + algo de publicidad', sub:'El SEO genera retorno constante sin pagar por clic', impact: { clientes:+0.25, confianza:+12, google:+35 } },
+    ],
+    correcta: 2,
+    insight: 'El SEO tiene un <span class="insight-stat">ROI medio de 22:1</span>. Por cada euro invertido en SEO y web bien optimizada, los negocios locales recuperan de media <strong>22€</strong>. Vs. Meta Ads que desaparece al parar el presupuesto. La web es el único activo digital que crece con el tiempo.'
+  },
+];
+
+/* ════════════════════════════════
+   DASHBOARD STATE
+════════════════════════════════ */
+let dashChart = null;
+let finalChartClientes = null;
+let finalChartROI = null;
+
+const metrics = {
+  clientes: 1.0,   // multiplicador
+  confianza: 50,   // 0-100
+  google: 10,      // 0-100
+};
+const history = { clientes:[], confianza:[], google:[] };
+let qIndex = 0;
+
+/* ════════════════════════════════
+   HELPERS
+════════════════════════════════ */
+function getBiz() { return NEGOCIOS.find(n=>n.id===state.biz); }
+function euros(n){ return n.toLocaleString('es-ES',{maximumFractionDigits:0})+'€'; }
+
+function calcPerdida() {
+  const biz = getBiz(); if(!biz) return {};
+  const c = state.clientes, t = state.ticket;
+  const ingresosActuales = c * t;
+  // Potencial con web optimizada: depende de multiplicador + convBase del sector
+  const multiplicador = Math.max(0.3, metrics.clientes);
+  const clientesCon = c * (1 + biz.convBase * multiplicador * 1.8);
+  const clientesSin = c * (1 - biz.convBase * 0.5);
+  const perdidaMes = Math.max(0,(clientesCon - clientesSin) * t);
+  const perdidaAnio = perdidaMes * 12;
+  return { ingresosActuales, clientesCon: Math.round(clientesCon), clientesSin: Math.round(clientesSin), perdidaMes: Math.round(perdidaMes), perdidaAnio: Math.round(perdidaAnio) };
+}
+
+function updateRange(el, valId, suffix) {
+  document.getElementById(valId).textContent = el.value + suffix;
+  state[el.id === 'r-clientes' ? 'clientes' : 'ticket'] = parseInt(el.value);
+  const prev = document.getElementById('live-preview');
+  if(prev) {
+    prev.style.display = 'block';
+    const ing = state.clientes * state.ticket;
+    const pot = Math.round(ing * 1.65);
+    document.getElementById('preview-ingresos').textContent = euros(ing);
+    document.getElementById('preview-potencial').textContent = euros(pot);
+  }
+}
+
+/* ════════════════════════════════
+   BUILD BUSINESS GRID
+════════════════════════════════ */
+function buildBizGrid() {
+  const g = document.getElementById('biz-grid');
+  g.innerHTML = NEGOCIOS.map(n => `
+    <div class="biz-card" onclick="selectBiz('${n.id}',this)" id="biz-${n.id}">
+      <div class="check">✓</div>
+      <span class="biz-emoji">${n.emoji}</span>
+      <div class="biz-name">${n.name}</div>
+      <div class="biz-example">${n.example}</div>
+    </div>
+  `).join('');
+}
+
+function selectBiz(id, el) {
+  state.biz = id;
+  document.querySelectorAll('.biz-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('btn-biz').disabled = false;
+  const biz = getBiz();
+  document.getElementById('r-clientes').value = biz.clientesDef;
+  document.getElementById('rv-clientes').textContent = biz.clientesDef;
+  document.getElementById('r-ticket').value = biz.ticketDef;
+  document.getElementById('rv-ticket').textContent = biz.ticketDef+'€';
+  state.clientes = biz.clientesDef;
+  state.ticket = biz.ticketDef;
+}
+
+/* ════════════════════════════════
+   BUILD QUESTION SCREEN
+════════════════════════════════ */
+function buildQuestionScreen(idx) {
+  const q = PREGUNTAS[idx];
+  const sc = document.getElementById('screen-q');
+  sc.innerHTML = `
+    <div class="label-tag"><div class="dot"></div>Pregunta ${idx+1} de ${PREGUNTAS.length}</div>
+    <div class="q-wrap">
+      <div class="q-header">
+        <div class="q-num">0${idx+1}</div>
+        <div>
+          <div class="q-text">${q.titulo}</div>
+          <div class="q-source">Fuente: ${q.fuente}</div>
+        </div>
+      </div>
+    </div>
+    <div class="options-grid" id="opts-${idx}">
+      ${q.opciones.map((o,i)=>`
+        <button class="opt-btn" onclick="selectOpt(${idx},${i},this)">
+          <div class="opt-letter">${o.letra}</div>
+          <div>
+            <div class="opt-main">${o.main}</div>
+            <div class="opt-sub">${o.sub}</div>
+          </div>
+        </button>
+      `).join('')}
+    </div>
+    <div class="insight-box" id="insight-${idx}">
+      <div class="insight-label">💡 Dato real</div>
+      <div class="insight-text">${q.insight}</div>
+    </div>
+    <div id="dashboard" class="show">
+      <div class="dash-header">
+        <div class="dash-title"><div class="live-dot"></div>Panel en tiempo real</div>
+        <div class="dash-subtitle">Se actualiza con cada respuesta</div>
+      </div>
+      <div class="dash-metrics">
+        <div class="metric" id="m-clientes">
+          <div class="metric-val" id="mv-clientes">—</div>
+          <div class="metric-label">Clientes/mes</div>
+          <div class="metric-delta" id="md-clientes">sin datos</div>
+        </div>
+        <div class="metric" id="m-confianza">
+          <div class="metric-val" id="mv-confianza">—</div>
+          <div class="metric-label">Confianza online</div>
+          <div class="metric-delta" id="md-confianza">sin datos</div>
+        </div>
+        <div class="metric" id="m-google">
+          <div class="metric-val" id="mv-google">—</div>
+          <div class="metric-label">Visib. Google</div>
+          <div class="metric-delta" id="md-google">sin datos</div>
+        </div>
+        <div class="metric highlight" id="m-perdida">
+          <div class="metric-val" id="mv-perdida">—</div>
+          <div class="metric-label">Pérdida/mes</div>
+          <div class="metric-delta" id="md-perdida">estimado</div>
+        </div>
+      </div>
+      <div class="chart-area"><canvas id="dash-chart"></canvas></div>
+    </div>
+    <button class="btn-next" id="btn-qnext" disabled onclick="nextQuestion(${idx})">
+      ${idx < PREGUNTAS.length-1 ? 'Siguiente pregunta →' : 'Ver mi resultado completo →'}
+    </button>
+  `;
+  renderDashboard();
+}
+
+/* ════════════════════════════════
+   ANSWER OPTION
+════════════════════════════════ */
+function selectOpt(qIdx, optIdx, el) {
+  // Disable re-click
+  const container = document.getElementById(`opts-${qIdx}`);
+  if(container.dataset.answered) return;
+  container.dataset.answered = '1';
+
+  const q = PREGUNTAS[qIdx];
+  const impact = q.opciones[optIdx].impact;
+
+  // Visual feedback — solo marcar la elegida, sin correcto/incorrecto
+  container.querySelectorAll('.opt-btn').forEach((b,i) => {
+    if(i === optIdx) b.classList.add('selected');
+    else b.style.opacity = '0.5';
+  });
+
+  // Update metrics
+  const prevC = metrics.clientes;
+  const prevConf = metrics.confianza;
+  const prevG = metrics.google;
+
+  metrics.clientes = Math.max(0.1, metrics.clientes + impact.clientes);
+  metrics.confianza = Math.min(100, Math.max(0, metrics.confianza + impact.confianza));
+  metrics.google = Math.min(100, Math.max(0, metrics.google + impact.google));
+
+  history.clientes.push(metrics.clientes);
+  history.confianza.push(metrics.confianza);
+  history.google.push(metrics.google);
+
+  state.answers.push(optIdx);
+
+  // Show insight
+  document.getElementById(`insight-${qIdx}`).classList.add('show');
+
+  renderDashboard(prevC, prevConf, prevG);
+
+  document.getElementById('btn-qnext').disabled = false;
+}
+
+/* ════════════════════════════════
+   RENDER DASHBOARD
+════════════════════════════════ */
+function renderDashboard(prevC, prevConf, prevG) {
+  const biz = getBiz(); if(!biz) return;
+  const clientesActuales = Math.round(state.clientes * metrics.clientes);
+  const perdida = calcPerdida();
+
+  // Metric cards
+  const mC = document.getElementById('m-clientes');
+  const mConf = document.getElementById('m-confianza');
+  const mG = document.getElementById('m-google');
+  const mP = document.getElementById('m-perdida');
+
+  if(mC) {
+    document.getElementById('mv-clientes').textContent = clientesActuales;
+    const dC = prevC !== undefined ? Math.round((metrics.clientes - prevC)*state.clientes) : 0;
+    document.getElementById('md-clientes').textContent = dC >= 0 ? `+${dC} vs base` : `${dC} vs base`;
+    mC.className = 'metric ' + (dC > 0 ? 'up' : dC < 0 ? 'down' : 'neutral');
+  }
+  if(mConf) {
+    document.getElementById('mv-confianza').textContent = Math.round(metrics.confianza)+'%';
+    const dConf = prevConf !== undefined ? Math.round(metrics.confianza - prevConf) : 0;
+    document.getElementById('md-confianza').textContent = dConf >= 0 ? `+${dConf}pts` : `${dConf}pts`;
+    mConf.className = 'metric ' + (dConf > 0 ? 'up' : dConf < 0 ? 'down' : 'neutral');
+  }
+  if(mG) {
+    document.getElementById('mv-google').textContent = Math.round(metrics.google)+'%';
+    const dG = prevG !== undefined ? Math.round(metrics.google - prevG) : 0;
+    document.getElementById('md-google').textContent = dG >= 0 ? `+${dG}pts` : `${dG}pts`;
+    mG.className = 'metric ' + (dG > 0 ? 'up' : dG < 0 ? 'down' : 'neutral');
+  }
+  if(mP) {
+    document.getElementById('mv-perdida').textContent = perdida.perdidaMes ? euros(perdida.perdidaMes) : '—';
+    document.getElementById('md-perdida').textContent = perdida.perdidaAnio ? euros(perdida.perdidaAnio)+'/año' : 'sin datos aún';
+    mP.className = 'metric highlight ' + (perdida.perdidaMes > 0 ? 'down' : 'up');
+  }
+
+  // Chart
+  const labels = history.clientes.map((_,i)=>`P${i+1}`);
+  const conf_data = history.confianza;
+  const google_data = history.google;
+
+  const ctx = document.getElementById('dash-chart');
+  if(ctx) {
+    if(dashChart) dashChart.destroy();
+    dashChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels.length ? labels : ['Inicio'],
+        datasets: [
+          {
+            label: 'Confianza online',
+            data: conf_data.length ? conf_data : [50],
+            borderColor: '#f5c842',
+            backgroundColor: 'rgba(245,200,66,0.1)',
+            tension: 0.4, fill: true, borderWidth: 2, pointRadius: 4,
+            pointBackgroundColor: '#f5c842'
+          },
+          {
+            label: 'Visibilidad Google',
+            data: google_data.length ? google_data : [10],
+            borderColor: '#4ade80',
+            backgroundColor: 'rgba(74,222,128,0.07)',
+            tension: 0.4, fill: true, borderWidth: 2, pointRadius: 4,
+            pointBackgroundColor: '#4ade80'
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: 'rgba(245,240,232,0.6)', font: { size: 11 }, boxWidth: 12 } } },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(245,240,232,0.4)', font:{size:10} } },
+          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(245,240,232,0.4)', font:{size:10} }, max: 100, min: 0 }
+        },
+        animation: { duration: 600 }
+      }
+    });
+  }
+}
+
+/* ════════════════════════════════
+   NAVIGATION
+════════════════════════════════ */
+function goTo(screenNum) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  if(screenNum <= 2) {
+    document.getElementById(`screen-${screenNum}`).classList.add('active');
+  } else if(screenNum === 3) {
+    qIndex = 0;
+    buildQuestionScreen(0);
+    document.getElementById('screen-q').classList.add('active');
+  } else if(screenNum === 'final') {
+    buildFinalScreen();
+    document.getElementById('screen-final').classList.add('active');
+  }
+  updateProgressBar(screenNum);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function nextQuestion(idx) {
+  if(idx < PREGUNTAS.length - 1) {
+    qIndex++;
+    buildQuestionScreen(qIndex);
+    document.getElementById('screen-q').classList.add('active');
+    updateProgressBar(3 + qIndex);
+  } else {
+    goTo('final');
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ════════════════════════════════
+   PROGRESS BAR
+════════════════════════════════ */
+function updateProgressBar(step) {
+  const total = 9;
+  const steps = document.getElementById('bar-steps');
+  steps.innerHTML = Array.from({length: total}, (_,i) => {
+    const cls = i < step ? 'done' : i === step ? 'active' : '';
+    return `<div class="bar-step ${cls}"></div>`;
+  }).join('');
+  const labels = ['Intro','Negocio','Datos','P1','P2','P3','P4','P5','P6','Resultado'];
+  document.getElementById('bar-label').textContent = labels[Math.min(step, labels.length-1)] || '';
+}
+
+/* ════════════════════════════════
+   FINAL SCREEN
+════════════════════════════════ */
+function buildFinalScreen() {
+  const biz = getBiz();
+  const perdida = calcPerdida();
+
+  // Nivel basado en métricas acumuladas, no en "correctas"
+  const nivelScore = (metrics.confianza + metrics.google) / 2;
+  let nivel, nivelMsg;
+  if(nivelScore >= 65) { nivel='Perfil digital sólido'; nivelMsg='Tus decisiones apuntan bien. Aún así, hay margen para crecer con los ajustes correctos.'; }
+  else if(nivelScore >= 38) { nivel='Presencia digital en desarrollo'; nivelMsg='Estás a medio camino. Con los pasos adecuados podrías doblar tus resultados en pocos meses.'; }
+  else { nivel='Visibilidad digital muy limitada'; nivelMsg='Tu negocio está dejando escapar una cantidad significativa de clientes cada mes por falta de presencia online.'; }
+
+  // Emojis por nivel de impacto de la respuesta elegida
+  const impactTier = (ans) => {
+    const impacts = PREGUNTAS[ans.q].opciones.map(o => o.impact.confianza + o.impact.google);
+    const chosen = impacts[ans.opt];
+    const max = Math.max(...impacts);
+    if(chosen >= max) return { icon:'🚀', label:'Decisión óptima' };
+    if(chosen >= 0)   return { icon:'👍', label:'Decisión aceptable' };
+    return              { icon:'⚠️', label:'Decisión con coste — '+PREGUNTAS[ans.q].opciones[PREGUNTAS[ans.q].correcta].main };
+  };
+
+  const resumen = PREGUNTAS.map((q, i) => {
+    const chosen = state.answers[i];
+    const tier = impactTier({q:i, opt:chosen});
+    return `<div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);">
+      <div style="font-size:1rem;margin-top:2px">${tier.icon}</div>
+      <div>
+        <div style="font-weight:600;font-size:0.85rem">${q.titulo}</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:2px"><em>"${q.opciones[chosen].main}"</em> · ${tier.label}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const sc = document.getElementById('screen-final');
+  sc.innerHTML = `
+    <div class="final-header">
+      <div class="score-badge">
+        Tu perfil digital · <span class="score-num">Confianza ${Math.round(metrics.confianza)}% · Google ${Math.round(metrics.google)}%</span>
+      </div>
+      <h2 class="screen-title" style="margin-bottom:0.6rem">
+        ${biz.emoji} <span class="red">${nivel}</span>
+      </h2>
+      <p class="screen-sub" style="margin-bottom:0">${nivelMsg}</p>
+    </div>
+
+    <div class="result-grid">
+      <div class="result-card red">
+        <span class="rc-icon">💸</span>
+        <div class="rc-title">Pérdida mensual estimada</div>
+        <div class="rc-val" style="color:var(--red)">${euros(perdida.perdidaMes)}</div>
+        <div class="rc-label">Por no estar bien posicionado online</div>
+      </div>
+      <div class="result-card">
+        <span class="rc-icon">📅</span>
+        <div class="rc-title">Pérdida anual</div>
+        <div class="rc-val" style="color:var(--ink)">${euros(perdida.perdidaAnio)}</div>
+        <div class="rc-label">Acumulado en 12 meses</div>
+      </div>
+      <div class="result-card green">
+        <span class="rc-icon">📈</span>
+        <div class="rc-title">Clientes potenciales/mes</div>
+        <div class="rc-val" style="color:var(--green)">${perdida.clientesCon}</div>
+        <div class="rc-label">Con web optimizada (estimado)</div>
+      </div>
+      <div class="result-card">
+        <span class="rc-icon">🎯</span>
+        <div class="rc-title">Confianza online lograda</div>
+        <div class="rc-val" style="color:var(--blue)">${Math.round(metrics.confianza)}%</div>
+        <div class="rc-label">Según tus respuestas</div>
+      </div>
+    </div>
+
+    <div class="final-chart-wrap">
+      <div class="fch-title">📊 Evolución de tu perfil digital a lo largo del ejercicio</div>
+      <div class="final-chart-area"><canvas id="final-chart"></canvas></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="margin-bottom:1.6rem">
+      <div class="label-tag">Resumen de tus respuestas</div>
+      ${resumen}
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="background:var(--paper2);border:2px solid var(--border-strong);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:2rem">
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">¿Qué incluye una web que lo cambie todo?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        ${[
+          ['🔍','SEO local optimizado','Aparecer cuando te buscan'],
+          ['⭐','Reseñas y credibilidad','Convencer antes de hablar'],
+          ['📅','Reservas / Contacto 24h','Capturar clientes nocturnos'],
+          ['📱','Diseño mobile-first','El 68% navega desde el móvil'],
+          ['⚡','Velocidad y Core Web Vitals','Google penaliza webs lentas'],
+          ['📊','Analytics real','Saber de dónde vienen tus clientes'],
+        ].map(([ic,tit,sub])=>`
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:1.2rem;margin-top:2px">${ic}</div>
+            <div>
+              <div style="font-weight:600;font-size:0.85rem">${tit}</div>
+              <div style="font-size:0.72rem;color:var(--muted)">${sub}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <h3>Tu competencia ya está online.<br>¿Vas a seguir invisible?</h3>
+      <p>Consigue una web que genere clientes reales para tu ${biz.name.toLowerCase()}. Sin permanencia, sin tecnicismos.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="/pages/contacto.html" class="btn-white">🚀 Quiero mi web →</a>
+        <button class="btn-white" style="background:transparent;color:white;border-color:white" onclick="restartExercise()">↩ Repetir ejercicio</button>
+      </div>
+    </div>
+  `;
+
+  // Render final chart after DOM is ready
+  setTimeout(() => {
+    buildFinalChart();
+    // Animate bars in result grid
+  }, 100);
+}
+
+function buildFinalChart() {
+  const labels = PREGUNTAS.slice(0, history.clientes.length).map((_,i) => `P${i+1}`);
+  if(!labels.length) return;
+  const ctx = document.getElementById('final-chart');
+  if(!ctx) return;
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Confianza online (%)',
+          data: history.confianza,
+          backgroundColor: 'rgba(245,200,66,0.75)',
+          borderColor: '#f5c842',
+          borderWidth: 2, borderRadius: 6,
+        },
+        {
+          label: 'Visibilidad Google (%)',
+          data: history.google,
+          backgroundColor: 'rgba(74,222,128,0.55)',
+          borderColor: '#4ade80',
+          borderWidth: 2, borderRadius: 6,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: 'rgba(245,240,232,0.7)', font:{size:11}, boxWidth:12 } } },
+      scales: {
+        x: { grid:{color:'rgba(255,255,255,0.05)'}, ticks:{color:'rgba(245,240,232,0.5)',font:{size:11}} },
+        y: { grid:{color:'rgba(255,255,255,0.05)'}, ticks:{color:'rgba(245,240,232,0.5)',font:{size:11}}, max:100, min:0 }
+      },
+      animation: { duration: 900, easing: 'easeOutQuart' }
+    }
+  });
+}
+
+function restartExercise() {
+  state.biz = null; state.clientes = 60; state.ticket = 60;
+  state.answers = []; state.score = 0; state.currentQ = 0;
+  metrics.clientes = 1.0; metrics.confianza = 50; metrics.google = 10;
+  history.clientes = []; history.confianza = []; history.google = [];
+  qIndex = 0; dashChart = null;
+  goTo(0);
+}
+
+/* ════════════════════════════════
+   INIT
+════════════════════════════════ */
+window.addEventListener('load', () => {
+  buildBizGrid();
+  updateProgressBar(0);
+  // Animate intro bars
+  setTimeout(()=>{
+    document.querySelectorAll('[data-w]').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 400);
+});
+</script>
+<script src="/assets/js/consent.js"></script>
+</body>
+</html>
