@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://bilyweb.vercel.app/sitemap.xml
-
-# Block non-useful paths
 Disallow: /api/
+
+Sitemap: https://site-lime-pi-56.vercel.app/sitemap.xml
