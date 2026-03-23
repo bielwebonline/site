@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://bilyweb.vercel.app/sitemap.xml
+
+# Block non-useful paths
+Disallow: /api/
