@@ -97,6 +97,109 @@
   // Nav injects immediately (needs to be first)
   document.body.insertAdjacentHTML('afterbegin', isRoot ? NAV_HTML_ROOT : NAV_HTML);
 
+  // Init burger immediately after nav exists in DOM
+  (function initBurger() {
+    let drawerOpen = false;
+    let drawer = null, overlay = null;
+
+    function buildDrawer() {
+      const pages = [
+        { href: '/index.html',            label: 'Inicio',    icon: '🏠' },
+        { href: '/pages/servicios.html',  label: 'Servicios', icon: '🛠' },
+        { href: '/pages/portfolio.html',  label: 'Portfolio', icon: '✦'  },
+        { href: '/pages/sobre-mi.html',   label: 'Sobre mí',  icon: '👤' },
+        { href: '/pages/precios.html',    label: 'Precios',   icon: '💰' },
+        { href: '/pages/blog.html',       label: 'Blog',      icon: '📝' },
+        { href: '/pages/contacto.html',   label: 'Contactar', icon: '✉'  },
+        { href: '/pages/curso-interactivo.html', label: 'Test gratuito', icon: '🎯' },
+      ];
+      const currentPath = window.location.pathname;
+
+      const ov = document.createElement('div');
+      ov.id = 'drawer-overlay';
+      ov.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(10,10,10,0.55);z-index:9998;opacity:0;transition:opacity 0.3s;';
+      document.body.appendChild(ov);
+
+      const dr = document.createElement('nav');
+      dr.id = 'mobile-drawer';
+      dr.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:280px;max-width:85vw;background:#f5f0e8;border-left:2px solid #0a0a0a;z-index:9999;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;box-shadow:-8px 0 40px rgba(0,0,0,0.2);';
+
+      // Header
+      const head = document.createElement('div');
+      head.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:2px solid #0a0a0a;background:#0a0a0a;flex-shrink:0;';
+      head.innerHTML = '<img src="/assets/img/logo-bilyweb.png" alt="BilyWeb" style="height:32px;width:auto;filter:brightness(0) invert(1);">';
+      const closeBtn = document.createElement('button');
+      closeBtn.style.cssText = 'background:none;border:none;color:#f5f0e8;font-size:1.5rem;line-height:1;padding:0.25rem;cursor:pointer;opacity:0.8;';
+      closeBtn.innerHTML = '✕';
+      closeBtn.addEventListener('click', closeDrawer);
+      head.appendChild(closeBtn);
+      dr.appendChild(head);
+
+      // Links
+      const linksWrap = document.createElement('div');
+      linksWrap.style.cssText = 'flex:1;padding:0.5rem 0;overflow-y:auto;';
+      pages.forEach(p => {
+        const isActive = currentPath === p.href || currentPath.endsWith(p.href.replace('/index.html',''));
+        const a = document.createElement('a');
+        a.href = p.href;
+        a.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:0.9rem 1.5rem;font-family:Instrument Sans,sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:' + (isActive ? '#e63325' : '#0a0a0a') + ';text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.07);background:' + (isActive ? 'rgba(230,51,37,0.06)' : 'transparent') + ';';
+        a.innerHTML = '<span style="font-size:1rem;width:1.4rem;text-align:center;flex-shrink:0">' + p.icon + '</span>' + p.label;
+        a.addEventListener('click', closeDrawer);
+        linksWrap.appendChild(a);
+      });
+      dr.appendChild(linksWrap);
+
+      // Footer WA
+      const foot = document.createElement('div');
+      foot.style.cssText = 'padding:1.2rem 1.5rem;border-top:1px solid rgba(10,10,10,0.1);flex-shrink:0;padding-bottom:calc(1.2rem + env(safe-area-inset-bottom));';
+      foot.innerHTML = '<a href="https://wa.me/34611044321?text=Hola%20BilyWeb!" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#25D366;color:white;padding:0.85rem;border-radius:8px;font-family:Instrument Sans,sans-serif;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;text-decoration:none;">💬 WhatsApp</a>';
+      dr.appendChild(foot);
+
+      document.body.appendChild(dr);
+      ov.addEventListener('click', closeDrawer);
+
+      return { drawer: dr, overlay: ov };
+    }
+
+    function openDrawer() {
+      if (!drawer) { const b = buildDrawer(); drawer = b.drawer; overlay = b.overlay; }
+      drawerOpen = true;
+      overlay.style.display = 'block';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        overlay.style.opacity = '1';
+        drawer.style.transform = 'translateX(0)';
+      }));
+      document.body.style.overflow = 'hidden';
+      const burger = document.querySelector('.nav-burger');
+      if (burger) {
+        const s = burger.querySelectorAll('span');
+        if (s[0]) s[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px);background:#0a0a0a;';
+        if (s[1]) s[1].style.cssText = 'opacity:0;background:#0a0a0a;';
+        if (s[2]) s[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px);background:#0a0a0a;';
+      }
+    }
+
+    function closeDrawer() {
+      if (!drawer) return;
+      drawerOpen = false;
+      drawer.style.transform = 'translateX(100%)';
+      overlay.style.opacity = '0';
+      setTimeout(() => { if (overlay) overlay.style.display = 'none'; }, 320);
+      document.body.style.overflow = '';
+      const burger = document.querySelector('.nav-burger');
+      if (burger) burger.querySelectorAll('span').forEach(s => s.style.cssText = 'background:#0a0a0a;');
+    }
+
+    document.addEventListener('click', function(e) {
+      const burger = e.target.closest('.nav-burger');
+      if (burger) { drawerOpen ? closeDrawer() : openDrawer(); return; }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawerOpen) closeDrawer();
+    });
+  })();
+
   // Footer and scripts inject AFTER full DOM is loaded
   function injectFooterAndChat() {
     document.body.insertAdjacentHTML('beforeend', FOOTER_HTML(isRoot));
