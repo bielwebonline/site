@@ -378,14 +378,27 @@ a, button, label, select { cursor: none; }
 }
 .cta-block p { font-size: 0.9rem; opacity: 0.88; margin-bottom: 1.6rem; }
 .btn-white {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-body); font-weight: 700; font-size: 0.88rem;
+  display: inline-flex !important; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 700 !important; font-size: 0.88rem;
   letter-spacing: 0.05em; text-transform: uppercase;
-  padding: 0.9rem 2.4rem; border-radius: 4px; border: 2px solid white;
-  background: white; color: var(--ink);
-  cursor: none; transition: all 0.2s; text-decoration: none;
+  padding: 0.9rem 2.4rem; border-radius: 4px; border: 2px solid #ffffff !important;
+  background: #ffffff !important; color: #0a0a0a !important;
+  cursor: none; transition: all 0.2s; text-decoration: none !important;
 }
-.btn-white:hover { background: var(--ink); color: white; border-color: var(--ink); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 white; }
+.btn-white:hover {
+  background: #0a0a0a !important; color: #ffffff !important;
+  border-color: #0a0a0a !important;
+  transform: translate(-2px,-2px); box-shadow: 4px 4px 0 white;
+}
+.cta-block .btn-white {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+  border-color: #ffffff !important;
+}
+.cta-block .btn-white:hover {
+  background: #0a0a0a !important;
+  color: #ffffff !important;
+}
 
 /* ── DIVIDER ── */
 .divider { height: 1.5px; background: var(--border); margin: 2rem 0; }
@@ -1077,8 +1090,11 @@ function buildFinalScreen() {
       <h3>Tu competencia ya está online.<br>¿Vas a seguir invisible?</h3>
       <p>Consigue una web que genere clientes reales para tu ${biz.name.toLowerCase()}. Sin permanencia, sin tecnicismos.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <a href="/pages/contacto.html" class="btn-white">🚀 Quiero mi web →</a>
-        <button class="btn-white" style="background:transparent;color:white;border-color:white" onclick="restartExercise()">↩ Repetir ejercicio</button>
+        <a href="/pages/contacto.html" style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:700;font-size:0.88rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.9rem 2.4rem;border-radius:4px;border:2px solid white;background:white;color:#0a0a0a;text-decoration:none;cursor:pointer;transition:all 0.2s;">🚀 Quiero mi web →</a>
+        <button onclick="restartExercise()" style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:700;font-size:0.88rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.9rem 2.4rem;border-radius:4px;border:2px solid rgba(255,255,255,0.6);background:transparent;color:white;cursor:pointer;transition:all 0.2s;">↩ Repetir ejercicio</button>
+      </div>
+      <div style="margin-top:1.2rem;">
+        <a href="/index.html" style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;padding:0.6rem 1.5rem;border-radius:4px;border:2px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.65);text-decoration:none;cursor:pointer;transition:all 0.2s;">← Volver al inicio</a>
       </div>
     </div>
   `;
