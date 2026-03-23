@@ -448,46 +448,192 @@ a:visited { color: inherit; }
 }
 
 /* ══════════════ RESPONSIVE ══════════════ */
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .nav-burger { display: flex; }
 
-  .nav-mobile-open .nav-links {
+/* ── Mobile nav burger ── */
+@media (max-width: 900px) {
+  .nav-links { display: none !important; }
+
+  .nav-burger {
     display: flex !important;
     flex-direction: column;
-    position: fixed;
-    bottom: var(--nav-h); top: auto;
-    left: 0; right: 0;
-    background: #f5f0e8;
-    border-top: 2px solid #0a0a0a;
-    box-shadow: 0 -8px 32px rgba(0,0,0,0.12);
-    padding: 1.5rem 2rem 2rem;
-    gap: 0.25rem;
-    z-index: 8999;
-    max-height: 80vh;
-    overflow-y: auto;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 9001;
+    position: relative;
   }
 
-  .nav-mobile-open .nav-links li {
-    border-bottom: 1px solid rgba(10,10,10,0.08);
-  }
-
-  .nav-mobile-open .nav-links li:last-child {
-    border-bottom: none;
-    padding-top: 0.75rem;
-  }
-
-  .nav-mobile-open .nav-links a {
-    display: block;
-    padding: 0.75rem 0;
-    font-size: 1rem !important;
-    color: #0a0a0a !important;
-  }
-
-  .nav-mobile-open .nav-links .nav-cta {
+  .nav-burger span {
     display: block !important;
-    text-align: center;
-    padding: 0.75rem 1rem !important;
-    border-radius: 4px;
+    width: 24px;
+    height: 2.5px;
+    background: #0a0a0a !important;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
   }
+}
+
+/* ── Global mobile tweaks ── */
+@media (max-width: 768px) {
+
+  :root {
+    --section-px: 1.2rem;
+    --section-py: 3rem;
+    --nav-h: 64px;
+  }
+
+  /* Images never overflow */
+  img { max-width: 100%; height: auto; }
+
+  /* All grids collapse to 1 col */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Headings scale down */
+  h1 { font-size: clamp(2.4rem, 10vw, 4rem) !important; }
+  h2 { font-size: clamp(1.8rem, 7vw, 3rem) !important; }
+  h3 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; }
+
+  /* Buttons full-width on mobile */
+  .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem !important;
+    padding: 0.8rem 1.2rem !important;
+  }
+
+  /* Cards no offset shadow on mobile (avoids overflow) */
+  .card:hover,
+  .service-card:hover,
+  .value-card:hover,
+  .plan-card:hover,
+  .maint-card:hover,
+  .blog-card:hover,
+  .project-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 20px rgba(10,10,10,0.12) !important;
+  }
+
+  /* Section labels center on mobile */
+  .section-label { font-size: 0.65rem; }
+
+  /* Marquee items smaller */
+  .marquee-item { font-size: 0.85rem; padding: 0 1.5rem; }
+
+  /* Nav padding */
+  #nav { padding: 0 1.2rem; }
+
+  /* Stat cards hide on mobile */
+  .hero-stat-card { display: none !important; }
+
+  /* About deco box hide */
+  .about-deco-box { display: none; }
+
+  /* About sticker reposition */
+  .about-sticker, .about-sticker-main { display: none; }
+
+  /* Calc extras grid 1 col */
+  .calc-extras-grid { grid-template-columns: 1fr !important; }
+
+  /* Process steps 2 col */
+  .process-steps { grid-template-columns: 1fr 1fr !important; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .footer-links-col { grid-template-columns: 1fr 1fr !important; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 0.5rem; }
+
+  /* Contact options */
+  .contact-hero-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Blog grid */
+  .blog-grid { grid-template-columns: 1fr !important; }
+  .blog-featured { grid-template-columns: 1fr !important; }
+  .blog-feat-img { min-height: 160px !important; }
+
+  /* Portfolio */
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+  .portfolio-home-grid { grid-template-columns: 1fr !important; }
+
+  /* Services */
+  .services-grid-home { grid-template-columns: 1fr !important; }
+  .svc-inner,
+  .svc-inner.reverse { grid-template-columns: 1fr !important; }
+  .svc-inner.reverse .svc-info { order: 1 !important; }
+  .svc-inner.reverse .svc-detail { order: 2 !important; }
+
+  /* Pricing */
+  .plans-grid { grid-template-columns: 1fr !important; }
+  .maint-grid { grid-template-columns: 1fr !important; }
+  .calc-full-inner { grid-template-columns: 1fr !important; }
+
+  /* About / sobre-mi */
+  .about-hero-grid,
+  .about-strip-inner,
+  .skills-inner,
+  .whyme-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .about-photo-container { display: none; }
+  .values-grid { grid-template-columns: 1fr 1fr !important; }
+  .tools-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Pricing comparison table */
+  .comp-table { font-size: 0.72rem; }
+  .comp-table th, .comp-table td { padding: 0.5rem 0.6rem; }
+
+  /* FAQ */
+  .faq-q { font-size: 0.9rem; }
+
+  /* CTA actions stack */
+  .cta-actions,
+  .hero-actions,
+  .svc-cta-row { flex-direction: column !important; gap: 0.75rem !important; }
+
+  /* Why section */
+  .why-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .stat-block-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Hero */
+  .hero-grid { grid-template-columns: 1fr !important; }
+  .hero-right { display: none !important; }
+
+  /* Calc teaser */
+  .calc-teaser-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+  /* Services hero */
+  .svc-hero-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+  /* Portfolio hero */
+  .portfolio-hero-inner h1 { font-size: clamp(3rem, 14vw, 5rem) !important; }
+
+  /* Floating chat reposition */
+  #biel-chat-btn { left: 1rem; bottom: calc(var(--nav-h) + 1rem); }
+  #biel-chat-window { left: 1rem; right: 1rem; width: auto; }
+
+  /* WhatsApp float */
+  #wa-float span { display: none; }
+  #wa-float { padding: 0.75rem !important; border-radius: 50% !important; width: 52px; height: 52px; justify-content: center; }
+
+  /* Watermark hide on mobile */
+  #bilyweb-watermark { display: none; }
+
+  /* Plan cards */
+  .plan-badge { font-size: 0.6rem; }
+  .plan-price { font-size: 2.8rem; }
+}
+
+/* ── Small phones ── */
+@media (max-width: 400px) {
+  :root { --section-px: 1rem; }
+  .values-grid { grid-template-columns: 1fr !important; }
+  .tools-grid { grid-template-columns: 1fr 1fr !important; }
+  .stat-block-grid { grid-template-columns: 1fr !important; }
+  .process-steps { grid-template-columns: 1fr !important; }
 }
