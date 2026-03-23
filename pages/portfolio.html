@@ -245,11 +245,24 @@
     </div>
 
     <!-- Placeholder 1 -->
-    <div class="project-placeholder" data-reveal data-delay="0.15">
-      <div class="ph-icon">🚀</div>
-      <div style="font-weight:600;font-size:1rem;color:var(--ink)">Próximo proyecto</div>
-      <div style="font-size:0.85rem">¿El tuyo? Hablemos.</div>
-      <a data-whatsapp="Hola Biel! Me interesa un proyecto web similar a tu portfolio." class="btn btn-primary" style="margin-top:0.5rem;font-size:0.8rem">Contactar →</a>
+    <div class="project-card" data-category="app landing" data-reveal data-delay="0.15" data-project="flowspace">
+      <div class="project-img-wrap">
+        <img src="/assets/img/project-flowspace.png" alt="FlowSpace - Productividad e IA">
+        <div class="project-overlay">
+          <button class="btn btn-primary open-modal" data-project="flowspace">Ver detalles →</button>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill">App Web</span>
+          <span class="proj-tag-pill">IA integrada</span>
+          <span class="proj-tag-pill">Productividad</span>
+          <span class="proj-tag-pill">Dashboard</span>
+        </div>
+        <div class="project-title">FlowSpace</div>
+        <div class="project-desc">Plataforma que une productividad, bienestar y automatización inteligente. Dashboard con seguimiento de tareas, métricas de bienestar y IA integrada para trabajar con calma y propósito.</div>
+        <div class="project-result"><strong>Incluye:</strong> Dashboard interactivo, IA integrada, gestión de tareas, métricas de wellbeing y sistema de notificaciones inteligentes.</div>
+      </div>
     </div>
 
     <!-- Placeholder 2 -->
@@ -286,6 +299,15 @@ const PROJECTS = {
     problema: 'Empresa de ciberseguridad sin presencia online. Perdían clientes frente a competidores con webs más modernas.',
     solucion: 'Diseño dark, moderno y premium. Hero impactante con animaciones de partículas, sección de servicios con iconografía propia, pricing claro y múltiples CTAs optimizados.',
     resultado: 'Landing page completa, animaciones CSS avanzadas, sistema de pricing, formulario de contacto y diseño 100% responsive.'
+  },
+  flowspace: {
+    title: 'FlowSpace',
+    img: '/assets/img/project-flowspace.png',
+    tags: ['App Web', 'IA Integrada', 'Productividad', 'Dashboard'],
+    desc: 'Plataforma SaaS que une productividad, bienestar y automatización inteligente. Diseñada para profesionales que quieren trabajar con calma, foco y propósito.',
+    problema: 'Los profesionales necesitaban una herramienta que combinara gestión de tareas con bienestar mental, sin la sobrecarga de las apps tradicionales de productividad.',
+    solucion: 'Dashboard limpio y moderno con IA integrada que sugiere pausas, prioriza tareas según el nivel de energía del usuario y genera informes semanales de productividad.',
+    resultado: 'Interfaz con dashboard personalizado, seguimiento de tareas, métricas de wellbeing, IA para sugerencias inteligentes y sistema de notificaciones contextuales.'
   },
   fiscalia: {
     title: 'FiscalIA',
