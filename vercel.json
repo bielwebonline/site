@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/chat", "destination": "/api/chat.js" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap.js" }
+  "routes": [
+    { "src": "/api/chat", "dest": "/api/chat.js" },
+    { "src": "/sitemap.xml", "dest": "/api/sitemap.js" }
   ]
 }
