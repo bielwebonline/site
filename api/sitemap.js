@@ -1,0 +1,56 @@
+// api/sitemap.js — Serve sitemap with guaranteed correct Content-Type
+module.exports = function handler(req, res) {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/servicios.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/precios.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/portfolio.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/contacto.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/sobre-mi.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/blog.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://site-lime-pi-56.vercel.app/pages/curso-interactivo.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>`);
+};
