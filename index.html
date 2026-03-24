@@ -8,9 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- ═══ SEO PRIMARY ═══ -->
-<title>Diseño Web Profesional España | Páginas Web para Empresas y Autónomos | BilyWeb</title>
+<title>Diseño Web Profesional para Empresas | BilyWeb Project</title>
 <meta name="description" content="Diseño y desarrollo web profesional a medida en España. Landing pages desde 400€, webs corporativas, tiendas online y rediseño web. Presupuesto gratis en 24h. Entrega en 7–14 días.">
-<meta name="keywords" content="diseño web profesional, páginas web empresas, diseño web autónomos, crear página web, web corporativa, landing page, tienda online, rediseño web, diseñador web freelance España">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/">
@@ -18,7 +17,7 @@
 <!-- ═══ OPEN GRAPH (Facebook, WhatsApp preview) ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/">
-<meta property="og:title" content="Diseño Web Profesional España | Páginas Web para Empresas y Autónomos | BilyWeb">
+<meta property="og:title" content="Diseño Web Profesional para Empresas | BilyWeb Project">
 <meta property="og:description" content="Diseño y desarrollo web profesional a medida en España. Landing pages desde 400€, webs corporativas, tiendas online y rediseño web. Presupuesto gratis en 24h. Entrega en 7–14 días.">
 <meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 <meta property="og:site_name" content="BilyWeb Project">
@@ -26,7 +25,7 @@
 
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Diseño Web Profesional España | Páginas Web para Empresas y Autónomos | BilyWeb">
+<meta name="twitter:title" content="Diseño Web Profesional para Empresas | BilyWeb Project">
 <meta name="twitter:description" content="Diseño y desarrollo web profesional a medida en España. Landing pages desde 400€, webs corporativas, tiendas online y rediseño web. Presupuesto gratis en 24h. Entrega en 7–14 días.">
 <meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 
@@ -754,7 +753,7 @@
 </style>
 </head>
 <body>
-<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/nav.js" defer></script>
 
 <!-- HERO -->
 <section id="hero">
@@ -780,7 +779,7 @@
     <!-- Right -->
     <div class="hero-right">
       <div class="hero-photo-wrap">
-        <img src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" style="object-fit:contain;padding:1.5rem;background:white;">
+        <img fetchpriority="high" decoding="async" width="200" height="200" src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" style="object-fit:contain;padding:1.5rem;background:white;">
         <div class="hero-badge-available">Disponible</div>
       </div>
       <!-- floating stat cards -->
@@ -936,7 +935,7 @@
   <div class="portfolio-home-grid">
     <div class="proj-card" data-reveal>
       <div class="proj-img">
-        <img loading="lazy" src="/assets/img/project-cibershield.png" alt="CiberShield - Web ciberseguridad">
+        <img width="1200" height="541" loading="lazy" src="/assets/img/project-cibershield.jpg" alt="CiberShield - Web ciberseguridad">
       </div>
       <div class="proj-meta">
         <div class="proj-cat">Diseño Web · Dark UI · Ciberseguridad</div>
@@ -946,7 +945,7 @@
     </div>
     <div class="proj-card" data-reveal data-delay="0.1">
       <div class="proj-img">
-        <img loading="lazy" src="/assets/img/project-fiscalia.png" alt="FiscalIA - App IA fiscal">
+        <img width="1200" height="531" loading="lazy" src="/assets/img/project-fiscalia.jpg" alt="FiscalIA - App IA fiscal">
       </div>
       <div class="proj-meta">
         <div class="proj-cat">App Web · IA · Fiscalidad</div>
@@ -956,7 +955,7 @@
     </div>
     <div class="proj-card" data-reveal data-delay="0.2">
       <div class="proj-img">
-        <img loading="lazy" src="/assets/img/project-flowspace.png" alt="FlowSpace - Productividad e IA">
+        <img width="1200" height="540" loading="lazy" src="/assets/img/project-flowspace.jpg" alt="FlowSpace - Productividad e IA">
       </div>
       <div class="proj-meta">
         <div class="proj-cat">App Web · IA integrada · Productividad</div>
@@ -972,7 +971,7 @@
   <div class="about-strip-inner">
     <div data-reveal style="position:relative">
       <div class="about-deco-box"></div>
-      <img loading="lazy" src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" class="about-strip-img">
+      <img width="200" height="200" loading="lazy" src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" class="about-strip-img">
       <div class="about-sticker">100%<br>A medida</div>
     </div>
     <div data-reveal data-delay="0.15">
@@ -1011,7 +1010,7 @@
         <h3>¿Cuánto costará tu web?</h3>
         <div class="form-group">
           <label class="form-label">Tipo de web</label>
-          <select class="form-select" id="calc-type">
+          <select class="form-select" id="calc-type" aria-label="Tipo de web" name="tipo-web">
             <option value="landing">Landing Page — desde 400€</option>
             <option value="corporativa" selected>Web Corporativa — desde 900€</option>
             <option value="tienda">Tienda Online — desde 1.500€</option>
@@ -1020,7 +1019,7 @@
         </div>
         <div class="form-group" id="pages-group">
           <label class="form-label">Nº de páginas</label>
-          <select class="form-select" id="calc-pages">
+          <select class="form-select" id="calc-pages" aria-label="Número de páginas" name="num-paginas">
             <option value="1">1–3 páginas</option>
             <option value="5" selected>4–5 páginas (incluido)</option>
             <option value="8">6–8 páginas (+€)</option>
@@ -1129,6 +1128,73 @@
 </section>
 
 
+
+<!-- FAQ SECTION (SEO) -->
+<section id="faq" style="padding:var(--section-py) var(--section-px);background:var(--paper);border-top:2px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start;" class="faq-home-grid">
+      <div>
+        <div class="section-label">FAQ</div>
+        <h2 style="margin-bottom:1.5rem;">Preguntas<br><em class="display-italic">frecuentes</em></h2>
+        <p style="color:var(--muted);font-size:1rem;line-height:1.75;margin-bottom:2rem;">¿Tienes dudas sobre el proceso, los precios o cómo funciona? Aquí tienes las respuestas más habituales.</p>
+        <a href="/pages/contacto.html" class="btn btn-primary">Más preguntas → Escríbeme</a>
+      </div>
+      <div class="faq-list" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="faq-item" style="border:2px solid var(--border-strong);border-radius:12px;overflow:hidden;background:white;">
+          <div class="faq-q" style="padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;">
+            ¿Cuánto cuesta hacer una página web profesional?
+            <span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+          </div>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;padding:0 1.5rem;">
+            <p style="padding-bottom:1.2rem;font-size:0.88rem;color:var(--muted);line-height:1.7;">Depende del tipo de proyecto: una <a href="/pages/servicios.html" style="color:var(--red);font-weight:600;">landing page</a> parte desde 400€, una web corporativa desde 900€ y una tienda online desde 1.500€. Consulta los <a href="/pages/precios.html" style="color:var(--red);font-weight:600;">precios detallados</a> o usa la calculadora para obtener un presupuesto orientativo al instante.</p>
+          </div>
+        </div>
+        <div class="faq-item" style="border:2px solid var(--border-strong);border-radius:12px;overflow:hidden;background:white;">
+          <div class="faq-q" style="padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;">
+            ¿En cuánto tiempo estará lista mi web?
+            <span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+          </div>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;padding:0 1.5rem;">
+            <p style="padding-bottom:1.2rem;font-size:0.88rem;color:var(--muted);line-height:1.7;">El plazo habitual es de 7 a 14 días laborables desde que aprobamos el diseño inicial. Para proyectos urgentes hay disponibilidad con un pequeño suplemento. Nunca empezamos a desarrollar sin que hayas visto y aprobado cómo quedará.</p>
+          </div>
+        </div>
+        <div class="faq-item" style="border:2px solid var(--border-strong);border-radius:12px;overflow:hidden;background:white;">
+          <div class="faq-q" style="padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;">
+            ¿Hacéis webs para cualquier tipo de empresa?
+            <span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+          </div>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;padding:0 1.5rem;">
+            <p style="padding-bottom:1.2rem;font-size:0.88rem;color:var(--muted);line-height:1.7;">Sí. Trabajamos con autónomos, PYMEs, empresas medianas y startups de cualquier sector: hostelería, servicios, consultoría, comercio, salud, tecnología… Si tienes un negocio y necesitas presencia online, podemos ayudarte.</p>
+          </div>
+        </div>
+        <div class="faq-item" style="border:2px solid var(--border-strong);border-radius:12px;overflow:hidden;background:white;">
+          <div class="faq-q" style="padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;">
+            ¿La web incluye SEO para aparecer en Google?
+            <span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+          </div>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;padding:0 1.5rem;">
+            <p style="padding-bottom:1.2rem;font-size:0.88rem;color:var(--muted);line-height:1.7;">Todas las webs incluyen SEO técnico básico: estructura semántica correcta, velocidad optimizada, meta tags y sitemap. Para posicionamiento avanzado ofrecemos un <a href="/pages/servicios.html" style="color:var(--red);font-weight:600;">servicio de SEO mensual</a> desde 200€/mes.</p>
+          </div>
+        </div>
+        <div class="faq-item" style="border:2px solid var(--border-strong);border-radius:12px;overflow:hidden;background:white;">
+          <div class="faq-q" style="padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;">
+            ¿Qué diferencia hay entre una web a medida y una con plantilla?
+            <span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;flex-shrink:0;margin-left:1rem;">+</span>
+          </div>
+          <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;padding:0 1.5rem;">
+            <p style="padding-bottom:1.2rem;font-size:0.88rem;color:var(--muted);line-height:1.7;">Una web con plantilla es rápida y barata pero genérica: miles de empresas tienen la misma. Una web a medida tiene un diseño único, carga más rápido (código limpio, sin funciones innecesarias) y posiciona mejor. Lee más en el <a href="/pages/blog.html" style="color:var(--red);font-weight:600;">blog</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .faq-item.open .faq-a { max-height:300px; padding-top:0; }
+      .faq-item.open .faq-arrow { transform:rotate(45deg); }
+      @media(max-width:768px){ .faq-home-grid { grid-template-columns:1fr !important; gap:2rem !important; } }
+    </style>
+  </div>
+</section>
+
 <!-- SEO CONTENT SECTION -->
 <section style="padding:4rem var(--section-px);background:var(--paper2);border-top:2px solid var(--border);">
   <div style="max-width:1280px;margin:0 auto;">
@@ -1145,6 +1211,6 @@
   </div>
 </section>
 
-<script src="/assets/js/main.js"></script>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

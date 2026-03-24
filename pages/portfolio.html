@@ -10,7 +10,6 @@
 <!-- ═══ SEO PRIMARY ═══ -->
 <title>Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb</title>
 <meta name="description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
-<meta name="keywords" content="portfolio diseño web, ejemplos páginas web profesionales, webs para empresas, diseño web a medida, proyectos diseño web, webs corporativas ejemplos">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/portfolio.html">
@@ -20,7 +19,7 @@
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/portfolio.html">
 <meta property="og:title" content="Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb">
 <meta property="og:description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
-<meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.png">
+<meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.jpg">
 <meta property="og:site_name" content="BilyWeb Project">
 <meta property="og:locale" content="es_ES">
 
@@ -28,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb">
 <meta name="twitter:description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
-<meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.png">
+<meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.jpg">
 
 <!-- ═══ SCHEMA MARKUP (JSON-LD) ═══ -->
 <script type="application/ld+json">
@@ -239,7 +238,7 @@
 </script>
 </head>
 <body>
-<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/nav.js" defer></script>
 
 <!-- HERO -->
 <section id="portfolio-hero">
@@ -264,7 +263,7 @@
     <!-- Project 1 -->
     <div class="project-card" data-category="web dark" data-reveal data-project="cibershield">
       <div class="project-img-wrap">
-        <img src="/assets/img/project-cibershield.png" alt="CiberShield">
+        <img fetchpriority="high" decoding="async" width="1200" height="541" src="/assets/img/project-cibershield.jpg" alt="CiberShield">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="cibershield">Ver detalles →</button>
         </div>
@@ -284,7 +283,7 @@
     <!-- Project 2 -->
     <div class="project-card" data-category="app" data-reveal data-delay="0.1" data-project="fiscalia">
       <div class="project-img-wrap">
-        <img loading="lazy" src="/assets/img/project-fiscalia.png" alt="FiscalIA">
+        <img width="1200" height="531" loading="lazy" src="/assets/img/project-fiscalia.jpg" alt="FiscalIA">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="fiscalia">Ver detalles →</button>
         </div>
@@ -305,7 +304,7 @@
     <!-- Placeholder 1 -->
     <div class="project-card" data-category="app landing" data-reveal data-delay="0.15" data-project="flowspace">
       <div class="project-img-wrap">
-        <img loading="lazy" src="/assets/img/project-flowspace.png" alt="FlowSpace - Productividad e IA">
+        <img width="1200" height="540" loading="lazy" src="/assets/img/project-flowspace.jpg" alt="FlowSpace - Productividad e IA">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="flowspace">Ver detalles →</button>
         </div>
@@ -351,7 +350,7 @@
 const PROJECTS = {
   cibershield: {
     title: 'CiberShield',
-    img: '../assets/img/project-cibershield.png',
+    img: '../assets/img/project-cibershield.jpg',
     tags: ['Web Corporativa', 'Dark UI', 'Ciberseguridad'],
     desc: 'Web de servicios de ciberseguridad profesionales para PYMEs y autónomos. El cliente necesitaba transmitir confianza y autoridad en un sector muy competitivo.',
     problema: 'Empresa de ciberseguridad sin presencia online. Perdían clientes frente a competidores con webs más modernas.',
@@ -360,7 +359,7 @@ const PROJECTS = {
   },
   flowspace: {
     title: 'FlowSpace',
-    img: '/assets/img/project-flowspace.png',
+    img: '/assets/img/project-flowspace.jpg',
     tags: ['App Web', 'IA Integrada', 'Productividad', 'Dashboard'],
     desc: 'Plataforma SaaS que une productividad, bienestar y automatización inteligente. Diseñada para profesionales que quieren trabajar con calma, foco y propósito.',
     problema: 'Los profesionales necesitaban una herramienta que combinara gestión de tareas con bienestar mental, sin la sobrecarga de las apps tradicionales de productividad.',
@@ -369,7 +368,7 @@ const PROJECTS = {
   },
   fiscalia: {
     title: 'FiscalIA',
-    img: '../assets/img/project-fiscalia.png',
+    img: '../assets/img/project-fiscalia.jpg',
     tags: ['App Web', 'IA / Chat', 'SaaS', 'Fiscal'],
     desc: 'Plataforma SaaS de asesoría fiscal inteligente para autónomos españoles. Interfaz de chat con IA, dashboard de gestión y herramientas fiscales integradas.',
     problema: 'Los autónomos españoles necesitan asesoría fiscal constante pero no pueden permitirse un asesor. Necesitaban una solución accesible y actualizada.',
@@ -411,6 +410,20 @@ document.addEventListener('click', (e) => {
   }
 });
 </script>
-<script src="/assets/js/main.js"></script>
+
+<!-- SEO INTERLINK SECTION -->
+<section style="padding:3rem var(--section-px);background:var(--paper2);border-top:2px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;text-align:center;">
+    <h2 style="font-size:clamp(1.8rem,4vw,3rem);margin-bottom:0.75rem;">¿Te gusta lo que ves?</h2>
+    <p style="color:var(--muted);max-width:480px;margin:0 auto 2rem;font-size:1rem;">Tu proyecto podría ser el próximo. Cuéntame qué necesitas y te preparo una propuesta sin compromiso.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/pages/servicios.html" class="btn btn-outline">Ver servicios →</a>
+      <a href="/pages/precios.html" class="btn btn-outline">Ver precios →</a>
+      <a href="/pages/contacto.html" class="btn btn-primary">Solicitar presupuesto →</a>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

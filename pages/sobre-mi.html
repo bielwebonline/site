@@ -10,7 +10,6 @@
 <!-- ═══ SEO PRIMARY ═══ -->
 <title>Diseñador Web Freelance España | Biel Gómez | BilyWeb Project</title>
 <meta name="description" content="Diseñador web freelance especializado en páginas web para empresas y autónomos. HTML, CSS, JavaScript, SEO, UI/UX y diseño responsive. Proyectos a medida en España.">
-<meta name="keywords" content="diseñador web freelance España, diseñador web profesional, freelance diseño web, diseñador web autónomos, diseño web a medida, desarrollador web freelance">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/sobre-mi.html">
@@ -278,7 +277,7 @@
 </script>
 </head>
 <body>
-<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/nav.js" defer></script>
 
 <section id="about-hero">
   <div class="about-hero-grid">
@@ -294,7 +293,7 @@
     </div>
     <div class="about-photo-container" data-reveal data-delay="0.1">
       <div class="about-photo-deco"></div>
-      <img src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" class="about-photo-main" style="object-fit:contain;padding:2rem;background:white;" style="object-fit:contain;padding:2rem;background:white;">
+      <img fetchpriority="high" decoding="async" width="200" height="200" src="/assets/img/logo-bilyweb.png" alt="BilyWeb Project" class="about-photo-main" style="object-fit:contain;padding:2rem;background:white;" style="object-fit:contain;padding:2rem;background:white;">
       <div class="about-sticker-main">Freelance<br>desde 2024</div>
     </div>
   </div>
@@ -469,6 +468,6 @@ const obs = new IntersectionObserver((entries) => {
 const barSection = document.getElementById('skill-bars');
 if (barSection) obs.observe(barSection);
 </script>
-<script src="/assets/js/main.js"></script>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

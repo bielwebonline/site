@@ -24,7 +24,7 @@
   const FOOTER_HTML = (isRoot) => {
     const base = '/'; // always absolute
     return `
-  <footer>
+  <footer role="contentinfo">
     <div class="footer-inner container">
       <div class="footer-top">
         <div class="footer-brand">
@@ -142,7 +142,7 @@
         const isActive = currentPath === p.href || currentPath.endsWith(p.href.replace('/index.html',''));
         const a = document.createElement('a');
         a.href = p.href;
-        a.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:0.9rem 1.5rem;font-family:Instrument Sans,sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:' + (isActive ? '#e63325' : '#0a0a0a') + ';text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.07);background:' + (isActive ? 'rgba(230,51,37,0.06)' : 'transparent') + ';';
+        a.setAttribute('role','menuitem'); a.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:0.9rem 1.5rem;font-family:Instrument Sans,sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:' + (isActive ? '#e63325' : '#0a0a0a') + ';text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.07);background:' + (isActive ? 'rgba(230,51,37,0.06)' : 'transparent') + ';';
         a.innerHTML = '<span style="font-size:1rem;width:1.4rem;text-align:center;flex-shrink:0">' + p.icon + '</span>' + p.label;
         a.addEventListener('click', closeDrawer);
         linksWrap.appendChild(a);

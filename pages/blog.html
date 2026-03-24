@@ -10,7 +10,6 @@
 <!-- ═══ SEO PRIMARY ═══ -->
 <title>Blog Diseño Web y SEO para Empresas | Guías y Consejos | BilyWeb</title>
 <meta name="description" content="Guías prácticas sobre diseño web, SEO y presencia online para empresas y autónomos: cuánto cuesta una web, cómo aparecer en Google, web vs redes sociales y más.">
-<meta name="keywords" content="blog diseño web, guias SEO empresas, consejos web autónomos, cuánto cuesta web, aparecer en Google, web para negocio, marketing digital pymes, presencia online">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/blog.html">
@@ -197,7 +196,7 @@
 </script>
 </head>
 <body>
-<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/nav.js" defer></script>
 
 <section id="blog-hero">
   <div class="blog-hero-inner" data-reveal>
@@ -481,9 +480,13 @@ document.addEventListener('click', (e) => {
       <h1>${article.title}</h1>
       ${article.content}
       <hr style="margin:2rem 0;border:none;border-top:2px solid var(--border)">
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-        <span style="font-size:0.85rem;color:var(--muted)">¿Interesante? Compártelo o habla conmigo:</span>
-        <a href="/pages/contacto.html" class="btn btn-primary" style="font-size:0.82rem;padding:0.55rem 1.2rem">Contactar →</a>
+      <div style="background:var(--paper2);border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;">
+        <p style="font-weight:600;margin-bottom:1rem;font-size:0.95rem;">¿Te ha sido útil? Si necesitas una web profesional:</p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <a href="/pages/servicios.html" class="btn btn-primary" style="font-size:0.82rem;padding:0.55rem 1.2rem">Ver servicios →</a>
+          <a href="/pages/precios.html" class="btn btn-outline" style="font-size:0.82rem;padding:0.55rem 1.2rem">Ver precios →</a>
+          <a href="/pages/contacto.html" class="btn btn-outline" style="font-size:0.82rem;padding:0.55rem 1.2rem;background:var(--green)!important;color:white!important;border-color:var(--green)!important;">Presupuesto gratis →</a>
+        </div>
       </div>
     </div>
   `;
@@ -501,6 +504,35 @@ document.getElementById('article-modal').addEventListener('click', (e) => {
   }
 });
 </script>
-<script src="/assets/js/main.js"></script>
+
+<!-- INTERNAL LINKING SECTION -->
+<section style="padding:3rem var(--section-px);background:var(--paper2);border-top:2px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="section-label">Siguientes pasos</div>
+    <h2 style="font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1.5rem;">¿Listo para tener<br>tu web profesional?</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;" class="blog-cta-grid">
+      <a href="/pages/servicios.html" style="display:block;background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+        <div style="font-size:1.75rem;margin-bottom:0.75rem;">🛠️</div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem;">Ver servicios</div>
+        <div style="font-size:0.83rem;color:var(--muted);line-height:1.5;">Landing pages, webs corporativas, tiendas online y más.</div>
+      </a>
+      <a href="/pages/precios.html" style="display:block;background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+        <div style="font-size:1.75rem;margin-bottom:0.75rem;">💰</div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem;">Ver precios</div>
+        <div style="font-size:0.83rem;color:var(--muted);line-height:1.5;">Tarifas claras sin sorpresas. Calcula tu presupuesto gratis.</div>
+      </a>
+      <a href="/pages/contacto.html" style="display:block;background:var(--ink);border:2px solid var(--ink);border-radius:12px;padding:1.5rem;text-decoration:none;color:var(--paper);transition:background 0.2s;" onmouseover="this.style.background='var(--red)';this.style.borderColor='var(--red)'" onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
+        <div style="font-size:1.75rem;margin-bottom:0.75rem;">✉️</div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem;">Presupuesto gratis</div>
+        <div style="font-size:0.83rem;color:rgba(245,240,232,0.7);line-height:1.5;">Sin compromiso. Primera consulta gratuita. Respondemos en 24h.</div>
+      </a>
+    </div>
+    <style>
+      @media(max-width:768px) { .blog-cta-grid { grid-template-columns:1fr !important; gap:0.75rem !important; } }
+    </style>
+  </div>
+</section>
+
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

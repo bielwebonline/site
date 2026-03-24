@@ -10,7 +10,6 @@
 <!-- ═══ SEO PRIMARY ═══ -->
 <title>Servicios Diseño Web | Crear Página Web Empresa | Rediseño Web | BilyWeb</title>
 <meta name="description" content="Servicios de diseño web: landing pages 400€, webs corporativas 900€, tiendas online 1.500€, rediseño web 600€, SEO y mantenimiento. A medida para empresas y autónomos.">
-<meta name="keywords" content="crear página web empresa, diseño web profesional precio, rediseño web, landing page profesional, tienda online profesional, mantenimiento web, SEO empresas">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/servicios.html">
@@ -235,7 +234,7 @@
 </script>
 </head>
 <body>
-<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/nav.js" defer></script>
 
 <section id="services-hero">
   <div class="svc-hero-inner">
@@ -414,7 +413,40 @@
   </div>
 </section>
 
-<script src="/assets/js/main.js"></script>
+
+<!-- FAQ + INTERLINK -->
+<section style="padding:var(--section-py) var(--section-px);background:var(--paper2);border-top:2px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 style="font-size:clamp(2rem,4vw,3.5rem);margin-bottom:2.5rem;">Lo que suelen<br><em class="display-italic">preguntar</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:960px;" class="faq-svc-grid">
+      <div style="background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;">
+        <div style="font-weight:700;margin-bottom:0.5rem;">¿Cuánto tiempo tardáis en entregar una web?</div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6;">El plazo habitual es de 7 a 14 días laborables desde la aprobación del diseño. Para proyectos urgentes existe un suplemento del 25%.</div>
+      </div>
+      <div style="background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;">
+        <div style="font-weight:700;margin-bottom:0.5rem;">¿Trabajáis con empresas de toda España?</div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6;">Sí, trabajamos 100% en remoto con clientes de toda España. La comunicación es por videollamada, email y WhatsApp.</div>
+      </div>
+      <div style="background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;">
+        <div style="font-weight:700;margin-bottom:0.5rem;">¿El precio incluye dominio y hosting?</div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6;">No están incluidos, pero te asesoramos sobre las mejores opciones para tu caso. El dominio suele costar ~10-15€/año y el hosting desde 5€/mes.</div>
+      </div>
+      <div style="background:white;border:2px solid var(--border-strong);border-radius:12px;padding:1.5rem;">
+        <div style="font-weight:700;margin-bottom:0.5rem;">¿Puedo ver ejemplos de trabajos anteriores?</div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6;">Claro. <a href="/pages/portfolio.html" style="color:var(--red);font-weight:600;">Visita el portfolio</a> para ver proyectos reales. También puedes contactarme y te muestro más ejemplos.</div>
+      </div>
+    </div>
+    <style>@media(max-width:768px){.faq-svc-grid{grid-template-columns:1fr !important;}}</style>
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <span style="font-size:0.95rem;color:var(--muted);">¿Tienes más dudas?</span>
+      <a href="/pages/precios.html" class="btn btn-outline" style="font-size:0.85rem;">Ver precios detallados →</a>
+      <a href="/pages/contacto.html" class="btn btn-primary" style="font-size:0.85rem;">Contactar ahora →</a>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/main.js" defer></script>
 
 <!-- SEO CONTENT -->
 <section style="padding:4rem var(--section-px);background:var(--paper2);border-top:2px solid var(--border);">
