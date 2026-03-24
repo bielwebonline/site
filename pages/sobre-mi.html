@@ -2,12 +2,15 @@
 <html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- ═══ SEO PRIMARY ═══ -->
-<title>Sobre BilyWeb Project | Diseño Web Freelance Profesional en España</title>
-<meta name="description" content="BilyWeb Project: equipo freelance especializado en webs para autónomos y PYMEs españolas. HTML/CSS, JavaScript, UI/UX, SEO y desarrollo a medida sin letra pequeña.">
-<meta name="keywords" content="diseñador web freelance España, diseño web freelance, diseñador web autónomos, diseño web a medida, diseñador web profesional, BilyWeb">
+<title>Diseñador Web Freelance España | Biel Gómez | BilyWeb Project</title>
+<meta name="description" content="Diseñador web freelance especializado en páginas web para empresas y autónomos. HTML, CSS, JavaScript, SEO, UI/UX y diseño responsive. Proyectos a medida en España.">
+<meta name="keywords" content="diseñador web freelance España, diseñador web profesional, freelance diseño web, diseñador web autónomos, diseño web a medida, desarrollador web freelance">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/sobre-mi.html">
@@ -15,25 +18,33 @@
 <!-- ═══ OPEN GRAPH (Facebook, WhatsApp preview) ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/sobre-mi.html">
-<meta property="og:title" content="Sobre BilyWeb Project | Diseño Web Freelance Profesional en España">
-<meta property="og:description" content="BilyWeb Project: equipo freelance especializado en webs para autónomos y PYMEs españolas. HTML/CSS, JavaScript, UI/UX, SEO y desarrollo a medida sin letra pequeña.">
+<meta property="og:title" content="Diseñador Web Freelance España | Biel Gómez | BilyWeb Project">
+<meta property="og:description" content="Diseñador web freelance especializado en páginas web para empresas y autónomos. HTML, CSS, JavaScript, SEO, UI/UX y diseño responsive. Proyectos a medida en España.">
 <meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 <meta property="og:site_name" content="BilyWeb Project">
 <meta property="og:locale" content="es_ES">
 
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sobre BilyWeb Project | Diseño Web Freelance Profesional en España">
-<meta name="twitter:description" content="BilyWeb Project: equipo freelance especializado en webs para autónomos y PYMEs españolas. HTML/CSS, JavaScript, UI/UX, SEO y desarrollo a medida sin letra pequeña.">
+<meta name="twitter:title" content="Diseñador Web Freelance España | Biel Gómez | BilyWeb Project">
+<meta name="twitter:description" content="Diseñador web freelance especializado en páginas web para empresas y autónomos. HTML, CSS, JavaScript, SEO, UI/UX y diseño responsive. Proyectos a medida en España.">
 <meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 
 <!-- ═══ SCHEMA MARKUP (JSON-LD) ═══ -->
 <script type="application/ld+json">
-  {
-      "@context":"https://schema.org","@type":"AboutPage",
-      "name":"Sobre BilyWeb Project","url":"https://site-lime-pi-56.vercel.app/pages/sobre-mi.html",
-      "isPartOf":{"@type":"WebSite","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}}
+{"@context":"https://schema.org","@graph":[
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://site-lime-pi-56.vercel.app/"},
+    {"@type":"ListItem","position":2,"name":"Sobre mí","item":"https://site-lime-pi-56.vercel.app/pages/sobre-mi.html"}
+  ]},
+  {"@type":"Person","name":"Biel Gómez","jobTitle":"Diseñador Web Freelance","worksFor":{"@type":"Organization","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"},"knowsAbout":["Diseño Web","HTML","CSS","JavaScript","SEO","UI/UX","Figma","Responsive Design"],"url":"https://site-lime-pi-56.vercel.app/pages/sobre-mi.html"}
+]}
 </script>
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="format-detection" content="telephone=yes">
 <link rel="stylesheet" href="/assets/css/global.css">
@@ -238,14 +249,21 @@
 .whyme-title { font-weight: 600; margin-bottom: 0.3rem; }
 .whyme-text { font-size: 0.87rem; color: rgba(245,240,232,0.65); line-height: 1.6; }
 
-@media(max-width:900px) {
-  .about-hero-grid, .skills-inner, .whyme-inner { grid-template-columns: 1fr; gap: 3rem; }
+@media (max-width: 900px) {
+  .about-hero-grid, .skills-inner, .whyme-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .values-grid { grid-template-columns: 1fr 1fr; }
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
   .about-photo-container { display: none; }
 }
-@media(max-width:600px) {
+@media (max-width: 768px) {
+  .values-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .tools-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .value-card, .tool-card { padding: 1.25rem; }
+}
+@media (max-width: 480px) {
   .values-grid { grid-template-columns: 1fr; }
+  .tools-grid  { grid-template-columns: 1fr 1fr; }
+}
 }
 </style>
 <script type="application/ld+json">

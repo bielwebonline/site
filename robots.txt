@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*.env
 
+# Crawl-delay for bots
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://site-lime-pi-56.vercel.app/sitemap.xml

@@ -129,7 +129,7 @@
       head.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:2px solid #0a0a0a;background:#0a0a0a;flex-shrink:0;';
       head.innerHTML = '<img src="/assets/img/logo-bilyweb.png" alt="BilyWeb" style="height:32px;width:auto;filter:brightness(0) invert(1);">';
       const closeBtn = document.createElement('button');
-      closeBtn.style.cssText = 'background:none;border:none;color:#f5f0e8;font-size:1.5rem;line-height:1;padding:0.25rem;cursor:pointer;opacity:0.8;';
+      closeBtn.style.cssText = 'background:none;border:none;color:#f5f0e8;font-size:1.5rem;line-height:1;padding:0.25rem;opacity:0.8;';
       closeBtn.innerHTML = '✕';
       closeBtn.addEventListener('click', closeDrawer);
       head.appendChild(closeBtn);

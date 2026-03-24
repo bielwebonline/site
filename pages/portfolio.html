@@ -2,12 +2,15 @@
 <html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- ═══ SEO PRIMARY ═══ -->
-<title>Portfolio Diseño Web | Proyectos Reales de Webs Profesionales | BilyWeb Project</title>
-<meta name="description" content="Proyectos reales: CiberShield (ciberseguridad), FiscalIA (app IA fiscal), FlowSpace (productividad). Ejemplos de webs profesionales a medida para negocios.">
-<meta name="keywords" content="portfolio diseño web, ejemplos webs profesionales, proyectos diseño web, webs a medida, diseño web portfolio, casos de éxito web">
+<title>Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb</title>
+<meta name="description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
+<meta name="keywords" content="portfolio diseño web, ejemplos páginas web profesionales, webs para empresas, diseño web a medida, proyectos diseño web, webs corporativas ejemplos">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/portfolio.html">
@@ -15,26 +18,33 @@
 <!-- ═══ OPEN GRAPH (Facebook, WhatsApp preview) ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/portfolio.html">
-<meta property="og:title" content="Portfolio Diseño Web | Proyectos Reales de Webs Profesionales | BilyWeb Project">
-<meta property="og:description" content="Proyectos reales: CiberShield (ciberseguridad), FiscalIA (app IA fiscal), FlowSpace (productividad). Ejemplos de webs profesionales a medida para negocios.">
+<meta property="og:title" content="Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb">
+<meta property="og:description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
 <meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.png">
 <meta property="og:site_name" content="BilyWeb Project">
 <meta property="og:locale" content="es_ES">
 
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portfolio Diseño Web | Proyectos Reales de Webs Profesionales | BilyWeb Project">
-<meta name="twitter:description" content="Proyectos reales: CiberShield (ciberseguridad), FiscalIA (app IA fiscal), FlowSpace (productividad). Ejemplos de webs profesionales a medida para negocios.">
+<meta name="twitter:title" content="Portfolio Diseño Web | Ejemplos Páginas Web Profesionales | BilyWeb">
+<meta name="twitter:description" content="Ejemplos reales de páginas web profesionales: CiberShield, FiscalIA, FlowSpace. Diseño web a medida para empresas y autónomos en España. Ver proyectos →">
 <meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/project-cibershield.png">
 
 <!-- ═══ SCHEMA MARKUP (JSON-LD) ═══ -->
 <script type="application/ld+json">
-  {
-      "@context":"https://schema.org","@type":"CollectionPage",
-      "name":"Portfolio BilyWeb Project","url":"https://site-lime-pi-56.vercel.app/pages/portfolio.html",
-      "description":"Proyectos reales de diseño web profesional",
-      "isPartOf":{"@type":"WebSite","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}}
+{"@context":"https://schema.org","@graph":[
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://site-lime-pi-56.vercel.app/"},
+    {"@type":"ListItem","position":2,"name":"Portfolio","item":"https://site-lime-pi-56.vercel.app/pages/portfolio.html"}
+  ]},
+  {"@type":"CollectionPage","name":"Portfolio Diseño Web — BilyWeb Project","description":"Ejemplos reales de páginas web profesionales diseñadas a medida para empresas y autónomos en España.","url":"https://site-lime-pi-56.vercel.app/pages/portfolio.html"}
+]}
 </script>
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="format-detection" content="telephone=yes">
 <link rel="stylesheet" href="/assets/css/global.css">
@@ -70,7 +80,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  cursor: none;
+  
   transition: all 0.2s;
 }
 .filter-btn:hover, .filter-btn.active {
@@ -92,7 +102,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: white;
-  cursor: none;
+  
   transition: transform 0.25s, box-shadow 0.25s;
 }
 .project-card:hover {
@@ -203,13 +213,18 @@
   padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
   font-weight: 600;
-  cursor: none;
+  
   margin-bottom: 1rem;
 }
 .modal-close:hover { background: var(--red); }
 
-@media(max-width:768px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+}
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+  .project-detail-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+}
 }
 </style>
 <script type="application/ld+json">
@@ -269,7 +284,7 @@
     <!-- Project 2 -->
     <div class="project-card" data-category="app" data-reveal data-delay="0.1" data-project="fiscalia">
       <div class="project-img-wrap">
-        <img src="/assets/img/project-fiscalia.png" alt="FiscalIA">
+        <img loading="lazy" src="/assets/img/project-fiscalia.png" alt="FiscalIA">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="fiscalia">Ver detalles →</button>
         </div>
@@ -290,7 +305,7 @@
     <!-- Placeholder 1 -->
     <div class="project-card" data-category="app landing" data-reveal data-delay="0.15" data-project="flowspace">
       <div class="project-img-wrap">
-        <img src="/assets/img/project-flowspace.png" alt="FlowSpace - Productividad e IA">
+        <img loading="lazy" src="/assets/img/project-flowspace.png" alt="FlowSpace - Productividad e IA">
         <div class="project-overlay">
           <button class="btn btn-primary open-modal" data-project="flowspace">Ver detalles →</button>
         </div>
@@ -371,7 +386,7 @@ document.addEventListener('click', (e) => {
     if (!p) return;
     const modal = document.getElementById('project-modal');
     document.getElementById('modal-content').innerHTML = `
-      <img class="modal-img" src="${p.img}" alt="${p.title}">
+      <img loading="lazy" class="modal-img" src="${p.img}" alt="${p.title}">
       <div class="modal-body">
         <button class="modal-close" id="close-modal">✕ Cerrar</button>
         <div class="proj-tags" style="margin-bottom:1rem">${p.tags.map(t=>`<span class="proj-tag-pill">${t}</span>`).join('')}</div>

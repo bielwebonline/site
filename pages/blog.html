@@ -2,12 +2,15 @@
 <html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- ═══ SEO PRIMARY ═══ -->
-<title>Blog Diseño Web y SEO para Autónomos | Consejos y Guías | BilyWeb Project</title>
-<meta name="description" content="Guías y consejos sobre diseño web, SEO y presencia online para autónomos y PYMEs: cuánto cuesta una web, cómo aparecer en Google, web vs Instagram y más.">
-<meta name="keywords" content="blog diseño web, SEO autónomos, consejos diseño web, cuánto cuesta web, aparecer en Google, web para negocio, marketing digital PYMEs">
+<title>Blog Diseño Web y SEO para Empresas | Guías y Consejos | BilyWeb</title>
+<meta name="description" content="Guías prácticas sobre diseño web, SEO y presencia online para empresas y autónomos: cuánto cuesta una web, cómo aparecer en Google, web vs redes sociales y más.">
+<meta name="keywords" content="blog diseño web, guias SEO empresas, consejos web autónomos, cuánto cuesta web, aparecer en Google, web para negocio, marketing digital pymes, presencia online">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/blog.html">
@@ -15,26 +18,33 @@
 <!-- ═══ OPEN GRAPH (Facebook, WhatsApp preview) ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/blog.html">
-<meta property="og:title" content="Blog Diseño Web y SEO para Autónomos | Consejos y Guías | BilyWeb Project">
-<meta property="og:description" content="Guías y consejos sobre diseño web, SEO y presencia online para autónomos y PYMEs: cuánto cuesta una web, cómo aparecer en Google, web vs Instagram y más.">
+<meta property="og:title" content="Blog Diseño Web y SEO para Empresas | Guías y Consejos | BilyWeb">
+<meta property="og:description" content="Guías prácticas sobre diseño web, SEO y presencia online para empresas y autónomos: cuánto cuesta una web, cómo aparecer en Google, web vs redes sociales y más.">
 <meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 <meta property="og:site_name" content="BilyWeb Project">
 <meta property="og:locale" content="es_ES">
 
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Blog Diseño Web y SEO para Autónomos | Consejos y Guías | BilyWeb Project">
-<meta name="twitter:description" content="Guías y consejos sobre diseño web, SEO y presencia online para autónomos y PYMEs: cuánto cuesta una web, cómo aparecer en Google, web vs Instagram y más.">
+<meta name="twitter:title" content="Blog Diseño Web y SEO para Empresas | Guías y Consejos | BilyWeb">
+<meta name="twitter:description" content="Guías prácticas sobre diseño web, SEO y presencia online para empresas y autónomos: cuánto cuesta una web, cómo aparecer en Google, web vs redes sociales y más.">
 <meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 
 <!-- ═══ SCHEMA MARKUP (JSON-LD) ═══ -->
 <script type="application/ld+json">
-  {
-      "@context":"https://schema.org","@type":"Blog",
-      "name":"Blog BilyWeb Project","url":"https://site-lime-pi-56.vercel.app/pages/blog.html",
-      "description":"Consejos de diseño web y SEO para autónomos y PYMEs",
-      "publisher":{"@type":"Organization","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}}
+{"@context":"https://schema.org","@graph":[
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://site-lime-pi-56.vercel.app/"},
+    {"@type":"ListItem","position":2,"name":"Blog","item":"https://site-lime-pi-56.vercel.app/pages/blog.html"}
+  ]},
+  {"@type":"Blog","name":"Blog BilyWeb — Diseño Web y SEO","description":"Guías prácticas sobre diseño web, SEO y presencia online para empresas y autónomos en España.","url":"https://site-lime-pi-56.vercel.app/pages/blog.html","publisher":{"@type":"Organization","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}}
+]}
 </script>
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="format-detection" content="telephone=yes">
 <link rel="stylesheet" href="/assets/css/global.css">
@@ -63,7 +73,7 @@
   margin-bottom: 4rem;
   background: white;
   transition: transform 0.25s, box-shadow 0.25s;
-  cursor: none;
+  
 }
 .blog-featured:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--ink); }
 .blog-feat-img {
@@ -106,7 +116,7 @@
   border: 2px solid var(--border-strong);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  cursor: none;
+  
   transition: transform 0.25s, box-shadow 0.25s;
 }
 .blog-card:hover { transform: translate(-3px,-3px); box-shadow: 5px 5px 0 var(--ink); }
@@ -154,7 +164,7 @@
   padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
   font-weight: 600;
-  cursor: none;
+  
 }
 .article-close:hover { background: var(--red); }
 .article-content h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1rem; }
@@ -165,11 +175,15 @@
 .article-content ul li { margin-bottom: 0.4rem; }
 .article-content .highlight { background: var(--yellow-light); border-left: 3px solid var(--yellow); padding: 1rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.5rem 0; }
 
-@media(max-width:900px) {
+@media (max-width: 900px) {
   .blog-featured { grid-template-columns: 1fr; }
-  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 }
-@media(max-width:600px) { .blog-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .blog-grid { grid-template-columns: 1fr !important; }
+  .blog-feat-img { min-height: 180px !important; }
+  .blog-card { padding: 1.25rem; }
+}
 </style>
 <script type="application/ld+json">
 {

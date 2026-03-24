@@ -329,7 +329,8 @@ function initPageLoad() {
 // ── INIT ALL ─────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initPageLoad();
-  initCursor();
+  // Only init custom cursor on devices with a fine pointer (mouse)
+  if (window.matchMedia('(pointer: fine)').matches) { initCursor(); }
   initNav();
   initScrollReveal();
   initWhatsAppButtons();

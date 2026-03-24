@@ -2,12 +2,15 @@
 <html lang="es" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- ═══ SEO PRIMARY ═══ -->
-<title>Contacto | Presupuesto Gratis Diseño Web | BilyWeb Project</title>
-<meta name="description" content="Solicita presupuesto gratuito de diseño web. Sin compromiso. Respondemos en menos de 24h por WhatsApp o email. Primera consulta completamente gratis.">
-<meta name="keywords" content="presupuesto diseño web gratis, contacto diseño web, contratar diseñador web, consulta diseño web, presupuesto web">
+<title>Presupuesto Web Gratis | Contratar Diseñador Web | BilyWeb Project</title>
+<meta name="description" content="Solicita presupuesto de diseño web gratis y sin compromiso. Respuesta en menos de 24h. Primera consulta gratuita. Diseñador web freelance disponible ahora.">
+<meta name="keywords" content="presupuesto diseño web gratis, contratar diseñador web, consulta diseño web, solicitar presupuesto web, diseñador web disponible, contacto diseño web">
 <meta name="author" content="BilyWeb Project">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://site-lime-pi-56.vercel.app/pages/contacto.html">
@@ -15,25 +18,33 @@
 <!-- ═══ OPEN GRAPH (Facebook, WhatsApp preview) ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://site-lime-pi-56.vercel.app/pages/contacto.html">
-<meta property="og:title" content="Contacto | Presupuesto Gratis Diseño Web | BilyWeb Project">
-<meta property="og:description" content="Solicita presupuesto gratuito de diseño web. Sin compromiso. Respondemos en menos de 24h por WhatsApp o email. Primera consulta completamente gratis.">
+<meta property="og:title" content="Presupuesto Web Gratis | Contratar Diseñador Web | BilyWeb Project">
+<meta property="og:description" content="Solicita presupuesto de diseño web gratis y sin compromiso. Respuesta en menos de 24h. Primera consulta gratuita. Diseñador web freelance disponible ahora.">
 <meta property="og:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 <meta property="og:site_name" content="BilyWeb Project">
 <meta property="og:locale" content="es_ES">
 
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contacto | Presupuesto Gratis Diseño Web | BilyWeb Project">
-<meta name="twitter:description" content="Solicita presupuesto gratuito de diseño web. Sin compromiso. Respondemos en menos de 24h por WhatsApp o email. Primera consulta completamente gratis.">
+<meta name="twitter:title" content="Presupuesto Web Gratis | Contratar Diseñador Web | BilyWeb Project">
+<meta name="twitter:description" content="Solicita presupuesto de diseño web gratis y sin compromiso. Respuesta en menos de 24h. Primera consulta gratuita. Diseñador web freelance disponible ahora.">
 <meta name="twitter:image" content="https://site-lime-pi-56.vercel.app/assets/img/logo-bilyweb.png">
 
 <!-- ═══ SCHEMA MARKUP (JSON-LD) ═══ -->
 <script type="application/ld+json">
-  {
-      "@context":"https://schema.org","@type":"ContactPage",
-      "name":"Contacto BilyWeb Project","url":"https://site-lime-pi-56.vercel.app/pages/contacto.html",
-      "isPartOf":{"@type":"WebSite","name":"BilyWeb Project","url":"https://site-lime-pi-56.vercel.app"}}
+{"@context":"https://schema.org","@graph":[
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://site-lime-pi-56.vercel.app/"},
+    {"@type":"ListItem","position":2,"name":"Contacto","item":"https://site-lime-pi-56.vercel.app/pages/contacto.html"}
+  ]},
+  {"@type":"ContactPage","name":"Contacto — BilyWeb Project","description":"Solicita un presupuesto gratuito de diseño web sin compromiso. Respondemos en menos de 24 horas.","url":"https://site-lime-pi-56.vercel.app/pages/contacto.html"}
+]}
 </script>
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="format-detection" content="telephone=yes">
 <link rel="stylesheet" href="/assets/css/global.css">
@@ -146,7 +157,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  cursor: none;
+  
 }
 .faq-q::after {
   content: '+';
@@ -172,8 +183,14 @@
 }
 .faq-item.open .faq-a { max-height: 300px; }
 
-@media(max-width:768px) {
-  .contact-hero-inner { grid-template-columns: 1fr; gap:3rem; }
+@media (max-width: 768px) {
+  .contact-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-info-cards { grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; }
+}
+@media (max-width: 480px) {
+  .contact-info-cards { grid-template-columns: 1fr !important; }
+}
   .form-row { grid-template-columns: 1fr; }
 }
 </style>
